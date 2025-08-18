@@ -67,76 +67,78 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FadeTransition(
-                opacity: _fadeAnimation,
-                child: SlideTransition(
-                  position: _slideAnimation,
-                  child: ScaleTransition(
-                    scale: _scaleAnimation,
-                    child: Container(
-                      height: 120,
-                      width: 120,
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: ApplicationColors.primary.withValues(
-                          alpha: 0.1,
-                        ),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
+      body: SafeArea(
+        child: Center(
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: ScaleTransition(
+                      scale: _scaleAnimation,
                       child: Container(
+                        height: 120,
+                        width: 120,
+                        padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: ApplicationColors.primary,
-                          borderRadius: BorderRadius.circular(20),
+                          color: ApplicationColors.primary.withValues(
+                            alpha: 0.1,
+                          ),
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        child: const Icon(
-                          Icons.chair_outlined,
-                          color: Colors.white,
-                          size: 40,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ApplicationColors.primary,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Icon(
+                            Icons.chair_outlined,
+                            color: Colors.white,
+                            size: 40,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
+                const SizedBox(height: 24),
 
-              FadeTransition(
-                opacity: _fadeAnimation,
-                child: SlideTransition(
-                  position: _slideAnimation,
-                  child: Text(
-                    'Furniture Store',
-                    style: ApplicationTextStyles.headingStyle.copyWith(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Text(
+                      'Furniture Store',
+                      style: ApplicationTextStyles.headingStyle.copyWith(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
 
-              const SizedBox(
-                height: 8,
-              ),
+                const SizedBox(
+                  height: 8,
+                ),
 
-              FadeTransition(
-                opacity: _fadeAnimation,
-                child: SlideTransition(
-                  position: _slideAnimation,
-                  child: Text(
-                    'Make your home beatiful',
-                    style: ApplicationTextStyles.bodyStyle.copyWith(
-                      color: Colors.grey.shade600,
-                      fontSize: 16,
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Text(
+                      'Make your home beatiful',
+                      style: ApplicationTextStyles.bodyStyle.copyWith(
+                        color: Colors.grey.shade600,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
