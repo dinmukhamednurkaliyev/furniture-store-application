@@ -34,35 +34,53 @@
   <img src="documentation/demo.gif" alt="App Demo GIF" width="250"/>
 </p> -->
 
+
 <h2 align="left">🛡️ Platform Support</h2>
-
-
 <p align="left">
-  <a href="#" title="Android: Supported">
+<div align="center" style="display:flex; justify-content:center; flex-wrap: wrap; gap:15px;">
+
+
+<div align="center">
+  <a href="#" title="Android">
     <img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40"/>
   </a>
-  &nbsp;
-  <a href="#" title="Web: In Progress">
-    <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40"/>
-  </a>
-  &nbsp;
-  
-  <a href="#" title="iOS: Not Supported">
-    <img src="https://www.svgrepo.com/show/391378/apple.svg" alt="iOS" width="40" height="40"/>
-  </a>
-  &nbsp;
-  <a href="#" title="Windows: Not Supported">
-    <img src="https://www.svgrepo.com/show/391582/windows.svg" alt="Windows" width="40" height="40"/>
-  </a>
-  &nbsp;
-  <a href="#" title="Linux: Not Supported">
-    <img src="https://www.svgrepo.com/show/391477/linux.svg" alt="Linux" width="40" height="40"/>
-  </a>
-</p>
+  <br>
+  <strong>Supported</strong>
+</div>
 
-<p align="left">
-  <sub><b>Legend:</b> Full-color icons indicate supported or in-progress platforms. Grayscale icons indicate unsupported platforms.</sub>
-</p>
+<div align="center">
+  <a href="#" title="iOS">
+    <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+  </a>
+  <br>
+  <em>Unsupported</em>
+</div>
+
+<div align="center">
+  <a href="#" title="Web">
+    <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+  </a>
+  <br>
+  <em>Unsupported</em>
+</div>
+
+<div align="center">
+  <a href="#" title="Windows">
+    <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+  </a>
+  <br>
+  <em>Unsupported</em>
+</div>
+
+<div align="center">
+  <a href="#" title="Linux">
+    <img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+  </a>
+  <br>
+  <em>Unsupported</em>
+</div>
+
+</div>
 
 
 <h2 align="left"> 📄 License </h2>
