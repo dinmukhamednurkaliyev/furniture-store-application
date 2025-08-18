@@ -24,10 +24,12 @@
 
 <h2 align="left">📱 Screenshots & Demo </h2>
 
-<p align="center">
+
+<p align="left">
   <b>Splash Screen</b><br>
  <img src="documentation/screenshots/splash-screen-portrait.png" alt="Splash Screen Portrait" width="200">
 </p>
+
 
 <!-- <p align="center">
   <b>Animated User Flow</b><br>
@@ -36,51 +38,11 @@
 
 
 <h2 align="left">🛡️ Platform Support</h2>
-<p align="left">
-<div align="center" style="display:flex; justify-content:center; flex-wrap: wrap; gap:15px;">
 
-
-<div align="center">
-  <a href="#" title="Android">
-    <img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40"/>
-  </a>
-  <br>
-  <strong>Supported</strong>
-</div>
-
-<div align="center">
-  <a href="#" title="iOS">
-    <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
-  </a>
-  <br>
-  <em>Unsupported</em>
-</div>
-
-<div align="center">
-  <a href="#" title="Web">
-    <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
-  </a>
-  <br>
-  <em>Unsupported</em>
-</div>
-
-<div align="center">
-  <a href="#" title="Windows">
-    <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
-  </a>
-  <br>
-  <em>Unsupported</em>
-</div>
-
-<div align="center">
-  <a href="#" title="Linux">
-    <img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
-  </a>
-  <br>
-  <em>Unsupported</em>
-</div>
-
-</div>
+| Android | iOS | Web | Windows | Linux |
+|:---:|:---:|:---:|:---:|:---:|
+| <a href="#" title="Android is supported"><img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40"/></a> | <a href="#" title="iOS is unsupported"><img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Web is unsupported"><img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Windows is unsupported"><img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Linux is unsupported"><img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> |
+| **Supported** | *Unsupported* | *Unsupported* | *Unsupported* | *Unsupported* |
 
 
 <h2 align="left"> 📄 License </h2>
