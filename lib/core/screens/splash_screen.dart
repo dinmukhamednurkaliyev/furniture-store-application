@@ -33,21 +33,18 @@ class _SplashScreenState extends State<SplashScreen>
       end: Offset.zero,
     ).animate(curvedAnimation);
 
-    // Запускаем анимацию и добавляем слушателя для навигации
     _animationController
       ..forward()
       ..addStatusListener(_onAnimationCompleted);
   }
 
-  /// Обработчик завершения анимации
   void _onAnimationCompleted(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       Future.delayed(const Duration(milliseconds: 500), () {
-        // Проверка 'mounted' - лучшая практика перед навигацией
         if (mounted) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute<void>(
-              builder: (_) => const OnboardingScreen(), // Используйте ваш экран
+              builder: (_) => const OnboardingScreen(),
             ),
           );
         }
@@ -66,13 +63,11 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Используем расширение напрямую
       backgroundColor: context.backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Создаем виджеты, передавая им только то, что им нужно (анимации)
             _AnimatedLogo(
               fadeAnimation: _fadeAnimation,
               slideAnimation: _slideAnimation,
@@ -89,11 +84,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-// --- ВЫНЕСЕННЫЕ, НЕЗАВИСИМЫЕ ВИДЖЕТЫ ---
-
-/// Анимированный виджет логотипа
 class _AnimatedLogo extends StatelessWidget {
-  // const конструктор - плюс к производительности!
   const _AnimatedLogo({
     required this.fadeAnimation,
     required this.slideAnimation,
@@ -112,8 +103,6 @@ class _AnimatedLogo extends StatelessWidget {
           width: 120,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            // ИСПОЛЬЗУЕМ РАСШИРЕНИЕ ВНУТРИ ВИДЖЕТА!
-            // И исправляем withValues на withOpacity
             color: context.primaryColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(30),
           ),
@@ -134,7 +123,6 @@ class _AnimatedLogo extends StatelessWidget {
   }
 }
 
-/// Анимированный виджет текстов
 class _AnimatedTexts extends StatelessWidget {
   const _AnimatedTexts({
     required this.fadeAnimation,

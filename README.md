@@ -1,6 +1,6 @@
-<!-- <p align="center">
-  <img src="documentation/images/project_banner.png" alt="Furniture Application Banner" width="800"/>
-</p> -->
+<p align="center">
+  <img src="documentation/images/banner.png" alt="Furniture Application Banner" width="800"/>
+</p>
 
 <h1 align="center">🛋️ Furniture Store Application</h1>
 
@@ -25,9 +25,9 @@
 <h2 align="left">📱 Screenshots & Demo </h2>
 
 
-<p align="left">
-  <b>Splash Screen</b><br>
+<p align="center">
  <img src="documentation/screenshots/splash-screen-portrait.png" alt="Splash Screen Portrait" width="200">
+ <img src="documentation/screenshots/on-boarding-screen-portrait.png" alt="Splash Screen Portrait" width="200">
 </p>
 
 
@@ -48,16 +48,6 @@
 <h2 align="left"> 📄 License </h2>
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-
-<h2 align="left"> 📬 Contact </h2>
-
-Dinmukhamed Nurkaliyev - [LinkedIn](https://www.linkedin.com/in/dinmukhamed-nurkaliyev-80b5a1326/) - dinmukhamed.nurkaliyev@gmail.com
-
-Project Link: [https://github.com/dinmukhamednurkaliyev/furniture-store-application](https://github.com/dinmukhamednurkaliyev/furniture-store-application)
-
-
 
 
 ## 🚀 Getting Started
