@@ -42,7 +42,7 @@
 | Android | iOS | Web | Windows | Linux |
 |:---:|:---:|:---:|:---:|:---:|
 | <a href="#" title="Android is supported"><img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40"/></a> | <a href="#" title="iOS is unsupported"><img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Web is unsupported"><img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Windows is unsupported"><img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Linux is unsupported"><img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> |
-| **Supported** | *Unsupported* | *Unsupported* | *Unsupported* | *Unsupported* |
+| Supported | Unsupported | Unsupported | Unsupported | Unsupported |
 
 
 <h2 align="left"> 📄 License </h2>

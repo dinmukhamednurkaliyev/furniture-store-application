@@ -1,66 +1,96 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:developer' as developer;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
-final _log = Logger('Application');
+@immutable
+class ApplicationBootstrap {
+  const ApplicationBootstrap._();
 
-Future<void> bootstrap({required FutureOr<Widget> Function() builder}) async {
-  await runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
+  static final _log = Logger('AppBootstrap');
 
-      _initializeLoggingAndErrorHandling();
+  static Future<void> run({
+    required FutureOr<Widget> Function() builder,
+  }) async {
+    final errorHandler = _ErrorHandler();
 
-      runApp(await builder());
-    },
-    (error, stackTrace) {
-      _log.severe('Unhandled error caught by Zone', error, stackTrace);
-    },
-  );
-}
+    await runZonedGuarded(
+      () async {
+        WidgetsFlutterBinding.ensureInitialized();
 
-void _initializeLoggingAndErrorHandling() {
-  Logger.root.level = kDebugMode ? Level.ALL : Level.WARNING;
-  Logger.root.onRecord.listen((record) {
-    log(
-      record.message,
-      time: record.time,
-      sequenceNumber: record.sequenceNumber,
-      level: record.level.value,
-      name: record.loggerName,
-      zone: record.zone,
-      error: record.error,
-      stackTrace: record.stackTrace,
+        _setupLogging();
+
+        errorHandler.setupErrorHandling();
+
+        if (kDebugMode) {
+          _setupPerformanceMonitoring();
+        }
+
+        _log.info('Bootstrap complete. Running app...');
+        runApp(await builder());
+      },
+      (error, stackTrace) => errorHandler.handleError(
+        'Unhandled error caught by Zone',
+        error,
+        stackTrace,
+      ),
     );
-  });
+  }
 
-  FlutterError.onError = (details) {
-    _log.severe(
-      'FlutterError caught',
-      details.exception,
-      details.stack,
-    );
-  };
+  static void _setupLogging() {
+    Logger.root.level = kDebugMode ? Level.ALL : Level.WARNING;
+    Logger.root.onRecord.listen((record) {
+      developer.log(
+        record.message,
+        time: record.time,
+        sequenceNumber: record.sequenceNumber,
+        level: record.level.value,
+        name: record.loggerName,
+        zone: record.zone,
+        error: record.error,
+        stackTrace: record.stackTrace,
+      );
+    });
+    _log.info('Logging initialized.');
+  }
 
-  PlatformDispatcher.instance.onError = (error, stack) {
-    _log.severe('PlatformDispatcher error caught', error, stack);
-    return true;
-  };
-
-  if (kDebugMode) {
-    _log.info('Debug mode detected. Initializing debug tools...');
+  static void _setupPerformanceMonitoring() {
     WidgetsBinding.instance.addTimingsCallback((timings) {
       for (final timing in timings) {
         if (timing.totalSpan > const Duration(milliseconds: 17)) {
           _log.warning(
-            'Janky frame detected! Took ${timing.totalSpan.inMilliseconds}ms',
+            'Janky frame detected! '
+            'Took ${timing.totalSpan.inMilliseconds}ms to render.',
           );
         }
       }
     });
     _log.info('Frame performance monitor enabled.');
+  }
+}
+
+class _ErrorHandler {
+  final _log = Logger('ErrorHandler');
+
+  void setupErrorHandling() {
+    FlutterError.onError = (details) {
+      handleError(
+        'FlutterError caught',
+        details.exception,
+        details.stack,
+      );
+    };
+
+    PlatformDispatcher.instance.onError = (error, stack) {
+      handleError('PlatformDispatcher error caught', error, stack);
+      return true;
+    };
+    _log.info('Global error handlers set up.');
+  }
+
+  void handleError(String context, Object error, StackTrace? stackTrace) {
+    _log.severe(context, error, stackTrace);
   }
 }
