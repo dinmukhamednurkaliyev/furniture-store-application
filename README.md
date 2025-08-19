@@ -1,62 +1,137 @@
-<p align="center">
+<div align="center">
+
   <img src="documentation/images/banner.png" alt="Furniture Application Banner" width="800"/>
-</p>
 
-<h1 align="center">🛋️ Furniture Store Application</h1>
+  # ℹ️ About The Project
 
-<p align="center">
   A simple Furniture Store application built with Flutter. This is a personal project for learning the fundamentals of the Flutter framework.
-</p>
 
+  <br />
 
-<p align="center">
-  <img alt="GitHub License" src="https://img.shields.io/github/license/dinmukhamednurkaliyev/furniture-store-application">
-  <img alt="GitHub Stars" src="https://img.shields.io/github/stars/dinmukhamednurkaliyev/furniture-store-application">
-  <img alt="Flutter Version" src="https://img.shields.io/badge/Flutter-3.35%2B-blue">
-</p>
+  <p>
+    <img alt="GitHub License" src="https://img.shields.io/github/license/dinmukhamednurkaliyev/furniture-store-application">
+    <img alt="GitHub Stars" src="https://img.shields.io/github/stars/dinmukhamednurkaliyev/furniture-store-application">
+    <img alt="Flutter Version" src="https://img.shields.io/badge/Flutter-3.35%2B-blue">
+  </p>
+</div>
 
-<h2 align="left">✨ Key Features</h2>
+---
+
+<div align="center">
+
+## 🎯 Features
 
 -   **✅ Modern & Clean UI:** A visually appealing interface with smooth animations.
 
+## ✨ Preview
 
 
+ <img src="documentation/screenshots/splash-screen-portrait.png" alt="Splash Screen Portrait" width="250"> 
+ <img src="documentation/screenshots/on-boarding-screen-portrait.png" alt="On-boarding Screen" width="250"> 
 
-<h2 align="left">📱 Screenshots & Demo </h2>
+<br>
 
-
-<p align="center">
- <img src="documentation/screenshots/splash-screen-portrait.png" alt="Splash Screen Portrait" width="200">
- <img src="documentation/screenshots/on-boarding-screen-portrait.png" alt="Splash Screen Portrait" width="200">
-</p>
-
-
-<!-- <p align="center">
+<!-- <div align="center">
   <b>Animated User Flow</b><br>
   <img src="documentation/demo.gif" alt="App Demo GIF" width="250"/>
-</p> -->
+</div> -->
 
 
-<h2 align="left">🛡️ Platform Support</h2>
+## 🛡️ Platform Support
 
-| Android | iOS | Web | Windows | Linux |
-|:---:|:---:|:---:|:---:|:---:|
-| <a href="#" title="Android is supported"><img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40"/></a> | <a href="#" title="iOS is unsupported"><img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Web is unsupported"><img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Windows is unsupported"><img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> | <a href="#" title="Linux is unsupported"><img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/></a> |
-| Supported | Unsupported | Unsupported | Unsupported | Unsupported |
+<table style="border: none;">
+  <!-- Row 1: Icons -->
+  <tr style="border: none;">
+    <td align="center" style="border: none; padding: 10px;">
+      <a href="#" title="Android is supported">
+        <img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40"/>
+      </a>
+    </td>
+    <td align="center" style="border: none; padding: 10px;">
+      <a href="#" title="iOS is unsupported">
+        <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+      </a>
+    </td>
+    <td align="center" style="border: none; padding: 10px;">
+      <a href="#" title="Web is unsupported">
+        <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+      </a>
+    </td>
+    <td align="center" style="border: none; padding: 10px;">
+      <a href="#" title="Windows is unsupported">
+        <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+      </a>
+    </td>
+    <td align="center" style="border: none; padding: 10px;">
+      <a href="#" title="Linux is unsupported">
+        <img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
+      </a>
+    </td>
+  </tr>
+  <!-- Row 2: Status Text -->
+  <tr style="border: none;">
+    <td align="center" style="border: none;"><b>Android</b><br/>Supported</td>
+    <td align="center" style="border: none;"><b>iOS</b><br/><span style="color:gray;">Unsupported</span></td>
+    <td align="center" style="border: none;"><b>Web</b><br/><span style="color:gray;">Unsupported</span></td>
+    <td align="center" style="border: none;"><b>Windows</b><br/><span style="color:gray;">Unsupported</span></td>
+    <td align="center" style="border: none;"><b>Linux</b><br/><span style="color:gray;">Unsupported</span></td>
+  </tr>
+</table>
 
 
-<h2 align="left"> 📄 License </h2>
+## ⚡ Built With
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center" style="border: none;">
+      <a href="https://flutter.dev/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" width="50" height="50"/>
+      </a>
+      <br />
+      Flutter
+    </td>
+    <td align="center" style="border: none;">
+      <a href="https://dart.dev/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" width="50" height="50"/>
+      </a>
+      <br />
+      Dart
+    </td>
+    <td align="center" style="border: none;">
+      <a href="https://www.figma.com/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="50" height="50"/>
+      </a>
+      <br />
+      Figma
+    </td>
+  </tr>
+</table>
+
+</div>
+
+## 🚀 Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+**Prerequisites:**
+* Make sure you have Flutter installed. [Installation Guide](https://docs.flutter.dev/get-started/install)
+
+**Installation:**
+1. Clone the repo
+   ```sh
+   git clone https://github.com/dinmukhamednurkaliyev/furniture-store-application.git
+
+
+
+## 📄 License 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-## 🚀 Getting Started
+## 🤝 Contributing
 
-### Prerequisites
-- Flutter SDK (v3.35.0+)
-- Android Studio / VS Code
+## 🌐 Contact 
 
-### Installation
- ```sh
-git clone https://github.com/dinmukhamednurkaliyev/furniture-store-application.git
-```
+
+</div>
