@@ -17,9 +17,12 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3af/512.webp" width="25"/> Features
 
-- [x] **Modern & Clean UI**: A visually appealing and intuitive interface designed to provide a seamless user experience.
-- [x] **Smooth Animations**: Engaging animations and transitions that enhance the overall look and feel of the application.
-- [x] **Onboarding Experience**: A clear and concise onboarding flow to introduce new users to the app's features.
+
+✅ **Modern & Clean UI**: A visually appealing and intuitive interface designed to provide a seamless user experience.
+</br>
+✅ **Smooth Animations**: Engaging animations and transitions that enhance the overall look and feel of the application.
+</br>
+✅ **Onboarding Experience**: A clear and concise onboarding flow to introduce new users to the app's features.
 
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/2728/512.webp" width="25"/>  Preview
 
