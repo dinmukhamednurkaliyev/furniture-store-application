@@ -35,7 +35,7 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 <div style="display: flex; align-items: flex-start;">
   <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
-    <strong>Responsive Design</strong>:The layout adapts seamlessly to various screen sizes, ensuring an optimal viewing experience on desktops, tablets, and mobile devices.
+    <strong>Responsive Design</strong>: The layout adapts seamlessly to various screen sizes, ensuring an optimal viewing experience on desktops, tablets, and mobile devices.
 </div>
 
 
