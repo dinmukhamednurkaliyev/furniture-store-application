@@ -33,8 +33,12 @@
 
 </div>
 
- <img src="documentation/screenshots/splash-screen-portrait.png" alt="Splash Screen Portrait" width="250"> 
- <img src="documentation/screenshots/on-boarding-screen-portrait.png" alt="On-boarding Screen" width="250"> 
+<p align="center">
+  <img src="documentation/screenshots/splash-screen-portrait.png" alt="Splash Screen Portrait" width="250"> 
+  <img src="documentation/screenshots/on-boarding-screen-portrait.png" alt="On-boarding Screen" width="250">
+</p>
+
+
 
 <br>
 
