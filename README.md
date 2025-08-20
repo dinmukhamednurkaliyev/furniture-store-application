@@ -18,11 +18,26 @@ A modern **Furniture Store** application built with Flutter. This project serves
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3af/512.webp" width="25"/> Features
 
 
-✅ **Modern & Clean UI**: A visually appealing and intuitive interface designed to provide a seamless user experience.
-</br>
-✅ **Smooth Animations**: Engaging animations and transitions that enhance the overall look and feel of the application.
-</br>
-✅ **Onboarding Experience**: A clear and concise onboarding flow to introduce new users to the app's features.
+<div style="display: flex; align-items: flex-start; margin-bottom: 10px;">
+  <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
+  <div>
+    <strong>Modern & Clean UI</strong>: A visually appealing and intuitive interface designed to provide a seamless user experience.
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; margin-bottom: 10px;">
+  <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
+  <div>
+    <strong>Smooth Animations</strong>: Engaging animations and transitions that enhance the overall look and feel of the application.
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start;">
+  <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
+  <div>
+    <strong>Onboarding Experience</strong>: A clear and concise onboarding flow to introduce new users to the app's features.
+  </div>
+</div>
 
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/2728/512.webp" width="25"/>  Preview
 
@@ -41,17 +56,57 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 ## <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/gear_2699-fe0f.gif" width="25"/>  Platform Support
 
-- <img align="center" src="https://www.svgrepo.com/show/475631/android-color.svg" width="15"/> **Android**: <img align="center" src="https://img.shields.io/badge/Supported-brightgreen?style=flat-square" alt="Supported" />
-- <img align="center" src="https://www.svgrepo.com/show/303125/apple-logo.svg" width="15"/> **iOS**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
-- <img align="center" src="https://www.svgrepo.com/show/475640/chrome-color.svg" width="15"/> **Web**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
-- <img align="center" src="https://www.svgrepo.com/show/382713/windows-applications.svg" width="15"/> **Windows**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
-- <img align="center" src="https://www.svgrepo.com/show/354004/linux-tux.svg" width="15"/> **Linux**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
+<div style="display: flex; align-items: center;">
+    <img src="https://www.svgrepo.com/show/475631/android-color.svg" width="15" style="margin-right: 5px;"/> 
+    <strong>Android</strong>
+     <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678134-sign-check-512.png" width="15" style="margin-right: 5px;"/> 
+</div>
+<div style="display: flex; align-items: center;">
+    <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" width="15" style="margin-right: 5px;"/> 
+    <strong>iOS</strong>
+     <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-1024.png" width="15" style="margin-right: 5px;"/> 
+</div>
+<div style="display: flex; align-items: center;">
+    <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" width="15" style="margin-right: 5px;"/> 
+    <strong>Web</strong>
+    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-1024.png" width="15" style="margin-right: 5px;"/> 
+</div>
+<div style="display: flex; align-items: center;">
+    <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" width="15" style="margin-right: 5px;"/> 
+    <strong>Windows</strong>
+    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-1024.png" width="15" style="margin-right: 5px;"/> 
+</div>
+<div style="display: flex; align-items: center;">
+    <img src="https://www.svgrepo.com/show/354004/linux-tux.svg" width="15" style="margin-right: 5px;"/> 
+    <strong>Linux</strong>
+    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-1024.png" width="15" style="margin-right: 5px;"/> 
+</div>
 
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/26a1/512.webp" width="25"/> Built With
-- <a href="https://dart.dev/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="15"/></a> **Dart** 
-- <a href="https://flutter.dev/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="15"/></a> **Flutter** 
-- <a href="https://www.figma.com/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="15"/></a> **Figma**
-- <a href="https://code.visualstudio.com/" target="_blank"><img align="center" src="https://www.svgrepo.com/show/452129/vs-code.svg" width="15"/></a> **VS Code**
+<div style="display: flex; align-items: center;">
+    <a href="https://dart.dev/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="15" style="margin-right: 5px;"/>
+    </a>
+    <strong>Dart</strong>
+</div>
+<div style="display: flex; align-items: center;">
+    <a href="https://flutter.dev/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="15" style="margin-right: 5px;"/>
+    </a>
+    <strong>Flutter</strong>
+</div>
+<div style="display: flex; align-items: center;">
+    <a href="https://www.figma.com/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="15" style="margin-right: 5px;"/>
+    </a>
+    <strong>Figma</strong>
+</div>
+<div style="display: flex; align-items: center;">
+    <a href="https://code.visualstudio.com/" target="_blank">
+        <img src="https://www.svgrepo.com/show/452129/vs-code.svg" width="15" style="margin-right: 5px;"/>
+    </a>
+    <strong>VS Code</strong>
+</div>
 
 
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.webp" width="25"/> Getting Started
