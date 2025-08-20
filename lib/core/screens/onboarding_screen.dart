@@ -9,7 +9,6 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  // ... (весь код состояния остается без изменений) ...
   final PageController _pageController = PageController();
   final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(0);
 
@@ -50,6 +49,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final verticalPadding = context.screenHeight * 0.02;
+
     return Scaffold(
       backgroundColor: context.backgroundColor,
       body: SafeArea(
@@ -71,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               itemCount: _onboardingItems.length,
               currentPageNotifier: _currentPageNotifier,
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: verticalPadding),
             _OnboardingBottomBar(
               itemCount: _onboardingItems.length,
               currentPageNotifier: _currentPageNotifier,
@@ -79,7 +80,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               onSkip: _goToHomeScreen,
               onGetStarted: _goToHomeScreen,
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: verticalPadding),
           ],
         ),
       ),
@@ -87,42 +88,87 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 }
 
-// --- ВИДЖЕТЫ ---
-
 class _OnboardingPageContent extends StatelessWidget {
   const _OnboardingPageContent({required this.item});
   final _OnboardingItem item;
 
   @override
   Widget build(BuildContext context) {
+    return context.isMobile
+        ? _buildPortraitLayout(context)
+        : _buildLandscapeLayout(context);
+  }
+
+  Widget _buildPortraitLayout(BuildContext context) {
+    final imageHeight = (context.screenHeight * 0.4).clamp(250.0, 400.0);
+    const titleFontSize = 24.0;
+    const descriptionFontSize = 16.0;
+    final titleSpacing = context.screenHeight * 0.05;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(item.imagePath, height: 300),
-          const SizedBox(height: 40),
-          Text(
-            item.title,
-            textAlign: TextAlign.center,
-            style: context.displayLarge?.copyWith(
-              fontSize: 24,
-            ),
+          Image.asset(item.imagePath, height: imageHeight),
+          SizedBox(height: titleSpacing),
+          _buildTextContent(context, titleFontSize, descriptionFontSize),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLandscapeLayout(BuildContext context) {
+    final imageHeight = (context.screenHeight * 0.6).clamp(300.0, 500.0);
+    const titleFontSize = 32.0;
+    const descriptionFontSize = 18.0;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.screenWidth * 0.08),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Image.asset(item.imagePath, height: imageHeight),
           ),
-          const SizedBox(height: 16),
-          Text(
-            item.description,
-            textAlign: TextAlign.center,
-            style: context.bodyLarge,
+          const SizedBox(width: 48),
+          Expanded(
+            child: _buildTextContent(
+              context,
+              titleFontSize,
+              descriptionFontSize,
+            ),
           ),
         ],
       ),
     );
   }
+
+  Widget _buildTextContent(
+    BuildContext context,
+    double titleFontSize,
+    double descriptionFontSize,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          item.title,
+          textAlign: TextAlign.center,
+          style: context.displayLarge?.copyWith(fontSize: titleFontSize),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          item.description,
+          textAlign: TextAlign.center,
+          style: context.bodyLarge?.copyWith(fontSize: descriptionFontSize),
+        ),
+      ],
+    );
+  }
 }
 
 class _PageIndicators extends StatelessWidget {
-  // Добавляем const
   const _PageIndicators({
     required this.itemCount,
     required this.currentPageNotifier,
@@ -140,8 +186,10 @@ class _PageIndicators extends StatelessWidget {
           children: List.generate(itemCount, (index) {
             final isActive = currentPage == index;
             return AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              margin: const EdgeInsets.symmetric(horizontal: 4),
+              duration: const Duration(milliseconds: 400),
+              margin: const EdgeInsets.symmetric(
+                horizontal: 4,
+              ),
               height: 8,
               width: isActive ? 24 : 8,
               decoration: BoxDecoration(
@@ -159,7 +207,6 @@ class _PageIndicators extends StatelessWidget {
 }
 
 class _OnboardingBottomBar extends StatelessWidget {
-  // Добавляем const
   const _OnboardingBottomBar({
     required this.itemCount,
     required this.currentPageNotifier,
@@ -175,25 +222,50 @@ class _OnboardingBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final buttonHeight = (context.screenHeight * 0.065).clamp(48.0, 60.0);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: ValueListenableBuilder<int>(
         valueListenable: currentPageNotifier,
         builder: (context, currentPage, _) {
           final isLastPage = currentPage.isLastIndex(itemCount);
+
           return isLastPage
               ? ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
+                    minimumSize: Size(double.infinity, buttonHeight),
                   ),
                   onPressed: onGetStarted,
                   child: const Text('Get Started'),
                 )
               : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(onPressed: onSkip, child: const Text('Skip')),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        minimumSize: Size(
+                          0,
+                          buttonHeight,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        alignment: Alignment.centerLeft,
+                      ),
+                      onPressed: onSkip,
+                      child: const Text('Skip'),
+                    ),
+                    const Spacer(),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(
+                          0,
+                          buttonHeight,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                        ),
+                      ),
                       onPressed: onNext,
                       child: const Text('Next'),
                     ),

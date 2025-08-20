@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_application/core/core.dart';
 
 extension ThemeExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);
-
-  TextTheme get textTheme => theme.textTheme;
 
   ColorScheme get colorScheme => theme.colorScheme;
 
@@ -14,6 +13,8 @@ extension ThemeExtensions on BuildContext {
   Color get errorColor => colorScheme.error;
   Color get backgroundColor => colorScheme.surface;
   Color get surfaceColor => colorScheme.surface;
+
+  TextTheme get textTheme => theme.textTheme;
 
   TextStyle? get displayLarge => textTheme.displayLarge;
   TextStyle? get displayMedium => textTheme.displayMedium;
@@ -49,4 +50,12 @@ extension MediaQueryExtensions on BuildContext {
 extension UtilityExtensions on BuildContext {
   bool get isDarkMode => theme.brightness == Brightness.dark;
   bool get isLightMode => theme.brightness == Brightness.light;
+}
+
+extension ResponsiveContextExtensions on BuildContext {
+  bool get isMobile => screenWidth < 600;
+
+  bool get isTablet => screenWidth >= 600 && screenWidth < 1100;
+
+  bool get isDesktop => screenWidth >= 1100;
 }

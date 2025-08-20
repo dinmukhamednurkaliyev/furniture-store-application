@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 
@@ -72,6 +75,7 @@ class _SplashScreenState extends State<SplashScreen>
               fadeAnimation: _fadeAnimation,
               slideAnimation: _slideAnimation,
             ),
+
             const SizedBox(height: 24),
             _AnimatedTexts(
               fadeAnimation: _fadeAnimation,
@@ -94,16 +98,23 @@ class _AnimatedLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final logoSize = (min(context.screenWidth, context.screenHeight) * 0.25)
+        .clamp(100.0, 180.0);
+
+    final iconSize = logoSize * 0.33;
+
     return FadeTransition(
       opacity: fadeAnimation,
       child: SlideTransition(
         position: slideAnimation,
         child: Container(
-          height: 120,
-          width: 120,
+          height: logoSize,
+          width: logoSize,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: context.primaryColor.withValues(alpha: 0.1),
+            color: context.primaryColor.withValues(
+              alpha: 0.1,
+            ),
             borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
@@ -111,10 +122,10 @@ class _AnimatedLogo extends StatelessWidget {
               color: context.primaryColor,
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.chair_outlined,
               color: Colors.white,
-              size: 40,
+              size: iconSize,
             ),
           ),
         ),
@@ -133,6 +144,9 @@ class _AnimatedTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titleFontSize = context.isMobile ? 32.0 : 48.0;
+    final subtitleFontSize = context.isMobile ? 16.0 : 22.0;
+
     return FadeTransition(
       opacity: fadeAnimation,
       child: SlideTransition(
@@ -141,12 +155,13 @@ class _AnimatedTexts extends StatelessWidget {
           children: [
             Text(
               'Furniture Store',
-              style: context.displayLarge?.copyWith(fontSize: 32),
+              style: context.displayLarge?.copyWith(fontSize: titleFontSize),
             ),
             const SizedBox(height: 8),
             Text(
               'Make your home beautiful',
               style: context.bodyLarge?.copyWith(
+                fontSize: subtitleFontSize,
                 color: context.colorScheme.onSurfaceVariant,
               ),
             ),
