@@ -78,28 +78,20 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 <h2> <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/26a1/512.webp" width="25"/> Built With </h2>
 <div style="display: flex; align-items: center;">
-    <a href="https://dart.dev/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="15" style="margin-right: 5px;"/>
-    </a>
-    <strong>Dart</strong>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="15" style="margin-right: 5px;"/>
+  <strong>Dart</strong>
 </div>
 <div style="display: flex; align-items: center;">
-    <a href="https://flutter.dev/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="15" style="margin-right: 5px;"/>
-    </a>
-    <strong>Flutter</strong>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="15" style="margin-right: 5px;"/>
+  <strong>Flutter</strong>
 </div>
 <div style="display: flex; align-items: center;">
-    <a href="https://www.figma.com/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="15" style="margin-right: 5px;"/>
-    </a>
-    <strong>Figma</strong>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="15" style="margin-right: 5px;"/>
+  <strong>Figma</strong>
 </div>
 <div style="display: flex; align-items: center;">
-    <a href="https://code.visualstudio.com/" target="_blank">
-        <img src="https://www.svgrepo.com/show/452129/vs-code.svg" width="15" style="margin-right: 5px;"/>
-    </a>
-    <strong>VS Code</strong>
+  <img src="https://www.svgrepo.com/show/452129/vs-code.svg" width="15" style="margin-right: 5px;"/>
+  <strong>VS Code</strong>
 </div>
 
 
