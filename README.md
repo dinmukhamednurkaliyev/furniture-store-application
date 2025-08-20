@@ -38,8 +38,8 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 ## <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/check-mark-button_2705.gif" width="25"/>  Platform Support
 
-- <img align="center" src="https://www.svgrepo.com/show/475631/android-color.svg" width="15"/> **Android**: Supported
-- <img align="center" src="https://www.svgrepo.com/show/303125/apple-logo.svg" width="15""/> **iOS**: <span>Unsupported</span>
+- <img align="center" src="https://www.svgrepo.com/show/475631/android-color.svg" width="15"/> **Android**: <span>Supported</span>
+- <img align="center" src="https://www.svgrepo.com/show/303125/apple-logo.svg" width="15" /> **iOS**: <span>Unsupported</span>
 - <img align="center" src="https://www.svgrepo.com/show/475640/chrome-color.svg"  width="15"/> **Web**: <span>Unsupported</span>
 - <img align="center" src="https://www.svgrepo.com/show/382713/windows-applications.svg" width="15"/> **Windows**: <span>Unsupported</span>
 - <img align="center" src="https://www.svgrepo.com/show/354004/linux-tux.svg" width="15"/> **Linux**: <span>Unsupported</span>
