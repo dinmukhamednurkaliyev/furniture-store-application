@@ -1,8 +1,9 @@
 
 <div align="center">
-  <img src="documentation/images/banner.png" width="800"/>
+  <img src="documentation/images/brand_banner.svg" width="800"/>
 
-  # <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/pencil_270f-fe0f.gif" width="25"/>  About The Project
+  <h1> <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/pencil_270f-fe0f.gif" width="25"/>  About The Project </h1>
+
 A modern **Furniture Store** application built with Flutter. This project serves as a practical learning experience for understanding the core concepts of the Flutter framework.
   
 </div>
@@ -14,7 +15,7 @@ A modern **Furniture Store** application built with Flutter. This project serves
   </div>
 
 
-## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3af/512.webp" width="25"/> Features
+<h2> <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3af/512.webp" width="25"/> Features </h2>
 
 
 <div style="display: flex; align-items: flex-start; margin-bottom: 10px;">
@@ -47,7 +48,7 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 
 
-## <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/gear_2699-fe0f.gif" width="25"/>  Platform Support
+<h2> <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/gear_2699-fe0f.gif" width="25"/>  Platform Support </h2>
 
 <div style="display: flex; align-items: center;">
     <img src="https://www.svgrepo.com/show/475631/android-color.svg" width="15" style="margin-right: 5px;"/> 
@@ -75,7 +76,7 @@ A modern **Furniture Store** application built with Flutter. This project serves
     <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-1024.png" width="15" style="margin-right: 5px;"/> 
 </div>
 
-## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/26a1/512.webp" width="25"/> Built With
+<h2> <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/26a1/512.webp" width="25"/> Built With </h2>
 <div style="display: flex; align-items: center;">
     <a href="https://dart.dev/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="15" style="margin-right: 5px;"/>
@@ -102,7 +103,7 @@ A modern **Furniture Store** application built with Flutter. This project serves
 </div>
 
 
-## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.webp" width="25"/> Getting Started
+<h2> <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.webp" width="25"/> Getting Started </h2>
 
 To get a local copy up and running, follow these simple steps.
 
@@ -130,14 +131,14 @@ To get a local copy up and running, follow these simple steps.
     flutter run
     ```
 
-## <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/locked_1f512.gif" width="25"/>  License 
+<h2> <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/locked_1f512.gif" width="25"/>  License </h2>
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-## <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/handshake_1f91d.gif" width="25"/>  Contributing
+<h2> <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/handshake_1f91d.gif" width="25"/>  Contributing </h2>
 
-## <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/bell_1f514.gif" width="25"/>  Contact 
+<h2> <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/bell_1f514.gif" width="25"/>  Contact </h2>
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/74038190/216656963-09118229-8a9e-4af0-910c-c37f35f2e210.gif">
