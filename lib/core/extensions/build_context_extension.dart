@@ -53,9 +53,9 @@ extension UtilityExtensions on BuildContext {
 }
 
 extension ResponsiveContextExtensions on BuildContext {
-  bool get isMobile => screenWidth < 600;
+  bool get isMobileScreen => screenWidth < 600;
 
-  bool get isTablet => screenWidth >= 600 && screenWidth < 1100;
+  bool get isTabletScreen => screenWidth >= 600 && screenWidth < 1100;
 
-  bool get isDesktop => screenWidth >= 1100;
+  bool get isDesktopScreen => screenWidth >= 1100;
 }

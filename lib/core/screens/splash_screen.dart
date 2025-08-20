@@ -144,8 +144,8 @@ class _AnimatedTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleFontSize = context.isMobile ? 32.0 : 48.0;
-    final subtitleFontSize = context.isMobile ? 16.0 : 22.0;
+    final titleFontSize = context.isMobileScreen ? 32.0 : 48.0;
+    final subtitleFontSize = context.isMobileScreen ? 16.0 : 22.0;
 
     return FadeTransition(
       opacity: fadeAnimation,

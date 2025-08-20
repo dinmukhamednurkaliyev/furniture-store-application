@@ -71,6 +71,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             _PageIndicators(
               itemCount: _onboardingItems.length,
               currentPageNotifier: _currentPageNotifier,
+              onIndicatorTapped: (index) {
+                _pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                );
+              },
             ),
             SizedBox(height: verticalPadding),
             _OnboardingBottomBar(
@@ -94,7 +101,7 @@ class _OnboardingPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.isMobile
+    return context.isMobileScreen
         ? _buildPortraitLayout(context)
         : _buildLandscapeLayout(context);
   }
@@ -172,9 +179,12 @@ class _PageIndicators extends StatelessWidget {
   const _PageIndicators({
     required this.itemCount,
     required this.currentPageNotifier,
+    required this.onIndicatorTapped,
   });
+
   final int itemCount;
   final ValueNotifier<int> currentPageNotifier;
+  final ValueChanged<int>? onIndicatorTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -185,18 +195,30 @@ class _PageIndicators extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(itemCount, (index) {
             final isActive = currentPage == index;
-            return AnimatedContainer(
-              duration: const Duration(milliseconds: 400),
-              margin: const EdgeInsets.symmetric(
-                horizontal: 4,
-              ),
-              height: 8,
+
+            final indicator = AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              height: 9,
               width: isActive ? 24 : 8,
               decoration: BoxDecoration(
                 color: isActive
                     ? context.primaryColor
                     : context.colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(12),
+              ),
+            );
+
+            return Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () => onIndicatorTapped!(index),
+                mouseCursor: SystemMouseCursors.click,
+                borderRadius: BorderRadius.circular(12),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: indicator,
+                ),
               ),
             );
           }),
