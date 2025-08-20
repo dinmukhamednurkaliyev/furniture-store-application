@@ -33,6 +33,12 @@ A modern **Furniture Store** application built with Flutter. This project serves
     <strong>Onboarding Experience</strong>: A clear and concise onboarding flow to introduce new users to the app's features.
 </div>
 
+<div style="display: flex; align-items: flex-start;">
+  <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
+    <strong>Responsive Design</strong>:The layout adapts seamlessly to various screen sizes, ensuring an optimal viewing experience on desktops, tablets, and mobile devices.
+</div>
+
+
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/2728/512.webp" width="25"/>  Preview
 
 <p align="center">
@@ -63,7 +69,7 @@ A modern **Furniture Store** application built with Flutter. This project serves
 <div style="display: flex; align-items: center;">
     <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" width="15" style="margin-right: 5px;"/> 
     <strong>Web</strong>
-    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-1024.png" width="15" style="margin-right: 5px;"/> 
+    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678134-sign-check-512.png" width="15" style="margin-right: 5px;"/> 
 </div>
 <div style="display: flex; align-items: center;">
     <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" width="15" style="margin-right: 5px;"/> 

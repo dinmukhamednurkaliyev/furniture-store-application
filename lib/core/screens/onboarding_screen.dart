@@ -40,7 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _goToHomeScreen() {}
 
-  void _onNext() {
+  void _onNextPage() {
     _pageController.nextPage(
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut,
@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             _OnboardingBottomBar(
               itemCount: _onboardingItems.length,
               currentPageNotifier: _currentPageNotifier,
-              onNext: _onNext,
+              onNext: _onNextPage,
               onSkip: _goToHomeScreen,
               onGetStarted: _goToHomeScreen,
             ),
