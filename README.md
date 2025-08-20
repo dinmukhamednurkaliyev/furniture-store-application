@@ -11,7 +11,6 @@ A modern **Furniture Store** application built with Flutter. This project serves
     <img src="https://img.shields.io/github/license/dinmukhamednurkaliyev/furniture-store-application">
     <img src="https://img.shields.io/github/stars/dinmukhamednurkaliyev/furniture-store-application">
     <img src="https://img.shields.io/badge/Flutter-3.35%2B-blue">
-    <img src="https://img.shields.io/badge/Flutter-3.35%2B-blue">
   </div>
 
 
