@@ -41,11 +41,11 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 ## <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/gear_2699-fe0f.gif" width="25"/>  Platform Support
 
-- <img align="center" src="https://www.svgrepo.com/show/475631/android-color.svg" width="15"/> **Android**: <img src="https://img.shields.io/badge/Supported-brightgreen?style=flat-square" alt="Supported" />
-- <img align="center" src="https://www.svgrepo.com/show/303125/apple-logo.svg" width="15"/> **iOS**: <img src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
-- <img align="center" src="https://www.svgrepo.com/show/475640/chrome-color.svg" width="15"/> **Web**: <img src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
-- <img align="center" src="https://www.svgrepo.com/show/382713/windows-applications.svg" width="15"/> **Windows**: <img src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
-- <img align="center" src="https://www.svgrepo.com/show/354004/linux-tux.svg" width="15"/> **Linux**: <img src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
+- <img align="center" src="https://www.svgrepo.com/show/475631/android-color.svg" width="15"/> **Android**: <img align="center" src="https://img.shields.io/badge/Supported-brightgreen?style=flat-square" alt="Supported" />
+- <img align="center" src="https://www.svgrepo.com/show/303125/apple-logo.svg" width="15"/> **iOS**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
+- <img align="center" src="https://www.svgrepo.com/show/475640/chrome-color.svg" width="15"/> **Web**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
+- <img align="center" src="https://www.svgrepo.com/show/382713/windows-applications.svg" width="15"/> **Windows**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
+- <img align="center" src="https://www.svgrepo.com/show/354004/linux-tux.svg" width="15"/> **Linux**: <img align="center" src="https://img.shields.io/badge/Unsupported-gray?style=flat-square" alt="Unsupported" />
 
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/26a1/512.webp" width="25"/> Built With
 - <a href="https://dart.dev/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="15"/></a> **Dart** 
