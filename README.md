@@ -17,14 +17,21 @@
 
 ---
 
+
 <div align="center">
 
 ## 🎯 Features
 
+</div>
+
 -   **✅ Modern & Clean UI:** A visually appealing interface with smooth animations.
+
+
+<div align="center">
 
 ## ✨ Preview
 
+</div>
 
  <img src="documentation/screenshots/splash-screen-portrait.png" alt="Splash Screen Portrait" width="250"> 
  <img src="documentation/screenshots/on-boarding-screen-portrait.png" alt="On-boarding Screen" width="250"> 
@@ -36,11 +43,16 @@
   <img src="documentation/demo.gif" alt="App Demo GIF" width="250"/>
 </div> -->
 
+<div align="center">
 
 ## 🛡️ Platform Support
 
-<table style="border: none;">
-  <!-- Row 1: Icons -->
+</div>
+
+
+<div align="center">
+
+<table style="border: none; border-collapse: collapse;">
   <tr style="border: none;">
     <td align="center" style="border: none; padding: 10px;">
       <a href="#" title="Android is supported">
@@ -68,7 +80,7 @@
       </a>
     </td>
   </tr>
-  <!-- Row 2: Status Text -->
+
   <tr style="border: none;">
     <td align="center" style="border: none;"><b>Android</b><br/>Supported</td>
     <td align="center" style="border: none;"><b>iOS</b><br/><span style="color:gray;">Unsupported</span></td>
@@ -78,27 +90,33 @@
   </tr>
 </table>
 
+</div>
 
-## ⚡ Built With
 <div align="center">
 
-<table>
-  <tr>
-    <td align="center" style="border: none;">
+## ⚡ Built With
+
+</div>
+
+<div align="center">
+
+<table style="border: none; border-collapse: collapse;">
+  <tr style="border: none;">
+    <td align="center" style="border: none; padding: 10px;">
       <a href="https://flutter.dev/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" width="50" height="50"/>
       </a>
       <br />
       Flutter
     </td>
-    <td align="center" style="border: none;">
+    <td align="center" style="border: none; padding: 10px;">
       <a href="https://dart.dev/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" width="50" height="50"/>
       </a>
       <br />
       Dart
     </td>
-    <td align="center" style="border: none;">
+    <td align="center" style="border: none; padding: 10px;">
       <a href="https://www.figma.com/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="50" height="50"/>
       </a>
@@ -110,7 +128,11 @@
 
 </div>
 
+<div align="center">
+
 ## 🚀 Getting Started
+
+</div>
 
 To get a local copy up and running, follow these simple steps.
 
@@ -123,15 +145,22 @@ To get a local copy up and running, follow these simple steps.
    git clone https://github.com/dinmukhamednurkaliyev/furniture-store-application.git
 
 
+<div align="center">
 
 ## 📄 License 
 
+</div>
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+<div align="center">
 
 ## 🤝 Contributing
 
-## 🌐 Contact 
+</div>
 
+<div align="center">
+
+## 🌐 Contact 
 
 </div>
