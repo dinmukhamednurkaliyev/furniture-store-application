@@ -20,23 +20,17 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 <div style="display: flex; align-items: flex-start; margin-bottom: 10px;">
   <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
-  <div>
     <strong>Modern & Clean UI</strong>: A visually appealing and intuitive interface designed to provide a seamless user experience.
-  </div>
 </div>
 
 <div style="display: flex; align-items: flex-start; margin-bottom: 10px;">
   <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
-  <div>
     <strong>Smooth Animations</strong>: Engaging animations and transitions that enhance the overall look and feel of the application.
-  </div>
 </div>
 
 <div style="display: flex; align-items: flex-start;">
   <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-512.png" width="15" style="margin-right: 8px; flex-shrink: 0; margin-top: 4px;"/>
-  <div>
     <strong>Onboarding Experience</strong>: A clear and concise onboarding flow to introduce new users to the app's features.
-  </div>
 </div>
 
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/2728/512.webp" width="25"/>  Preview
