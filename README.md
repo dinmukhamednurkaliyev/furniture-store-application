@@ -36,59 +36,17 @@ A modern **Furniture Store** application built with Flutter. This project serves
 
 ## 🛡️ Platform Support
 
-<p align="center">
-  <a href="#" title="Android is supported">
-    <img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="#" title="iOS is unsupported">
-    <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="#" title="Web is unsupported">
-    <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="#" title="Windows is unsupported">
-    <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="#" title="Linux is unsupported">
-    <img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;">
-  </a>
-</p>
-
-<p align="center">
-  <b>Android:</b> Supported
-  <br>
-  <b>iOS, Web, Windows, Linux:</b> <span style="color:gray;">Unsupported</span>
-</p>
+- <img align="center" src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="15"/> **Android**: Supported
+- <img align="center" src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="15" style="filter: grayscale(100%); opacity: 0.6;"/> **iOS**: <span style="color:gray;">Unsupported</span>
+- <img align="center" src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="15" style="filter: grayscale(100%); opacity: 0.6;"/> **Web**: <span style="color:gray;">Unsupported</span>
+- <img align="center" src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="15" style="filter: grayscale(100%); opacity: 0.6;"/> **Windows**: <span style="color:gray;">Unsupported</span>
+- <img align="center" src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="15" style="filter: grayscale(100%); opacity: 0.6;"/> **Linux**: <span style="color:gray;">Unsupported</span>
 
 ## ⚡ Built With
-
-<p align="center">
-  <div style="display: inline-block; text-align: center; margin: 15px;">
-    <a href="https://flutter.dev/" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" width="50" height="50"/>
-    </a>
-    <br />
-    Flutter
-  </div>
-  <div style="display: inline-block; text-align: center; margin: 15px;">
-    <a href="https://dart.dev/" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" width="50" height="50"/>
-    </a>
-    <br />
-    Dart
-  </div>
-  <div style="display: inline-block; text-align: center; margin: 15px;">
-    <a href="https://www.figma.com/" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="50" height="50"/>
-    </a>
-    <br />
-    Figma
-  </div>
-</p>
+- <a href="https://dart.dev/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" width="15"/></a> **Dart** 
+- <a href="https://flutter.dev/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" width="15"/></a> **Flutter** 
+- <a href="https://www.figma.com/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="15"/></a> **Figma**
+- <a href="https://code.visualstudio.com/" target="_blank"><img align="center" src="https://www.svgrepo.com/show/452129/vs-code.svg" alt="Figma" width="15"/></a> **VS Code**
 
 
 ## 🚀 Getting Started
