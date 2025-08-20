@@ -2,7 +2,7 @@
 
   <img src="documentation/images/banner.png" alt="Furniture Application Banner" width="800"/>
 
-  # ℹ️ About The Project
+  # 💫 About The Project
 
   A simple Furniture Store application built with Flutter. This is a personal project for learning the fundamentals of the Flutter framework.
 
@@ -56,41 +56,43 @@
 
 <div align="center">
 
-<table style="border: none; border-collapse: collapse;">
-  <tr style="border: none;">
-    <td align="center" style="border: none; padding: 10px;">
+<table border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td align="center">
       <a href="#" title="Android is supported">
         <img src="https://www.svgrepo.com/show/475631/android-color.svg" alt="Android" width="40" height="40"/>
       </a>
+      <br />
+      <b>Android</b><br/>Supported
     </td>
-    <td align="center" style="border: none; padding: 10px;">
+    <td align="center">
       <a href="#" title="iOS is unsupported">
         <img src="https://www.svgrepo.com/show/303125/apple-logo.svg" alt="iOS" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
       </a>
+      <br />
+      <b>iOS</b><br/><span style="color:gray;">Unsupported</span>
     </td>
-    <td align="center" style="border: none; padding: 10px;">
+    <td align="center">
       <a href="#" title="Web is unsupported">
         <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" alt="Web" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
       </a>
+      <br />
+      <b>Web</b><br/><span style="color:gray;">Unsupported</span>
     </td>
-    <td align="center" style="border: none; padding: 10px;">
+    <td align="center">
       <a href="#" title="Windows is unsupported">
         <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" alt="Windows" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
       </a>
+      <br />
+      <b>Windows</b><br/><span style="color:gray;">Unsupported</span>
     </td>
-    <td align="center" style="border: none; padding: 10px;">
+    <td align="center">
       <a href="#" title="Linux is unsupported">
         <img src="https://www.svgrepo.com/show/354004/linux-tux.svg" alt="Linux" width="40" height="40" style="filter: grayscale(100%); opacity: 0.6;"/>
       </a>
+      <br />
+      <b>Linux</b><br/><span style="color:gray;">Unsupported</span>
     </td>
-  </tr>
-
-  <tr style="border: none;">
-    <td align="center" style="border: none;"><b>Android</b><br/>Supported</td>
-    <td align="center" style="border: none;"><b>iOS</b><br/><span style="color:gray;">Unsupported</span></td>
-    <td align="center" style="border: none;"><b>Web</b><br/><span style="color:gray;">Unsupported</span></td>
-    <td align="center" style="border: none;"><b>Windows</b><br/><span style="color:gray;">Unsupported</span></td>
-    <td align="center" style="border: none;"><b>Linux</b><br/><span style="color:gray;">Unsupported</span></td>
   </tr>
 </table>
 
@@ -104,23 +106,23 @@
 
 <div align="center">
 
-<table style="border: none; border-collapse: collapse;">
-  <tr style="border: none;">
-    <td align="center" style="border: none; padding: 10px;">
+<table border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td align="center">
       <a href="https://flutter.dev/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" width="50" height="50"/>
       </a>
       <br />
       Flutter
     </td>
-    <td align="center" style="border: none; padding: 10px;">
+    <td align="center">
       <a href="https://dart.dev/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" width="50" height="50"/>
       </a>
       <br />
       Dart
     </td>
-    <td align="center" style="border: none; padding: 10px;">
+    <td align="center">
       <a href="https://www.figma.com/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="50" height="50"/>
       </a>
