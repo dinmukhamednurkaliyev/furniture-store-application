@@ -139,8 +139,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <h2> <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/bell_1f514.gif" width="25"/>  Contact </h2>
 
 <div style="display: flex; align-items: center;">
-    <a href="mailto:your.dinmukhamed.nurkaliyev@gmail.com" target="_blank"><img src="https://cdn0.iconfinder.com/data/icons/material-circle-apps/512/icon-email-material-design-512.png" alt="Email" width="20" style="margin-right: 8px;"/></a>
-    <strong>Email</strong>:&#160;<a href="mailto:your.dinmukhamed.nurkaliyev@gmail.com">dinmukhamed.nurkaliyev@gmail.com</a>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=your.dinmukhamed.nurkaliyev@gmail.com" target="_blank"><img src="https://cdn0.iconfinder.com/data/icons/material-circle-apps/512/icon-email-material-design-512.png" alt="Email" width="20" style="margin-right: 8px;"/></a>
+    <strong>Email</strong>:&#160;<a href="https://mail.google.com/mail/?view=cm&fs=1&to=your.dinmukhamed.nurkaliyev@gmail.com">dinmukhamed.nurkaliyev@gmail.com</a>
 </div>
 <div style="display: flex; align-items: center; margin-bottom: 8px;">
     <a href="https://www.linkedin.com/in/dinmukhamed-nurkaliyev-80b5a1326/" target="_blank"><img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/linkedin-512.png" alt="LinkedIn" width="20" style="margin-right: 8px;"/></a>
