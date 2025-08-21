@@ -4,7 +4,8 @@
 
   <h1> <img align="center" src="https://em-content.zobj.net/source/animated-noto-color-emoji/427/pencil_270f-fe0f.gif" width="25"/>  About The Project </h1>
 
-A modern **Furniture Store** application built with Flutter. This project serves as a practical learning experience for understanding the core concepts of the Flutter framework.
+A modern **Furniture Store** application built with Flutter. This project serves as a practical learning experience for understanding the core concepts of the Flutter framework. 
+    <img src="https://media1.giphy.com/media/UcMN5lbUI4b5sdTSLu/200.webp" width="40" style="margin-right: 5px;"/> 
   
 </div>
 
