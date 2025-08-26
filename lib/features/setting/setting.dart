@@ -1,3 +1,3 @@
 export 'repositories/repositories.dart';
-export 'source/source.dart';
+export 'sources/sources.dart';
 export 'usecases/usecases.dart';
