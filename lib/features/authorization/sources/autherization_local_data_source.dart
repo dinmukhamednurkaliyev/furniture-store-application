@@ -2,7 +2,7 @@ import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authorization/authorization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String _isLoggedInKey = 'is_logged_in';
+const String _isSignedInKey = 'is_signed_in';
 const String _userEmailKey = 'user_email';
 const String _userNameKey = 'user_name';
 
@@ -22,9 +22,9 @@ class AuthorizationLocalDataSourceImplementation
   @override
   Future<UserEntity?> getSession() async {
     try {
-      final isLoggedIn = sharedPreferences.getBool(_isLoggedInKey) ?? false;
+      final isSignedIn = sharedPreferences.getBool(_isSignedInKey) ?? false;
 
-      if (!isLoggedIn) {
+      if (!isSignedIn) {
         return null;
       }
 
@@ -47,7 +47,7 @@ class AuthorizationLocalDataSourceImplementation
       final results = await Future.wait([
         sharedPreferences.setString(_userEmailKey, userToCache.email),
         sharedPreferences.setString(_userNameKey, userToCache.name),
-        sharedPreferences.setBool(_isLoggedInKey, true),
+        sharedPreferences.setBool(_isSignedInKey, true),
       ]);
 
       if (results.any((success) => !success)) {
@@ -64,7 +64,7 @@ class AuthorizationLocalDataSourceImplementation
       final results = await Future.wait([
         sharedPreferences.remove(_userEmailKey),
         sharedPreferences.remove(_userNameKey),
-        sharedPreferences.remove(_isLoggedInKey),
+        sharedPreferences.remove(_isSignedInKey),
       ]);
 
       if (results.any((success) => !success)) {

@@ -14,7 +14,7 @@ class AuthorizationNotifier extends Notifier<AuthorizationState> {
     return AuthorizationInitial();
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> sign_in(String email, String password) async {
     state = AuthorizationLoading();
 
     await Future.delayed(const Duration(seconds: 1));
@@ -26,7 +26,7 @@ class AuthorizationNotifier extends Notifier<AuthorizationState> {
         state = Authenticated(user);
         ref
             .read(applicationStateNotifierProvider.notifier)
-            .onLoginSuccess(user);
+            .onSignInSuccess(user);
 
       // case Error(failure: final failure):
       //   state = AuthorizationError(failure.message);

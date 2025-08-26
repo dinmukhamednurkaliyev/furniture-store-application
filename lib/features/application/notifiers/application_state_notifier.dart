@@ -56,7 +56,7 @@ class ApplicationStateNotifier extends Notifier<ApplicationState> {
     state = currentState.copyWith(hasSeenOnboarding: true);
   }
 
-  void onLoginSuccess(UserEntity user) {
+  void onSignInSuccess(UserEntity user) {
     final currentState = state;
     if (currentState is! ApplicationReady) return;
 

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   static const _animationDuration = Duration(milliseconds: 1500);
   static const _navigationDelay = Duration(milliseconds: 500);
@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen>
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute<void>(
-            builder: (_) => const OnboardingScreen(),
+            builder: (_) => const OnboardingPage(),
           ),
         );
       }

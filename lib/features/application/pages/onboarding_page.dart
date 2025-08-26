@@ -14,14 +14,14 @@ class _OnboardingItem {
   final String imagePath;
 }
 
-class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+class OnboardingPage extends StatefulWidget {
+  const OnboardingPage({super.key});
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingPageState extends State<OnboardingPage> {
   late final PageController _pageController;
   late final ValueNotifier<int> _currentPageNotifier;
 
