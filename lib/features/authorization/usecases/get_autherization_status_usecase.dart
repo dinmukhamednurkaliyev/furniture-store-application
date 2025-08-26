@@ -6,6 +6,6 @@ final class GetAuthorizationStatusUsecase {
   final AuthorizationRepository _repository;
 
   Future<Result<UserEntity?>> call() async {
-    return _repository.getAuthStatus();
+    return _repository.getAuthorizationStatus();
   }
 }

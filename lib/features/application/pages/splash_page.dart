@@ -1,9 +1,7 @@
-import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/application/application.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -15,7 +13,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   static const _animationDuration = Duration(milliseconds: 1500);
-  static const _navigationDelay = Duration(milliseconds: 500);
 
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
@@ -41,19 +38,7 @@ class _SplashPageState extends State<SplashPage>
       end: Offset.zero,
     ).animate(curvedAnimation);
 
-    _animationController.forward().whenComplete(_navigateToNextScreen);
-  }
-
-  void _navigateToNextScreen() {
-    Future.delayed(_navigationDelay, () {
-      if (mounted) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute<void>(
-            builder: (_) => const OnboardingPage(),
-          ),
-        );
-      }
-    });
+    _animationController.forward();
   }
 
   @override
@@ -65,7 +50,7 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.backgroundColor,
+      backgroundColor: context.surfaceColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +59,6 @@ class _SplashPageState extends State<SplashPage>
               fadeAnimation: _fadeAnimation,
               slideAnimation: _slideAnimation,
             ),
-
             const SizedBox(height: 24),
             _AnimatedTexts(
               fadeAnimation: _fadeAnimation,
@@ -110,12 +94,12 @@ class _AnimatedLogo extends StatelessWidget {
           width: logoSize,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: context.primaryColor.withAlpha(25),
+            color: context.theme.primaryColor.withAlpha(25),
             borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: context.primaryColor,
+              color: context.theme.primaryColor,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Icon(
@@ -141,8 +125,9 @@ class _AnimatedTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleFontSize = context.isMobileScreen ? 32.0 : 48.0;
-    final subtitleFontSize = context.isMobileScreen ? 16.0 : 22.0;
+    final isMobile = context.screenWidth < 600;
+    final titleFontSize = isMobile ? 32.0 : 48.0;
+    final subtitleFontSize = isMobile ? 16.0 : 22.0;
 
     return FadeTransition(
       opacity: fadeAnimation,
@@ -152,14 +137,16 @@ class _AnimatedTexts extends StatelessWidget {
           children: [
             Text(
               'Furniture Store',
-              style: context.displayLarge?.copyWith(fontSize: titleFontSize),
+              style: context.theme.textTheme.displayLarge?.copyWith(
+                fontSize: titleFontSize,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
               'Make your home beautiful',
               style: context.bodyLarge?.copyWith(
                 fontSize: subtitleFontSize,
-                color: context.colorScheme.onSurfaceVariant,
+                color: context.theme.colorScheme.onSurfaceVariant,
               ),
             ),
           ],

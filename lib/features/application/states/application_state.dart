@@ -31,3 +31,8 @@ final class ApplicationReady extends ApplicationState {
     );
   }
 }
+
+final class ApplicationError extends ApplicationState {
+  const ApplicationError(this.message);
+  final String message;
+}

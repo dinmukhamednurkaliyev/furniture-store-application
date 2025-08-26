@@ -2,7 +2,7 @@ import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authorization/authorization.dart';
 
 abstract class AuthorizationRepository {
-  Future<Result<UserEntity?>> getAuthStatus();
+  Future<Result<UserEntity?>> getAuthorizationStatus();
 }
 
 class AuthorizationRepositoryImplementation implements AuthorizationRepository {
@@ -13,7 +13,7 @@ class AuthorizationRepositoryImplementation implements AuthorizationRepository {
   final AuthorizationLocalDataSource _localDataSource;
 
   @override
-  Future<Result<UserEntity?>> getAuthStatus() async {
+  Future<Result<UserEntity?>> getAuthorizationStatus() async {
     try {
       final userEntity = await _localDataSource.getSession();
       return Success(userEntity);

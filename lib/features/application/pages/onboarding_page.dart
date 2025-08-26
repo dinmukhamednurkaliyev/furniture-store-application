@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/application/application.dart';
 
 @immutable
 class _OnboardingItem {
@@ -14,16 +16,16 @@ class _OnboardingItem {
   final String imagePath;
 }
 
-class OnboardingPage extends StatefulWidget {
+class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
 
   @override
-  State<OnboardingPage> createState() => _OnboardingPageState();
+  ConsumerState<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState extends State<OnboardingPage> {
+class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   late final PageController _pageController;
-  late final ValueNotifier<int> _currentPageNotifier;
+  int _currentPage = 0;
 
   static const List<_OnboardingItem> _onboardingItems = [
     _OnboardingItem(
@@ -48,11 +50,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    _currentPageNotifier = ValueNotifier<int>(0);
     _pageController.addListener(() {
-      final newPage = _pageController.page?.round();
-      if (newPage != null && newPage != _currentPageNotifier.value) {
-        _currentPageNotifier.value = newPage;
+      final newPage = _pageController.page?.round() ?? 0;
+      if (newPage != _currentPage) {
+        setState(() {
+          _currentPage = newPage;
+        });
       }
     });
   }
@@ -60,16 +63,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   void dispose() {
     _pageController.dispose();
-    _currentPageNotifier.dispose();
     super.dispose();
   }
 
-  void _navigateToHome() {}
+  void _completeOnboarding() {
+    ref.read(applicationStateNotifierProvider.notifier).markOnboardingSeen();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.backgroundColor,
+      backgroundColor: context.surfaceColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -84,7 +88,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             ),
             _PageIndicators(
               itemCount: _onboardingItems.length,
-              currentPageNotifier: _currentPageNotifier,
+              currentPage: _currentPage,
               onIndicatorTapped: (index) {
                 _pageController.animateToPage(
                   index,
@@ -95,7 +99,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             ),
             const SizedBox(height: 16),
             _OnboardingBottomBar(
-              currentPageNotifier: _currentPageNotifier,
+              currentPage: _currentPage,
               itemCount: _onboardingItems.length,
               onNext: () {
                 _pageController.nextPage(
@@ -103,8 +107,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   curve: Curves.easeInOut,
                 );
               },
-              onSkip: _navigateToHome,
-              onGetStarted: _navigateToHome,
+              onSkip: _completeOnboarding,
+              onGetStarted: _completeOnboarding,
             ),
             const SizedBox(height: 16),
           ],
@@ -116,7 +120,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
 class _OnboardingPageContent extends StatelessWidget {
   const _OnboardingPageContent({required this.item});
-
   final _OnboardingItem item;
 
   @override
@@ -167,7 +170,6 @@ class _OnboardingPageContent extends StatelessWidget {
 
 class _TextContent extends StatelessWidget {
   const _TextContent({required this.title, required this.description});
-
   final String title;
   final String description;
 
@@ -179,13 +181,13 @@ class _TextContent extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: context.displayLarge?.copyWith(fontSize: 24),
+          style: context.theme.textTheme.displayLarge?.copyWith(fontSize: 24),
         ),
         const SizedBox(height: 16),
         Text(
           description,
           textAlign: TextAlign.center,
-          style: context.bodyLarge?.copyWith(fontSize: 16),
+          style: context.theme.textTheme.bodyLarge?.copyWith(fontSize: 16),
         ),
       ],
     );
@@ -195,31 +197,26 @@ class _TextContent extends StatelessWidget {
 class _PageIndicators extends StatelessWidget {
   const _PageIndicators({
     required this.itemCount,
-    required this.currentPageNotifier,
+    required this.currentPage,
     required this.onIndicatorTapped,
   });
 
   final int itemCount;
-  final ValueNotifier<int> currentPageNotifier;
+  final int currentPage;
   final ValueChanged<int> onIndicatorTapped;
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<int>(
-      valueListenable: currentPageNotifier,
-      builder: (_, currentPage, _) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-            itemCount,
-            (index) => _Indicator(
-              index: index,
-              isActive: currentPage == index,
-              onTap: () => onIndicatorTapped(index),
-            ),
-          ),
-        );
-      },
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        itemCount,
+        (index) => _Indicator(
+          index: index,
+          isActive: currentPage == index,
+          onTap: () => onIndicatorTapped(index),
+        ),
+      ),
     );
   }
 }
@@ -240,9 +237,7 @@ class _Indicator extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       mouseCursor: SystemMouseCursors.click,
-      borderRadius: BorderRadius.circular(
-        16,
-      ),
+      borderRadius: BorderRadius.circular(16),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
         child: AnimatedContainer(
@@ -251,8 +246,8 @@ class _Indicator extends StatelessWidget {
           width: isActive ? 24 : 8,
           decoration: BoxDecoration(
             color: isActive
-                ? context.primaryColor
-                : context.colorScheme.surfaceContainerHighest,
+                ? context.theme.primaryColor
+                : context.theme.colorScheme.surfaceContainerHighest,
             borderRadius: BorderRadius.circular(12),
           ),
         ),
@@ -263,14 +258,14 @@ class _Indicator extends StatelessWidget {
 
 class _OnboardingBottomBar extends StatelessWidget {
   const _OnboardingBottomBar({
-    required this.currentPageNotifier,
+    required this.currentPage,
     required this.itemCount,
     required this.onNext,
     required this.onSkip,
     required this.onGetStarted,
   });
 
-  final ValueNotifier<int> currentPageNotifier;
+  final int currentPage;
   final int itemCount;
   final VoidCallback onNext;
   final VoidCallback onSkip;
@@ -283,44 +278,38 @@ class _OnboardingBottomBar extends StatelessWidget {
       minimumSize: Size(0, buttonHeight),
       padding: const EdgeInsets.symmetric(horizontal: 32),
     );
+    final isLastPage = currentPage == itemCount - 1;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: ValueListenableBuilder<int>(
-        valueListenable: currentPageNotifier,
-        builder: (_, currentPage, _) {
-          final isLastPage = currentPage == itemCount - 1;
-
-          return isLastPage
-              ? ElevatedButton(
-                  style: buttonStyle.copyWith(
-                    minimumSize: WidgetStateProperty.all(
-                      Size(double.infinity, buttonHeight),
-                    ),
+      child: isLastPage
+          ? ElevatedButton(
+              style: buttonStyle.copyWith(
+                minimumSize: WidgetStateProperty.all(
+                  Size(double.infinity, buttonHeight),
+                ),
+              ),
+              onPressed: onGetStarted,
+              child: const Text('Get Started'),
+            )
+          : Row(
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    minimumSize: Size(0, buttonHeight),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                   ),
-                  onPressed: onGetStarted,
-                  child: const Text('Get Started'),
-                )
-              : Row(
-                  children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        minimumSize: Size(0, buttonHeight),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                      ),
-                      onPressed: onSkip,
-                      child: const Text('Skip'),
-                    ),
-                    const Spacer(),
-                    ElevatedButton(
-                      style: buttonStyle,
-                      onPressed: onNext,
-                      child: const Text('Next'),
-                    ),
-                  ],
-                );
-        },
-      ),
+                  onPressed: onSkip,
+                  child: const Text('Skip'),
+                ),
+                const Spacer(),
+                ElevatedButton(
+                  style: buttonStyle,
+                  onPressed: onNext,
+                  child: const Text('Next'),
+                ),
+              ],
+            ),
     );
   }
 }

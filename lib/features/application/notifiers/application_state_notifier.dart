@@ -13,37 +13,42 @@ class ApplicationStateNotifier extends Notifier<ApplicationState> {
   @override
   ApplicationState build() {
     initializeApplication();
+
     return ApplicationInitial();
   }
 
   Future<void> initializeApplication() async {
-    state = ApplicationLoading();
+    try {
+      state = ApplicationLoading();
 
-    final getHasSeenOnboarding = ref.read(getHasSeenOnboardingProvider);
-    final getAuthStatus = ref.read(getAuthorizationStatusProvider);
+      final getHasSeenOnboarding = ref.read(getHasSeenOnboardingProvider);
+      final getAuthStatus = ref.read(getAuthorizationStatusProvider);
 
-    final results = await Future.wait([
-      getHasSeenOnboarding(),
-      getAuthStatus(),
-    ]);
+      final results = await Future.wait([
+        getHasSeenOnboarding(),
+        getAuthStatus(),
+      ]);
 
-    final onboardingResult = results[0] as Result<bool>;
-    final authResult = results[1] as Result<UserEntity?>;
+      final onboardingResult = results[0] as Result<bool>;
+      final authResult = results[1] as Result<UserEntity?>;
 
-    final hasSeenOnboarding = switch (onboardingResult) {
-      Success(data: final seen) => seen,
-      Error() => false,
-    };
+      final hasSeenOnboarding = switch (onboardingResult) {
+        Success(data: final seen) => seen,
+        Error() => false,
+      };
 
-    final currentUser = switch (authResult) {
-      Success(data: final user) => user,
-      Error() => null,
-    };
+      final currentUser = switch (authResult) {
+        Success(data: final user) => user,
+        Error() => null,
+      };
 
-    state = ApplicationReady(
-      hasSeenOnboarding: hasSeenOnboarding,
-      currentUser: currentUser,
-    );
+      state = ApplicationReady(
+        hasSeenOnboarding: hasSeenOnboarding,
+        currentUser: currentUser,
+      );
+    } on Exception catch (e) {
+      state = ApplicationError(e.toString());
+    }
   }
 
   Future<void> markOnboardingSeen() async {
@@ -63,7 +68,7 @@ class ApplicationStateNotifier extends Notifier<ApplicationState> {
     state = currentState.copyWith(currentUser: user);
   }
 
-  void onLogout() {
+  void onSignOut() {
     final currentState = state;
     if (currentState is! ApplicationReady) return;
 
