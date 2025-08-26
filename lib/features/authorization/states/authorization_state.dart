@@ -12,7 +12,7 @@ final class AuthorizationLoading extends AuthorizationState {}
 
 final class Authenticated extends AuthorizationState {
   const Authenticated(this.user);
-  final UserModel user;
+  final UserEntity user;
 }
 
 final class Unauthenticated extends AuthorizationState {}

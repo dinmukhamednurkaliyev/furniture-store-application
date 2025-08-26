@@ -1,36 +1,40 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authorization/authorization.dart';
 
-class AuthorizationProvider with ChangeNotifier {
-  AuthorizationProvider({
-    required GetAuthorizationStatus getAuthorizationStatus,
-  }) : _getAuthorizationStatus = getAuthorizationStatus;
-  final GetAuthorizationStatus _getAuthorizationStatus;
+final authorizationLocalDataSourceProvider =
+    Provider<AuthorizationLocalDataSource>((
+      ref,
+    ) {
+      final sharedPreferences = ref
+          .watch(sharedPreferencesProvider)
+          .valueOrNull;
 
-  AuthorizationState _state = AuthorizationInitial();
-  AuthorizationState get state => _state;
+      if (sharedPreferences == null) {
+        throw Exception('SharedPreferences not initialized yet');
+      }
 
-  // Бывший `initialize`
-  Future<void> checkAuthorizationStatus() async {
-    _state = AuthorizationLoading();
-    notifyListeners();
+      return AuthorizationLocalDataSourceImplementation(
+        sharedPreferences: sharedPreferences,
+      );
+    });
 
-    final result = await _getAuthorizationStatus();
+final authorizationRepositoryProvider = Provider<AuthorizationRepository>((
+  ref,
+) {
+  final localDataSource = ref.watch(
+    authorizationLocalDataSourceProvider,
+  );
 
-    switch (result) {
-      case Success(data: final user):
-        _state = user != null ? Authenticated(user) : Unauthenticated();
-      case Error(failure: final failure):
-        _state = AuthorizationError(failure.message);
-    }
-    notifyListeners();
-  }
+  return AuthorizationRepositoryImplementation(
+    localDataSource: localDataSource,
+  );
+});
 
-  // ... другие методы, например logout ...
-  Future<void> logout() async {
-    // ... вызов LogoutUseCase ...
-    _state = Unauthenticated();
-    notifyListeners();
-  }
-}
+final getAuthorizationStatusProvider = Provider<GetAuthorizationStatusUsecase>((
+  ref,
+) {
+  final repository = ref.watch(authorizationRepositoryProvider);
+
+  return GetAuthorizationStatusUsecase(repository);
+});

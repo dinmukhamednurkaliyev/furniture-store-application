@@ -7,9 +7,9 @@ const String _userEmailKey = 'user_email';
 const String _userNameKey = 'user_name';
 
 abstract class AuthorizationLocalDataSource {
-  Future<UserModel?> getSession();
+  Future<UserEntity?> getSession();
 
-  Future<void> saveSession(UserModel userToCache);
+  Future<void> saveSession(UserEntity userToCache);
 
   Future<void> clearSession();
 }
@@ -20,7 +20,7 @@ class AuthorizationLocalDataSourceImplementation
   final SharedPreferences sharedPreferences;
 
   @override
-  Future<UserModel?> getSession() async {
+  Future<UserEntity?> getSession() async {
     try {
       final isLoggedIn = sharedPreferences.getBool(_isLoggedInKey) ?? false;
 
@@ -32,7 +32,7 @@ class AuthorizationLocalDataSourceImplementation
       final name = sharedPreferences.getString(_userNameKey);
 
       if (email != null && name != null) {
-        return UserModel(email: email, name: name);
+        return UserEntity(email: email, name: name);
       } else {
         throw CacheException();
       }
@@ -42,7 +42,7 @@ class AuthorizationLocalDataSourceImplementation
   }
 
   @override
-  Future<void> saveSession(UserModel userToCache) async {
+  Future<void> saveSession(UserEntity userToCache) async {
     try {
       final results = await Future.wait([
         sharedPreferences.setString(_userEmailKey, userToCache.email),

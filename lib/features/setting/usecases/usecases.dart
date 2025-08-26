@@ -1,2 +1,2 @@
-export 'get_onboarding_status.dart';
-export 'set_onboarding_seen.dart';
+export 'get_onboarding_status_usecase.dart';
+export 'set_onboarding_seen_usecase.dart';
