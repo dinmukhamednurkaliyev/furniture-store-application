@@ -1,3 +1,2 @@
-export 'extensions/extensions.dart';
-export 'screens/screens.dart';
-export 'themes/themes.dart';
+export 'theme/theme.dart';
+export 'utilities/utilities.dart';

@@ -1,8 +1,8 @@
-import 'package:furniture_store_application/application.dart';
-import 'package:furniture_store_application/bootstrap.dart';
+import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/features.dart';
 
 void main() {
   ApplicationBootstrap.run(
-    builder: () => const Application(),
+    applicationBuilder: () => const ApplicationRootWidget(),
   );
 }
