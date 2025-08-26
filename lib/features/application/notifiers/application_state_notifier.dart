@@ -22,22 +22,22 @@ class ApplicationStateNotifier extends Notifier<ApplicationState> {
       state = ApplicationLoading();
 
       final getHasSeenOnboarding = ref.read(getHasSeenOnboardingProvider);
-      final getAuthStatus = ref.read(getAuthorizationStatusProvider);
+      final getAuthorizationStatus = ref.read(getAuthorizationStatusProvider);
 
       final results = await Future.wait([
         getHasSeenOnboarding(),
-        getAuthStatus(),
+        getAuthorizationStatus(),
       ]);
 
       final onboardingResult = results[0] as Result<bool>;
-      final authResult = results[1] as Result<UserEntity?>;
+      final authorizationResult = results[1] as Result<UserEntity?>;
 
       final hasSeenOnboarding = switch (onboardingResult) {
         Success(data: final seen) => seen,
         Error() => false,
       };
 
-      final currentUser = switch (authResult) {
+      final currentUser = switch (authorizationResult) {
         Success(data: final user) => user,
         Error() => null,
       };

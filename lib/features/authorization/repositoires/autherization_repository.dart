@@ -15,8 +15,8 @@ class AuthorizationRepositoryImplementation implements AuthorizationRepository {
   @override
   Future<Result<UserEntity?>> getAuthorizationStatus() async {
     try {
-      final userEntity = await _localDataSource.getSession();
-      return Success(userEntity);
+      final currentSession = await _localDataSource.getSession();
+      return Success(currentSession);
     } on CacheException {
       return Error(const CacheFailure(message: 'Failed to load session'));
     }
