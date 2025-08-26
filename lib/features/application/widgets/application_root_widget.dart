@@ -10,13 +10,18 @@ class ApplicationRootWidget extends ConsumerWidget {
     const title = 'Furniture Store';
     final router = ref.watch(routerProvider);
 
-    return MaterialApp.router(
-      title: title,
-      debugShowCheckedModeBanner: false,
-      theme: ApplicationTheme.lightTheme,
-      darkTheme: ApplicationTheme.darkTheme,
-      routerConfig: router,
-      //routerConfig: router,
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      transitionBuilder: (child, animation) {
+        return FadeTransition(opacity: animation, child: child);
+      },
+      child: MaterialApp.router(
+        title: title,
+        debugShowCheckedModeBanner: false,
+        theme: ApplicationTheme.lightTheme,
+        darkTheme: ApplicationTheme.darkTheme,
+        routerConfig: router,
+      ),
     );
   }
 }

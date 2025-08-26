@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/onboarding/onboarding.dart';
+
+class OnboardingPageContent extends StatelessWidget {
+  const OnboardingPageContent({required this.item, super.key});
+  final OnboardingItemEntity item;
+
+  @override
+  Widget build(BuildContext context) {
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+    return isPortrait
+        ? _buildPortraitLayout(context)
+        : _buildLandscapeLayout(context);
+  }
+
+  Widget _buildPortraitLayout(BuildContext context) {
+    final screenHeight = context.screenHeight;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(item.imagePath, height: screenHeight * 0.4),
+          const SizedBox(height: 48),
+          _TextContent(title: item.title, description: item.description),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLandscapeLayout(BuildContext context) {
+    final screenHeight = context.screenHeight;
+    final screenWidth = context.screenWidth;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Image.asset(
+              item.imagePath,
+              height: screenHeight * 0.6,
+            ),
+          ),
+          const SizedBox(width: 48),
+          Expanded(
+            child: _TextContent(
+              title: item.title,
+              description: item.description,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TextContent extends StatelessWidget {
+  const _TextContent({required this.title, required this.description});
+  final String title;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: context.displaySmall,
+        ),
+        const SizedBox(height: 16),
+        Text(
+          description,
+          textAlign: TextAlign.center,
+          style: context.bodyLarge,
+        ),
+      ],
+    );
+  }
+}
