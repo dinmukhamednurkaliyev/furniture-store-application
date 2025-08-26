@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/home/home.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
@@ -28,24 +27,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: ApplicationRoutes.onboarding,
-
-        pageBuilder: (context, state) {
-          return FadeTransitionPage(
-            key: state.pageKey,
-            child: const OnboardingPage(),
-          );
-        },
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const OnboardingPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              FadeTransition(opacity: animation, child: child),
+        ),
       ),
-
       GoRoute(
         path: ApplicationRoutes.home,
-
-        pageBuilder: (context, state) {
-          return FadeTransitionPage(
-            key: state.pageKey,
-            child: const HomePage(),
-          );
-        },
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const HomePage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              FadeTransition(opacity: animation, child: child),
+        ),
       ),
     ],
 
