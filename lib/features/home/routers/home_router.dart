@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 final homeRoutes = [
   GoRoute(
-    path: '/home',
+    path: ApplicationRoutes.home,
     name: 'home',
     pageBuilder: (context, state) {
       return FadeTransitionPage(

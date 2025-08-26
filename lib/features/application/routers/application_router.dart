@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 final onboardingRoutes = [
   GoRoute(
-    path: '/onboarding',
+    path: ApplicationRoutes.onboarding,
     name: 'onboarding',
     pageBuilder: (context, state) {
       return FadeTransitionPage(
@@ -17,10 +17,22 @@ final onboardingRoutes = [
 
 final splashRoutes = [
   GoRoute(
-    path: '/splash',
+    path: ApplicationRoutes.splash,
     name: 'splash',
     builder: (context, state) {
       return const SplashPage();
+    },
+  ),
+];
+
+final errorRoutes = [
+  GoRoute(
+    path: ApplicationRoutes.error,
+    name: 'error',
+    builder: (context, state) {
+      return const ErrorPage(
+        errorMessage: 'Something went wrong',
+      );
     },
   ),
 ];

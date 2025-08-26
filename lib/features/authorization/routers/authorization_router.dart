@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 final signInRoutes = [
   GoRoute(
-    path: '/sign_in',
+    path: ApplicationRoutes.signIn,
     name: 'sign_in',
     pageBuilder: (context, state) {
       return FadeTransitionPage(

@@ -16,6 +16,7 @@ class ApplicationRootWidget extends ConsumerWidget {
       theme: ApplicationTheme.lightTheme,
       darkTheme: ApplicationTheme.darkTheme,
       routerConfig: router,
+      //routerConfig: router,
     );
   }
 }
