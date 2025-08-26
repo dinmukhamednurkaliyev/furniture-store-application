@@ -50,7 +50,7 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.surfaceColor,
+      backgroundColor: context.backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -94,12 +94,12 @@ class _AnimatedLogo extends StatelessWidget {
           width: logoSize,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: context.theme.primaryColor.withAlpha(25),
+            color: context.primaryColor.withAlpha(25),
             borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: context.theme.primaryColor,
+              color: context.primaryColor,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Icon(
