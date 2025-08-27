@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -13,6 +15,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   static const _animationDuration = Duration(milliseconds: 1500);
+  static const _navigationDelay = Duration(milliseconds: 500);
 
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
@@ -38,7 +41,17 @@ class _SplashPageState extends State<SplashPage>
       end: Offset.zero,
     ).animate(curvedAnimation);
 
-    _animationController.forward();
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _animationController
+        ..forward()
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            Timer(_navigationDelay, () {
+              context.go('/onboarding');
+            });
+          }
+        });
+    });
   }
 
   @override

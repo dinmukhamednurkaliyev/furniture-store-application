@@ -1,0 +1,1 @@
+export 'router/application_router.dart';
