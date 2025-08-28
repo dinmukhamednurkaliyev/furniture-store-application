@@ -35,6 +35,7 @@ enum ApplicationRoutes {
   final Widget page;
 }
 
+@immutable
 class ApplicationRouter {
   ApplicationRouter() : _router = _buildRouter();
 
