@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/application/application.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _SplashPageState extends State<SplashPage>
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
             Timer(_navigationDelay, () {
-              context.go('/onboarding');
+              context.goNamed(ApplicationRoutes.onboarding.name);
             });
           }
         });
