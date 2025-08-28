@@ -27,7 +27,7 @@ class OnboardingRepositoryImplementation implements OnboardingRepository {
   Future<Result<void>> setOnboardingStatus() async {
     try {
       await _localDataSource.setOnboardingStatus();
-      return Success(null);
+      return const Success(null);
     } on CacheException catch (e) {
       return Error(CacheFailure(message: e.message));
     }
@@ -53,6 +53,6 @@ class OnboardingRepositoryImplementation implements OnboardingRepository {
         imagePath: 'assets/images/onboarding3.png',
       ),
     ];
-    return Success(items);
+    return const Success(items);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:furniture_store_application/core/core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract interface class OnboardingLocalDataSource {
@@ -14,11 +15,19 @@ class OnboardingLocalDataSourceImplementation
 
   @override
   Future<bool> getOnboardingStatus() async {
-    return _sharedPreferences.getBool(_hasSeenOnboardingKey) ?? false;
+    try {
+      return _sharedPreferences.getBool(_hasSeenOnboardingKey) ?? false;
+    } catch (e) {
+      throw CacheException(message: 'Error getting onboarding status: $e');
+    }
   }
 
   @override
   Future<void> setOnboardingStatus() async {
-    await _sharedPreferences.setBool(_hasSeenOnboardingKey, true);
+    try {
+      await _sharedPreferences.setBool(_hasSeenOnboardingKey, true);
+    } catch (e) {
+      throw CacheException(message: 'Error setting onboarding status: $e');
+    }
   }
 }

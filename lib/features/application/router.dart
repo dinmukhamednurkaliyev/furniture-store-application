@@ -1,1 +1,1 @@
-export 'router/application_router.dart';
+export 'router/router.dart';

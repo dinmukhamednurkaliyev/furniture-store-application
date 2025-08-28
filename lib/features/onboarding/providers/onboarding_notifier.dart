@@ -6,7 +6,7 @@ class OnboardingNotifier extends Notifier<void> {
   void build() {}
 
   Future<void> setOnboardingStatus() async {
-    final setOnboardingStatus = ref.read(setOnboardingStatusProvider);
+    final setOnboardingStatus = ref.read(setOnboardingStatusUsecaseProvider);
     await setOnboardingStatus();
   }
 }

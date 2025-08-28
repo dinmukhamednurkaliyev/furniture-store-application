@@ -14,7 +14,7 @@ final onboardingStatusProvider = FutureProvider<bool>((ref) async {
 final FutureProvider<Result<List<OnboardingItemEntity>>>
 onboardingItemsFutureProvider = FutureProvider(
   (ref) {
-    final getOnboardingItems = ref.watch(getOnboardingItemsProvider);
+    final getOnboardingItems = ref.watch(getOnboardingItemsUsecaseProvider);
     return getOnboardingItems();
   },
 );
