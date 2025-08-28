@@ -13,8 +13,8 @@ class ApplicationRootWidget extends ConsumerWidget {
     return MaterialApp.router(
       title: title,
       debugShowCheckedModeBanner: false,
-      theme: ApplicationTheme.lightTheme,
-      darkTheme: ApplicationTheme.darkTheme,
+      theme: ApplicationThemes.light.themeData,
+      darkTheme: ApplicationThemes.dark.themeData,
       routerConfig: router,
     );
   }
