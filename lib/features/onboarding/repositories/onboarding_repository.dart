@@ -14,24 +14,12 @@ class OnboardingRepositoryImplementation implements OnboardingRepository {
   final OnboardingLocalDataSource _localDataSource;
 
   @override
-  Future<Result<bool>> getOnboardingStatus() async {
-    try {
-      final result = await _localDataSource.getOnboardingStatus();
-      return Success(result);
-    } on CacheException catch (e) {
-      return Error(CacheFailure(message: e.message));
-    }
-  }
+  Future<Result<bool>> getOnboardingStatus() =>
+      Result.guardAsync(_localDataSource.getOnboardingStatus);
 
   @override
-  Future<Result<void>> setOnboardingStatus() async {
-    try {
-      await _localDataSource.setOnboardingStatus();
-      return const Success(null);
-    } on CacheException catch (e) {
-      return Error(CacheFailure(message: e.message));
-    }
-  }
+  Future<Result<void>> setOnboardingStatus() =>
+      Result.guardAsync(_localDataSource.setOnboardingStatus);
 
   @override
   Future<Result<List<OnboardingItemEntity>>> getOnboardingItems() async {
