@@ -10,15 +10,7 @@ class ErrorHandlerService {
   void initialize() {
     FlutterError.onError = _handleFlutterError;
 
-    PlatformDispatcher.instance.onError = (error, stack) {
-      _logError(
-        'Platform channel error',
-        error,
-        stack,
-      );
-
-      return true;
-    };
+    PlatformDispatcher.instance.onError = _handlePlatformError;
     _log.info('Global error handlers set up.');
   }
 
@@ -32,6 +24,16 @@ class ErrorHandlerService {
       details.exception,
       details.stack,
     );
+  }
+
+  bool _handlePlatformError(Object error, StackTrace stackTrace) {
+    _logError(
+      'Platform channel error',
+      error,
+      stackTrace,
+    );
+
+    return true;
   }
 
   void _logError(String context, Object error, StackTrace? stackTrace) {

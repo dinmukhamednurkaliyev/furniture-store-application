@@ -16,7 +16,9 @@ final class ApplicationBootstrap {
   }) async {
     const loggingService = LoggingService();
     const errorHandlerService = ErrorHandlerService();
+    const imageCacheService = ImageCacheService();
     const performanceMonitoringService = PerformanceMonitoringService();
+    const memoryTrackingService = MemoryTrackingService();
 
     await runZonedGuarded(
       () async {
@@ -24,9 +26,11 @@ final class ApplicationBootstrap {
 
         loggingService.initialize();
         errorHandlerService.initialize();
+        imageCacheService.initialize();
 
         if (kDebugMode) {
           performanceMonitoringService.initialize();
+          memoryTrackingService.initialize();
         }
 
         _log.info('Bootstrap complete. Running app...');
