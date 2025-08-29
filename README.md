@@ -70,7 +70,7 @@ A modern **Furniture Store** application built with Flutter. This project serves
 <div style="display: flex; align-items: center;">
     <img src="https://www.svgrepo.com/show/475640/chrome-color.svg" width="15" style="margin-right: 5px;"/> 
     <strong>Web</strong>
-    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678134-sign-check-512.png" width="15" style="margin-right: 5px;"/> 
+    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-1024.png" width="15" style="margin-right: 5px;"/> 
 </div>
 <div style="display: flex; align-items: center;">
     <img src="https://www.svgrepo.com/show/382713/windows-applications.svg" width="15" style="margin-right: 5px;"/> 
