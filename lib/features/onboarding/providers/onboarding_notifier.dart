@@ -9,9 +9,10 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
 
   Future<void> initialize() async {
     state = state.copyWith(isDataLoading: true);
-    // Дожидаемся получения use case'а
-    final getOnboardingItems =
-        await ref.read(getOnboardingItemsUsecaseProvider.future);
+
+    final getOnboardingItems = await ref.read(
+      getOnboardingItemsUsecaseProvider.future,
+    );
     final result = await getOnboardingItems();
 
     result.when(
@@ -19,17 +20,20 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
         state = state.copyWith(isDataLoading: false, items: items);
       },
       error: (failure) {
-        state =
-            state.copyWith(isDataLoading: false, errorMessage: failure.message);
+        state = state.copyWith(
+          isDataLoading: false,
+          errorMessage: failure.message,
+        );
       },
     );
   }
 
   Future<void> setOnboardingStatus() async {
-    state = state.copyWith(isActionLoading: true, errorMessage: null);
-    // Дожидаемся получения use case'а
-    final setOnboardingStatus =
-        await ref.read(setOnboardingStatusUsecaseProvider.future);
+    state = state.copyWith(isActionLoading: true);
+
+    final setOnboardingStatus = await ref.read(
+      setOnboardingStatusUsecaseProvider.future,
+    );
     final result = await setOnboardingStatus();
 
     result.when(
@@ -37,8 +41,10 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
         state = state.copyWith(isActionLoading: false);
       },
       error: (failure) {
-        state =
-            state.copyWith(isActionLoading: false, errorMessage: failure.message);
+        state = state.copyWith(
+          isActionLoading: false,
+          errorMessage: failure.message,
+        );
       },
     );
   }

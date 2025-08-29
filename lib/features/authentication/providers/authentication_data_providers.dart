@@ -1,15 +1,17 @@
-import 'package:furniture_store_application/core/core.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/providers/shared_preferences_provider.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
-import 'package:riverpod/riverpod.dart';
 
 final authenticationLocalDataSourceProvider =
-    Provider<AuthenticationLocalDataSource>((ref) {
-      final sharedPreferences = ref.watch(sharedPreferencesProvider).value!;
-      return AuthenticationLocalDataSourceImplementation(sharedPreferences);
+    FutureProvider<AuthenticationLocalDataSource>((ref) async {
+      final prefs = await ref.watch(sharedPreferencesProvider.future);
+      return AuthenticationLocalDataSourceImplementation(prefs);
     });
 
-final authenticationRepositoryProvider = Provider<AuthenticationRepository>(
-  (ref) => AuthenticationRepositoryImplementation(
-    ref.watch(authenticationLocalDataSourceProvider),
-  ),
-);
+final authenticationRepositoryProvider =
+    FutureProvider<AuthenticationRepository>((ref) async {
+      final localDataSource = await ref.watch(
+        authenticationLocalDataSourceProvider.future,
+      );
+      return AuthenticationRepositoryImplementation(localDataSource);
+    });

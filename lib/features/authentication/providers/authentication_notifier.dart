@@ -1,5 +1,5 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
-import 'package:riverpod/riverpod.dart';
 
 class AuthenticationNotifier extends Notifier<AuthenticationState> {
   @override
@@ -8,33 +8,49 @@ class AuthenticationNotifier extends Notifier<AuthenticationState> {
   }
 
   Future<void> initialize() async {
-    final getSignInStatus = ref.read(getSignInStatusUsecaseProvider);
-    final getUser = ref.read(getUserUsecaseProvder);
+    state = state.copyWith(isLoading: true);
+    // Теперь мы дожидаемся получения use case'ов
+    final getSignInStatus = await ref.read(
+      getSignInStatusUsecaseProvider.future,
+    );
+    final getUser = await ref.read(getUserUsecaseProvider.future);
 
     final signInResult = await getSignInStatus();
     await signInResult.when(
       success: (isSignIn) async {
-        final userResult = await getUser();
-        userResult.when(
-          success: (user) {
-            state = state.copyWith(isSignIn: true, user: user);
-          },
-          error: (failure) {
-            state = state.copyWith(errorMessage: failure.message);
-          },
-        );
+        if (isSignIn) {
+          final userResult = await getUser();
+          userResult.when(
+            success: (user) {
+              state = state.copyWith(
+                isLoading: false,
+                isSignIn: true,
+                user: user,
+              );
+            },
+            error: (failure) {
+              state = state.copyWith(
+                isLoading: false,
+                errorMessage: failure.message,
+              );
+            },
+          );
+        } else {
+          state = state.copyWith(isLoading: false, isSignIn: false);
+        }
       },
       error: (failure) {
-        state = state.copyWith(errorMessage: failure.message);
+        state = state.copyWith(isLoading: false, errorMessage: failure.message);
       },
     );
   }
 
   Future<void> signIn(String email, String password) async {
-    final setUser = ref.read(setUserUsecaseProvider);
-    final setSignInStatus = ref.read(setSignInStatusUsecaseProvider);
-
     state = state.copyWith(isLoading: true);
+    final setUser = await ref.read(setUserUsecaseProvider.future);
+    final setSignInStatus = await ref.read(
+      setSignInStatusUsecaseProvider.future,
+    );
 
     final user = UserEntity(email: email, name: 'Test User');
     final userResult = await setUser(user: user);
@@ -67,8 +83,10 @@ class AuthenticationNotifier extends Notifier<AuthenticationState> {
   }
 
   Future<void> signOut() async {
-    final setSignInStatus = ref.read(setSignInStatusUsecaseProvider);
     state = state.copyWith(isLoading: true);
+    final setSignInStatus = await ref.read(
+      setSignInStatusUsecaseProvider.future,
+    );
     final result = await setSignInStatus(status: false);
     result.when(
       success: (_) {
