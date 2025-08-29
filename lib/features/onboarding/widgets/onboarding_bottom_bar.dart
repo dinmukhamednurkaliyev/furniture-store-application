@@ -8,6 +8,7 @@ class OnboardingBottomBar extends StatelessWidget {
     required this.onNext,
     required this.onSkip,
     required this.onGetStarted,
+    this.isActionLoading = false,
     super.key,
   });
 
@@ -16,6 +17,7 @@ class OnboardingBottomBar extends StatelessWidget {
   final VoidCallback onNext;
   final VoidCallback onSkip;
   final VoidCallback onGetStarted;
+  final bool isActionLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -32,29 +34,36 @@ class OnboardingBottomBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
     );
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        transitionBuilder: (child, animation) {
-          return FadeTransition(
-            opacity: animation,
-            child: SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, 0.5),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
+    final barContent = AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      transitionBuilder: (child, animation) {
+        return FadeTransition(
+          opacity: animation,
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 0.5),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        );
+      },
+      child: isLastPage
+          ? _buildGetStartedButton(context, elevatedButtonStyle, buttonHeight)
+          : _buildNavigationButtons(
+              context,
+              textButtonStyle,
+              elevatedButtonStyle,
             ),
-          );
-        },
-        child: isLastPage
-            ? _buildGetStartedButton(context, elevatedButtonStyle, buttonHeight)
-            : _buildNavigationButtons(
-                context,
-                textButtonStyle,
-                elevatedButtonStyle,
-              ),
+    );
+
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: barContent,
+        ),
       ),
     );
   }
@@ -69,8 +78,17 @@ class OnboardingBottomBar extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: style,
-        onPressed: onGetStarted,
-        child: const Text('Get Started'),
+        onPressed: isActionLoading ? null : onGetStarted,
+        child: isActionLoading
+            ? const SizedBox(
+                height: 24,
+                width: 24,
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                  color: Colors.white,
+                ),
+              )
+            : const Text('Get Started'),
       ),
     );
   }

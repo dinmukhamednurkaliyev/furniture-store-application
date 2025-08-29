@@ -8,14 +8,19 @@ class OnboardingPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
-    return isPortrait
-        ? _buildPortraitLayout(context)
-        : _buildLandscapeLayout(context);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const double wideLayoutBreakpoint = 600;
+        final isWideLayout = constraints.maxWidth >= wideLayoutBreakpoint;
+
+        return isWideLayout
+            ? _buildWideLayout(context)
+            : _buildNarrowLayout(context);
+      },
+    );
   }
 
-  Widget _buildPortraitLayout(BuildContext context) {
+  Widget _buildNarrowLayout(BuildContext context) {
     final screenHeight = context.screenHeight;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -30,15 +35,15 @@ class OnboardingPageContent extends StatelessWidget {
     );
   }
 
-  Widget _buildLandscapeLayout(BuildContext context) {
+  Widget _buildWideLayout(BuildContext context) {
     final screenHeight = context.screenHeight;
-    final screenWidth = context.screenWidth;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+      padding: EdgeInsets.symmetric(horizontal: screenHeight * 0.1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
+            flex: 2,
             child: Image.asset(
               item.imagePath,
               height: screenHeight * 0.6,
@@ -46,6 +51,7 @@ class OnboardingPageContent extends StatelessWidget {
           ),
           const SizedBox(width: 48),
           Expanded(
+            flex: 3,
             child: _TextContent(
               title: item.title,
               description: item.description,
@@ -66,17 +72,18 @@ class _TextContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          textAlign: TextAlign.center,
-          style: context.displaySmall,
+          textAlign: TextAlign.start,
+          style: context.displaySmall?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
         Text(
           description,
-          textAlign: TextAlign.center,
-          style: context.bodyLarge,
+          textAlign: TextAlign.start,
+          style: context.bodyLarge?.copyWith(fontSize: 18),
         ),
       ],
     );

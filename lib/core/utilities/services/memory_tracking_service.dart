@@ -1,5 +1,6 @@
-import 'dart:nativewrappers/_internal/vm/bin/common_patch.dart';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 
 class MemoryTrackingService {
@@ -18,10 +19,12 @@ class MemoryTrackingService {
       return;
     }
 
-    final rssBytes = ProcessInfo.currentRss;
+    if (!kIsWeb) {
+      final rssBytes = ProcessInfo.currentRss;
 
-    final usageMB = (rssBytes / 1024 / 1024).toStringAsFixed(2);
+      final usageMB = (rssBytes / 1024 / 1024).toStringAsFixed(2);
 
-    _log.fine('Memory Usage [$tag]: $usageMB MB');
+      _log.fine('Memory Usage [$tag]: $usageMB MB');
+    }
   }
 }

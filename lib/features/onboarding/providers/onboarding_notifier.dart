@@ -1,12 +1,45 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
-class OnboardingNotifier extends Notifier<void> {
+class OnboardingNotifier extends Notifier<OnboardingState> {
   @override
-  void build() {}
+  OnboardingState build() {
+    return const OnboardingState();
+  }
+
+  Future<void> initialize() async {
+    state = state.copyWith(isDataLoading: true);
+    // Дожидаемся получения use case'а
+    final getOnboardingItems =
+        await ref.read(getOnboardingItemsUsecaseProvider.future);
+    final result = await getOnboardingItems();
+
+    result.when(
+      success: (items) {
+        state = state.copyWith(isDataLoading: false, items: items);
+      },
+      error: (failure) {
+        state =
+            state.copyWith(isDataLoading: false, errorMessage: failure.message);
+      },
+    );
+  }
 
   Future<void> setOnboardingStatus() async {
-    final setOnboardingStatus = ref.read(setOnboardingStatusUsecaseProvider);
-    await setOnboardingStatus();
+    state = state.copyWith(isActionLoading: true, errorMessage: null);
+    // Дожидаемся получения use case'а
+    final setOnboardingStatus =
+        await ref.read(setOnboardingStatusUsecaseProvider.future);
+    final result = await setOnboardingStatus();
+
+    result.when(
+      success: (_) {
+        state = state.copyWith(isActionLoading: false);
+      },
+      error: (failure) {
+        state =
+            state.copyWith(isActionLoading: false, errorMessage: failure.message);
+      },
+    );
   }
 }

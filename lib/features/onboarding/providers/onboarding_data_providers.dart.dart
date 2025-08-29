@@ -1,16 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/core/providers/shared_preferences_provider.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
-final onboardingLocalDataSourceProvider = Provider<OnboardingLocalDataSource>(
-  (ref) {
-    final prefs = ref.watch(sharedPreferencesProvider).value!;
-    return OnboardingLocalDataSourceImplementation(prefs);
-  },
-);
+// 1. Провайдер стал FutureProvider
+final onboardingLocalDataSourceProvider =
+    FutureProvider<OnboardingLocalDataSource>((ref) async {
+  // 2. Мы дожидаемся загрузки SharedPreferences
+  final prefs = await ref.watch(sharedPreferencesProvider.future);
+  return OnboardingLocalDataSourceImplementation(prefs);
+});
 
-final onboardingRepositoryProvider = Provider<OnboardingRepository>(
-  (ref) => OnboardingRepositoryImplementation(
-    ref.watch(onboardingLocalDataSourceProvider),
-  ),
-);
+// 3. Этот провайдер тоже стал FutureProvider, так как зависит от предыдущего
+final onboardingRepositoryProvider = FutureProvider<OnboardingRepository>((ref) async {
+  final localDataSource =
+      await ref.watch(onboardingLocalDataSourceProvider.future);
+  return OnboardingRepositoryImplementation(localDataSource);
+});

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,6 +17,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   @override
   void initState() {
     super.initState();
+    Future.microtask(
+      () => ref.read(onboardingNotifierProvider.notifier).initialize(),
+    );
     _pageController = PageController();
     _pageController.addListener(() {
       final newPage = _pageController.page?.round() ?? 0;
@@ -45,26 +47,28 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final onboardingItemsAsync = ref.watch(onboardingItemsFutureProvider);
+    final onboardingState = ref.watch(onboardingNotifierProvider);
 
     return Scaffold(
-      body: onboardingItemsAsync.when(
-        data: (result) {
-          return switch (result) {
-            Success(data: final items) => _buildContent(items),
-
-            Error(failure: final f) => Center(
-              child: Text('Error: ${f.message}'),
-            ),
-          };
+      body: Builder(
+        builder: (context) {
+          if (onboardingState.isActionLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (onboardingState.errorMessage != null) {
+            return Center(
+              child: Text('An error occurred: ${onboardingState.errorMessage}'),
+            );
+          }
+          return _buildContent(onboardingState.items, onboardingState.isActionLoading);
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('An error occurred: $err')),
       ),
     );
   }
 
-  Widget _buildContent(List<OnboardingItemEntity> items) {
+  Widget _buildContent(List<OnboardingItemEntity> items, bool isActionLoading) {
     return SafeArea(
       child: Column(
         children: [
@@ -100,6 +104,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             },
             onSkip: _setOnboardingStatusAndNavigate,
             onGetStarted: _setOnboardingStatusAndNavigate,
+            isActionLoading: isActionLoading,
           ),
           const SizedBox(height: 16),
         ],
