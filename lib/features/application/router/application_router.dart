@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:furniture_store_application/features/home/pages/home_page.dart';
 import 'package:furniture_store_application/features/onboarding/pages/onboarding_page.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,11 @@ enum ApplicationRoutes {
     path: '/home',
     name: 'home',
     page: HomePage(),
+  ),
+  signIn(
+    path: '/sign-in',
+    name: 'sign-in',
+    page: SignInPage(),
   );
 
   const ApplicationRoutes({

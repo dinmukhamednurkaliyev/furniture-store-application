@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,7 +42,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     await ref.read(onboardingNotifierProvider.notifier).setOnboardingStatus();
 
     if (mounted) {
-      context.go('/home');
+      context.goNamed(ApplicationRoutes.home.name);
     }
   }
 
@@ -62,7 +63,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               child: Text('An error occurred: ${onboardingState.errorMessage}'),
             );
           }
-          return _buildContent(onboardingState.items, onboardingState.isActionLoading);
+          return _buildContent(
+            onboardingState.items,
+            onboardingState.isActionLoading,
+          );
         },
       ),
     );

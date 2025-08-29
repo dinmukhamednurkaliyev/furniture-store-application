@@ -63,7 +63,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
     );
 
     if (hasSeenOnboarding) {
-      context.goNamed(ApplicationRoutes.home.name);
+      context.goNamed(ApplicationRoutes.signIn.name);
     } else {
       context.goNamed(ApplicationRoutes.onboarding.name);
     }
