@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/application/pages/splash_page.dart';
+import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/home/pages/home_page.dart';
 import 'package:furniture_store_application/features/onboarding/pages/onboarding_page.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +46,7 @@ class ApplicationRouter {
   static GoRouter _buildRouter() {
     return GoRouter(
       initialLocation: ApplicationRoutes.splash.path,
+      observers: [RouterObserver()],
       routes: ApplicationRoutes.values.map((route) {
         return GoRoute(
           path: route.path,
