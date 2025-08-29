@@ -1,30 +1,27 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 
+@immutable
 class MemoryTrackingService {
   const MemoryTrackingService();
 
   static final _log = Logger('MemoryTrackingService');
-  static bool _isEnabled = false;
 
   void initialize() {
-    _isEnabled = true;
     _log.info('Memory tracking service enabled.');
+    Timer.periodic(const Duration(seconds: 30), (timer) {
+      _logMemoryUsage('periodic');
+    });
   }
 
-  static void logMemoryUsage(String tag) {
-    if (!_isEnabled) {
-      return;
-    }
-
+  void _logMemoryUsage(String tag) {
     if (!kIsWeb) {
       final rssBytes = ProcessInfo.currentRss;
-
       final usageMB = (rssBytes / 1024 / 1024).toStringAsFixed(2);
-
-      _log.fine('Memory Usage [$tag]: $usageMB MB');
+      _log.info('Memory Usage [$tag]: $usageMB MB');
     }
   }
 }
