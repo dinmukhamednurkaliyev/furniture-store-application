@@ -1,10 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-final sharedPreferencesProvider = FutureProvider<SharedPreferences>(
-  (ref) => SharedPreferences.getInstance(),
-);
 
 final onboardingLocalDataSourceProvider = Provider<OnboardingLocalDataSource>(
   (ref) {
