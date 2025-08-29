@@ -2,21 +2,22 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/features/onboarding/providers/onboarding_domain_providers.dart';
 import 'package:go_router/go_router.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  ConsumerState<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
+class _SplashPageState extends ConsumerState<SplashPage>
     with SingleTickerProviderStateMixin {
   static const _animationDuration = Duration(milliseconds: 1500);
-  static const _navigationDelay = Duration(milliseconds: 500);
 
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
@@ -42,17 +43,30 @@ class _SplashPageState extends State<SplashPage>
       end: Offset.zero,
     ).animate(curvedAnimation);
 
-    Future.delayed(const Duration(milliseconds: 100), () {
-      _animationController
-        ..forward()
-        ..addStatusListener((status) {
-          if (status == AnimationStatus.completed) {
-            Timer(_navigationDelay, () {
-              context.goNamed(ApplicationRoutes.onboarding.name);
-            });
-          }
-        });
-    });
+    _animationController.forward();
+    _checkStatusAndNavigate();
+  }
+
+  Future<void> _checkStatusAndNavigate() async {
+    await Future<void>.delayed(_animationDuration);
+
+    final getOnboardingStatus = await ref.read(
+      getOnboardingStatusUsecaseProvider.future,
+    );
+    final onboardingResult = await getOnboardingStatus();
+
+    if (!mounted) return;
+
+    final hasSeenOnboarding = onboardingResult.when(
+      success: (status) => status,
+      error: (_) => false,
+    );
+
+    if (hasSeenOnboarding) {
+      context.goNamed(ApplicationRoutes.home.name);
+    } else {
+      context.goNamed(ApplicationRoutes.onboarding.name);
+    }
   }
 
   @override
