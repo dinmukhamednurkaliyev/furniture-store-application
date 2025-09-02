@@ -48,24 +48,26 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final onboardingState = ref.watch(onboardingNotifierProvider);
+    final currentOnboardingState = ref.watch(onboardingNotifierProvider);
 
     return Scaffold(
       body: Builder(
         builder: (context) {
-          if (onboardingState.isActionLoading) {
+          if (currentOnboardingState.isActionLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (onboardingState.errorMessage != null) {
+          if (currentOnboardingState.errorMessage != null) {
             return Center(
-              child: Text('An error occurred: ${onboardingState.errorMessage}'),
+              child: Text(
+                'An error occurred: ${currentOnboardingState.errorMessage}',
+              ),
             );
           }
           return _buildContent(
-            onboardingState.items,
-            onboardingState.isActionLoading,
+            currentOnboardingState.items,
+            currentOnboardingState.isActionLoading,
           );
         },
       ),
