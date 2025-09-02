@@ -330,6 +330,7 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
           style: context.bodyLarge,
           decoration: InputDecoration(
             prefixIcon: prefixIconWidget,
+            prefixIconColor: context.colorScheme.onSurfaceVariant,
             hintText: hintTextInputText,
             hintStyle: context.bodyLarge?.copyWith(
               color: Colors.grey.shade400,

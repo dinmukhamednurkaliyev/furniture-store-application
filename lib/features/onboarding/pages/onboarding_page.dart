@@ -42,7 +42,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     await ref.read(onboardingNotifierProvider.notifier).setOnboardingStatus();
 
     if (mounted) {
-      context.goNamed(ApplicationRoutes.home.name);
+      context.goNamed(ApplicationRoutes.signIn.name);
     }
   }
 
