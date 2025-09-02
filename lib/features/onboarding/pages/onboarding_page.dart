@@ -46,6 +46,21 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     }
   }
 
+  void _onIndicatorTapped(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _onNext() {
+    _pageController.nextPage(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentOnboardingState = ref.watch(onboardingNotifierProvider);
@@ -53,7 +68,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     return Scaffold(
       body: Builder(
         builder: (context) {
-          if (currentOnboardingState.isActionLoading) {
+          if (currentOnboardingState.isDataLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -65,55 +80,17 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               ),
             );
           }
-          return _buildContent(
-            currentOnboardingState.items,
-            currentOnboardingState.isActionLoading,
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildContent(List<OnboardingItemEntity> items, bool isActionLoading) {
-    return SafeArea(
-      child: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-              controller: _pageController,
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return OnboardingPageContent(item: items[index]);
-              },
-            ),
-          ),
-          PageIndicators(
-            itemCount: items.length,
+          return OnboardingView(
+            items: currentOnboardingState.items,
+            isActionLoading: currentOnboardingState.isActionLoading,
             currentPage: _currentPage,
-            onIndicatorTapped: (index) {
-              _pageController.animateToPage(
-                index,
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.easeInOut,
-              );
-            },
-          ),
-          const SizedBox(height: 16),
-          OnboardingBottomBar(
-            currentPage: _currentPage,
-            itemCount: items.length,
-            onNext: () {
-              _pageController.nextPage(
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.easeInOut,
-              );
-            },
+            pageController: _pageController,
+            onIndicatorTapped: _onIndicatorTapped,
+            onNext: _onNext,
             onSkip: _setOnboardingStatusAndNavigate,
             onGetStarted: _setOnboardingStatusAndNavigate,
-            isActionLoading: isActionLoading,
-          ),
-          const SizedBox(height: 16),
-        ],
+          );
+        },
       ),
     );
   }
