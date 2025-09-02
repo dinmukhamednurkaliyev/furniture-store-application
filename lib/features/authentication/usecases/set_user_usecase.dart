@@ -6,6 +6,6 @@ class SetUserUsecase {
 
   final AuthenticationRepository _repository;
 
-  Future<Result<void>> call({required UserEntity user}) =>
+  Future<Result<UserEntity>> call({required UserEntity user}) =>
       _repository.setUser(user: user);
 }

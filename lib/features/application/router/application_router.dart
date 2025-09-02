@@ -26,6 +26,11 @@ enum ApplicationRoutes {
     path: '/sign-in',
     name: 'sign-in',
     page: SignInPage(),
+  ),
+  signUp(
+    path: '/sign-up',
+    name: 'sign-up',
+    page: SignUpPage(),
   );
 
   const ApplicationRoutes({

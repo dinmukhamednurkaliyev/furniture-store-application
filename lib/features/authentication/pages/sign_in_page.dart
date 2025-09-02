@@ -48,6 +48,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 20,
                   children: [
                     const SignInHeaderWidget(),
                     SignInFormWidget(
@@ -56,6 +57,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                       passwordController: _passwordTextEditingController,
                       onSignIn: _handleSignInAttempt,
                     ),
+                    const SignInFooterWidget(),
                   ],
                 ),
               ),

@@ -9,7 +9,6 @@ class AuthenticationNotifier extends Notifier<AuthenticationState> {
 
   Future<void> initialize() async {
     state = state.copyWith(isLoading: true);
-    // Теперь мы дожидаемся получения use case'ов
     final getSignInStatus = await ref.read(
       getSignInStatusUsecaseProvider.future,
     );
@@ -52,17 +51,18 @@ class AuthenticationNotifier extends Notifier<AuthenticationState> {
       setSignInStatusUsecaseProvider.future,
     );
 
-    final user = UserEntity(email: email, name: 'Test User');
-    final userResult = await setUser(user: user);
+    final userToSave = UserEntity(email: email, name: email);
+    final userResult = await setUser(user: userToSave);
+
     await userResult.when(
-      success: (_) async {
+      success: (savedUser) async {
         final signInResult = await setSignInStatus(status: true);
         signInResult.when(
           success: (_) {
             state = state.copyWith(
               isLoading: false,
               isSignIn: true,
-              user: user,
+              user: savedUser,
             );
           },
           error: (failure) {

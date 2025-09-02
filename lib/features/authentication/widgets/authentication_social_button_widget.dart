@@ -24,15 +24,15 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
         ),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 12,
         children: [
           Image.asset(
             iconAssetPath,
             height: 24,
             width: 24,
           ),
-          const SizedBox(
-            width: 12,
-          ),
+
           Text(
             buttonText,
             style: context.bodyMedium?.copyWith(

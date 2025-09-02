@@ -5,7 +5,7 @@ abstract interface class AuthenticationRepository {
   Future<Result<bool>> getSignInStatus();
   Future<Result<void>> setSignInStatus({required bool status});
   Future<Result<UserEntity>> getUser();
-  Future<Result<void>> setUser({required UserEntity user});
+  Future<Result<UserEntity>> setUser({required UserEntity user});
 }
 
 class AuthenticationRepositoryImplementation
@@ -27,6 +27,6 @@ class AuthenticationRepositoryImplementation
       Result.guardAsync(_localDataSource.getUser);
 
   @override
-  Future<Result<void>> setUser({required UserEntity user}) =>
+  Future<Result<UserEntity>> setUser({required UserEntity user}) =>
       Result.guardAsync(() => _localDataSource.setUser(user: user));
 }

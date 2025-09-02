@@ -23,6 +23,7 @@ class SignInFormWidget extends ConsumerWidget {
     return Form(
       key: formKey,
       child: Column(
+        spacing: 20,
         children: [
           AuthenticationTextFieldWidget(
             prefixIconWidget: const Icon(
@@ -42,9 +43,7 @@ class SignInFormWidget extends ConsumerWidget {
               return null;
             },
           ),
-          const SizedBox(
-            height: 20,
-          ),
+
           AuthenticationTextFieldWidget(
             prefixIconWidget: const Icon(Icons.lock),
             labelText: 'Password',
@@ -61,9 +60,7 @@ class SignInFormWidget extends ConsumerWidget {
               return null;
             },
           ),
-          const SizedBox(
-            height: 12,
-          ),
+
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
@@ -77,9 +74,7 @@ class SignInFormWidget extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 12,
-          ),
+
           if (authenticationState.errorMessage != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
