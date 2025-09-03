@@ -44,9 +44,11 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     ref.listen(authenticationNotifierProvider, (previous, next) {
-      if (next.isSignIn ?? false) {
-        context.goNamed(ApplicationRoutes.home.name);
-      }
+      next.whenData((user) {
+        if (user != null) {
+          context.goNamed(ApplicationRoutes.home.name);
+        }
+      });
     });
 
     return Scaffold(

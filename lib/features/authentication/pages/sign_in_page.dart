@@ -39,17 +39,22 @@ class _SignInPageState extends ConsumerState<SignInPage> {
   @override
   Widget build(BuildContext context) {
     ref.listen(authenticationNotifierProvider, (previous, next) {
-      if (next.errorMessage != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(next.errorMessage!),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-      if (next.isSignIn ?? false) {
-        context.goNamed(ApplicationRoutes.home.name);
-      }
+      next.when(
+        data: (user) {
+          if (user != null) {
+            context.goNamed(ApplicationRoutes.home.name);
+          }
+        },
+        error: (error, stackTrace) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(error.toString()),
+              backgroundColor: Colors.red,
+            ),
+          );
+        },
+        loading: () {},
+      );
     });
 
     return Scaffold(

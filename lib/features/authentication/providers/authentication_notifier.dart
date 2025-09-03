@@ -1,145 +1,134 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 
-class AuthenticationNotifier extends Notifier<AuthenticationState> {
+class AuthenticationNotifier extends Notifier<AsyncValue<UserEntity?>> {
   @override
-  AuthenticationState build() {
-    return const AuthenticationState();
+  AsyncValue<UserEntity?> build() {
+    return const AsyncValue.data(null);
   }
 
   Future<void> initialize() async {
-    state = state.copyWith(isLoading: true);
-    final getSignInStatus = await ref.read(
-      getSignInStatusUsecaseProvider.future,
-    );
-    final getUser = await ref.read(getUserUsecaseProvider.future);
+    state = const AsyncValue.loading();
+    try {
+      final getSignInStatus = await ref.read(
+        getSignInStatusUsecaseProvider.future,
+      );
+      final getUser = await ref.read(getUserUsecaseProvider.future);
 
-    final signInResult = await getSignInStatus();
-    await signInResult.when(
-      success: (isSignIn) async {
-        if (isSignIn) {
-          final userResult = await getUser();
-          userResult.when(
-            success: (user) {
-              state = state.copyWith(
-                isLoading: false,
-                isSignIn: true,
-                user: user,
-              );
-            },
-            error: (failure) {
-              state = state.copyWith(
-                isLoading: false,
-                errorMessage: failure.message,
-              );
-            },
-          );
-        } else {
-          state = state.copyWith(isLoading: false, isSignIn: false);
-        }
-      },
-      error: (failure) {
-        state = state.copyWith(isLoading: false, errorMessage: failure.message);
-      },
-    );
+      final signInResult = await getSignInStatus();
+      await signInResult.when(
+        success: (isSignIn) async {
+          if (isSignIn) {
+            final userResult = await getUser();
+            userResult.when(
+              success: (user) {
+                state = AsyncValue.data(user);
+              },
+              error: (failure) {
+                state = AsyncValue.error(failure, StackTrace.current);
+              },
+            );
+          } else {
+            state = const AsyncValue.data(null);
+          }
+        },
+        error: (failure) {
+          state = AsyncValue.error(failure, StackTrace.current);
+        },
+      );
+    } on Exception catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
   }
 
   Future<void> signIn(String email, String password) async {
-    state = state.copyWith(isLoading: true);
-    final getUser = await ref.read(getUserUsecaseProvider.future);
-    final setSignInStatus = await ref.read(
-      setSignInStatusUsecaseProvider.future,
-    );
+    state = const AsyncValue.loading();
+    try {
+      final getUser = await ref.read(getUserUsecaseProvider.future);
+      final setSignInStatus = await ref.read(
+        setSignInStatusUsecaseProvider.future,
+      );
 
-    final userResult = await getUser();
+      final userResult = await getUser();
 
-    await userResult.when(
-      success: (fetchedUser) async {
-        if (fetchedUser.email != email) {
-          state = state.copyWith(
-            isLoading: false,
-            errorMessage: 'Incorrect email or password.',
+      await userResult.when(
+        success: (fetchedUser) async {
+          if (fetchedUser.email != email) {
+            state = AsyncValue.error(
+              'Incorrect email or password.',
+              StackTrace.current,
+            );
+            return;
+          }
+
+          final signInResult = await setSignInStatus(status: true);
+          signInResult.when(
+            success: (_) {
+              state = AsyncValue.data(fetchedUser);
+            },
+            error: (failure) {
+              state = AsyncValue.error(failure, StackTrace.current);
+            },
           );
-          return;
-        }
-
-        final signInResult = await setSignInStatus(status: true);
-        signInResult.when(
-          success: (_) {
-            state = state.copyWith(
-              isLoading: false,
-              isSignIn: true,
-              user: fetchedUser,
-            );
-          },
-          error: (failure) {
-            state = state.copyWith(
-              isLoading: false,
-              errorMessage: failure.message,
-            );
-          },
-        );
-      },
-      error: (failure) {
-        state = state.copyWith(
-          isLoading: false,
-          errorMessage: failure.message,
-        );
-      },
-    );
+        },
+        error: (failure) {
+          state = AsyncValue.error(failure, StackTrace.current);
+        },
+      );
+    } on Exception catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
   }
 
   Future<void> signUp(String name, String email, String password) async {
-    state = state.copyWith(isLoading: true);
-    final setUser = await ref.read(setUserUsecaseProvider.future);
-    final setSignInStatus = await ref.read(
-      setSignInStatusUsecaseProvider.future,
-    );
+    state = const AsyncValue.loading();
+    try {
+      final setUser = await ref.read(setUserUsecaseProvider.future);
+      final setSignInStatus = await ref.read(
+        setSignInStatusUsecaseProvider.future,
+      );
 
-    final userToSave = UserEntity(email: email, name: name);
-    final userResult = await setUser(user: userToSave);
+      final userToSave = UserEntity(email: email, name: name);
+      final userResult = await setUser(user: userToSave);
 
-    await userResult.when(
-      success: (savedUser) async {
-        final signInResult = await setSignInStatus(status: true);
-        signInResult.when(
-          success: (_) {
-            state = state.copyWith(
-              isLoading: false,
-              isSignIn: true,
-              user: savedUser,
-            );
-          },
-          error: (failure) {
-            state = state.copyWith(
-              isLoading: false,
-              errorMessage: failure.message,
-            );
-          },
-        );
-      },
-      error: (failure) {
-        state = state.copyWith(
-          isLoading: false,
-          errorMessage: failure.message,
-        );
-      },
-    );
+      await userResult.when(
+        success: (savedUser) async {
+          final signInResult = await setSignInStatus(status: true);
+          signInResult.when(
+            success: (_) {
+              state = AsyncValue.data(savedUser);
+            },
+            error: (failure) {
+              state = AsyncValue.error(failure, StackTrace.current);
+            },
+          );
+        },
+        error: (failure) {
+          state = AsyncValue.error(failure, StackTrace.current);
+        },
+      );
+    } on Exception catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
   }
 
   Future<void> signOut() async {
-    state = state.copyWith(isLoading: true);
-    final setSignInStatus = await ref.read(
-      setSignInStatusUsecaseProvider.future,
-    );
-    final result = await setSignInStatus(status: false);
-    result.when(
-      success: (_) {
-        state = const AuthenticationState();
-      },
-      error: (failure) {
-        state = state.copyWith(isLoading: false, errorMessage: failure.message);
-      },
-    );
+    state = const AsyncValue.loading();
+    try {
+      final setSignInStatus = await ref.read(
+        setSignInStatusUsecaseProvider.future,
+      );
+      final result = await setSignInStatus(status: false);
+      result.when(  
+        success: (_) {
+          state = const AsyncValue.data(null);
+        },
+        error: (failure) {
+          state = AsyncValue.error(failure, StackTrace.current);
+        },
+      );
+    } on Exception catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
   }
 }

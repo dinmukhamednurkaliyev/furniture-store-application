@@ -18,9 +18,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-      () => ref.read(onboardingNotifierProvider.notifier).initialize(),
-    );
     _pageController = PageController();
     _pageController.addListener(() {
       final newPage = _pageController.page?.round() ?? 0;
@@ -36,14 +33,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
-  }
-
-  Future<void> _setOnboardingStatusAndNavigate() async {
-    await ref.read(onboardingNotifierProvider.notifier).setOnboardingStatus();
-
-    if (mounted) {
-      context.goNamed(ApplicationRoutes.signIn.name);
-    }
   }
 
   void _onIndicatorTapped(int index) {
@@ -63,34 +52,49 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final currentOnboardingState = ref.watch(onboardingNotifierProvider);
+    ref.listen(
+      onboardingActionNotifierProvider,
+      (previous, next) {
+        next.when(
+          data: (_) {
+            if (previous is AsyncLoading) {
+              context.goNamed(ApplicationRoutes.signIn.name);
+            }
+          },
+          error: (error, stackTrace) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(error.toString())),
+            );
+          },
+          loading: () {},
+        );
+      },
+    );
+
+    final onboardingItems = ref.watch(onboardingItemsProvider);
+    final isActionLoading = ref
+        .watch(onboardingActionNotifierProvider)
+        .isLoading;
 
     return Scaffold(
-      body: Builder(
-        builder: (context) {
-          if (currentOnboardingState.isDataLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (currentOnboardingState.errorMessage != null) {
-            return Center(
-              child: Text(
-                'An error occurred: ${currentOnboardingState.errorMessage}',
-              ),
-            );
-          }
-          return OnboardingView(
-            items: currentOnboardingState.items,
-            isActionLoading: currentOnboardingState.isActionLoading,
-            currentPage: _currentPage,
-            pageController: _pageController,
-            onIndicatorTapped: _onIndicatorTapped,
-            onNext: _onNext,
-            onSkip: _setOnboardingStatusAndNavigate,
-            onGetStarted: _setOnboardingStatusAndNavigate,
-          );
-        },
+      body: onboardingItems.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stack) =>
+            Center(child: Text('An error occurred: $error')),
+        data: (items) => OnboardingView(
+          items: items,
+          isActionLoading: isActionLoading,
+          currentPage: _currentPage,
+          pageController: _pageController,
+          onIndicatorTapped: _onIndicatorTapped,
+          onNext: _onNext,
+          onSkip: () => ref
+              .read(onboardingActionNotifierProvider.notifier)
+              .setOnboardingStatus(),
+          onGetStarted: () => ref
+              .read(onboardingActionNotifierProvider.notifier)
+              .setOnboardingStatus(),
+        ),
       ),
     );
   }

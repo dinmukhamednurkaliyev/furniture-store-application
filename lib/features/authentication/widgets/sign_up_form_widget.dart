@@ -97,11 +97,11 @@ class SignUpFormWidget extends ConsumerWidget {
               return null;
             },
           ),
-          if (authenticationState.errorMessage != null)
+          if (authenticationState.hasError)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: Text(
-                authenticationState.errorMessage!,
+                authenticationState.error.toString(),
                 style: const TextStyle(
                   color: Colors.red,
                   fontSize: 14,
@@ -111,7 +111,7 @@ class SignUpFormWidget extends ConsumerWidget {
           AuthenticationButtonWidget(
             buttonText: 'Sign Up',
             onPressCallback: onSignUp,
-            isButtonLoading: authenticationState.isLoading ?? false,
+            isButtonLoading: authenticationState.isLoading,
           ),
         ],
       ),

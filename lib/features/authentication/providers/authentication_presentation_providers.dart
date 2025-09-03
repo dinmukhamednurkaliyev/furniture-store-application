@@ -1,7 +1,7 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
-import 'package:riverpod/riverpod.dart';
 
 final authenticationNotifierProvider =
-    NotifierProvider<AuthenticationNotifier, AuthenticationState>(
+    NotifierProvider<AuthenticationNotifier, AsyncValue<UserEntity?>>(
       AuthenticationNotifier.new,
     );

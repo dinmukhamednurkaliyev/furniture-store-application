@@ -75,11 +75,11 @@ class SignInFormWidget extends ConsumerWidget {
             ),
           ),
 
-          if (authenticationState.errorMessage != null)
+          if (authenticationState.hasError)
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: Text(
-                authenticationState.errorMessage!,
+                authenticationState.error.toString(),
                 style: const TextStyle(
                   color: Colors.red,
                   fontSize: 14,
@@ -89,7 +89,7 @@ class SignInFormWidget extends ConsumerWidget {
           AuthenticationButtonWidget(
             buttonText: 'Sign In',
             onPressCallback: onSignIn,
-            isButtonLoading: authenticationState.isLoading ?? false,
+            isButtonLoading: authenticationState.isLoading,
           ),
         ],
       ),
