@@ -51,14 +51,13 @@ class AuthenticationLocalDataSourceImplementation
   @override
   Future<UserEntity> setUser({required UserEntity user}) async {
     try {
-      final savedName = user.name?.split('@')[0];
       if (user.email != null) {
         await _sharedPreferences.setString(_userEmailKey, user.email!);
       }
-      if (savedName != null) {
-        await _sharedPreferences.setString(_userNameKey, savedName);
+      if (user.name != null) {
+        await _sharedPreferences.setString(_userNameKey, user.name!);
       }
-      return UserEntity(email: user.email, name: savedName);
+      return UserEntity(email: user.email, name: user.name);
     } catch (e) {
       throw CacheException(message: 'Error setting user: $e');
     }

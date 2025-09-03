@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/core/utilities/extensions/extensions.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInFooterWidget extends StatelessWidget {
-  const SignInFooterWidget({super.key});
+class SignUpFooterWidget extends StatelessWidget {
+  const SignUpFooterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +36,17 @@ class SignInFooterWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Don\t have an account?',
+              'Already have an account?',
               style: context.bodyLarge?.copyWith(
                 color: Colors.grey.shade600,
               ),
             ),
             TextButton(
               onPressed: () {
-                context.pushNamed(ApplicationRoutes.signUp.name);
+                context.pushNamed(ApplicationRoutes.signIn.name);
               },
               child: Text(
-                'Sign up',
+                'Sign in',
                 style: TextStyle(
                   color: context.primaryColor,
                   fontWeight: FontWeight.w600,

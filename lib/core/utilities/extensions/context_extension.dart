@@ -13,6 +13,8 @@ extension ThemeExtensions on BuildContext {
   Color get backgroundColor => colorScheme.surface;
   Color get surfaceColor => colorScheme.surface;
 
+  Color? get iconThemeColor => theme.iconTheme.color;
+
   TextTheme get textTheme => theme.textTheme;
 
   TextStyle? get displayLarge => textTheme.displayLarge;

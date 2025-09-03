@@ -46,12 +46,57 @@ class AuthenticationNotifier extends Notifier<AuthenticationState> {
 
   Future<void> signIn(String email, String password) async {
     state = state.copyWith(isLoading: true);
+    final getUser = await ref.read(getUserUsecaseProvider.future);
+    final setSignInStatus = await ref.read(
+      setSignInStatusUsecaseProvider.future,
+    );
+
+    final userResult = await getUser();
+
+    await userResult.when(
+      success: (fetchedUser) async {
+        if (fetchedUser.email != email) {
+          state = state.copyWith(
+            isLoading: false,
+            errorMessage: 'Incorrect email or password.',
+          );
+          return;
+        }
+
+        final signInResult = await setSignInStatus(status: true);
+        signInResult.when(
+          success: (_) {
+            state = state.copyWith(
+              isLoading: false,
+              isSignIn: true,
+              user: fetchedUser,
+            );
+          },
+          error: (failure) {
+            state = state.copyWith(
+              isLoading: false,
+              errorMessage: failure.message,
+            );
+          },
+        );
+      },
+      error: (failure) {
+        state = state.copyWith(
+          isLoading: false,
+          errorMessage: failure.message,
+        );
+      },
+    );
+  }
+
+  Future<void> signUp(String name, String email, String password) async {
+    state = state.copyWith(isLoading: true);
     final setUser = await ref.read(setUserUsecaseProvider.future);
     final setSignInStatus = await ref.read(
       setSignInStatusUsecaseProvider.future,
     );
 
-    final userToSave = UserEntity(email: email, name: email);
+    final userToSave = UserEntity(email: email, name: name);
     final userResult = await setUser(user: userToSave);
 
     await userResult.when(
