@@ -27,6 +27,10 @@ abstract final class ApplicationTheme {
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFF1A1A1A)),
       ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: colorScheme.primary,
+        unselectedItemColor: colorScheme.onSurface.withValues(alpha: 0.6),
+      ),
     );
   }
 
