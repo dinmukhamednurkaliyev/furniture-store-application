@@ -43,8 +43,11 @@ A modern **Furniture Store** application built with Flutter. This project serves
 ## <img align="center" src="https://fonts.gstatic.com/s/e/notoemoji/latest/2728/512.webp" width="25"/>  Preview
 
 <p align="center">
-  <img src="documentation/screenshots/splash-screen-portrait.png" width="250"> 
-  <img src="documentation/screenshots/on-boarding-screen-portrait.png" width="250">
+  <img src="documentation/screenshots/splash-page-portrait.png" width="250"> 
+  <img src="documentation/screenshots/on-boarding-page-portrait.png" width="250">
+  <img src="documentation/screenshots/sign-in-page-portrait.png" width="250">
+  <img src="documentation/screenshots/sign-up-page-portrait.png" width="250">
+  <img src="documentation/screenshots/forgot-password-page-portrait.png" width="250">
 </p>
 
 
