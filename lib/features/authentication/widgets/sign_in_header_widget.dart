@@ -9,12 +9,12 @@ class SignInHeaderWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 40,
-        ),
         Text(
           'Welcome Back!',
-          style: context.headlineLarge,
+          style: context.headlineLarge?.copyWith(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(
           height: 4,
@@ -24,9 +24,6 @@ class SignInHeaderWidget extends StatelessWidget {
           style: context.bodyLarge?.copyWith(
             color: Colors.grey.shade600,
           ),
-        ),
-        const SizedBox(
-          height: 40,
         ),
       ],
     );

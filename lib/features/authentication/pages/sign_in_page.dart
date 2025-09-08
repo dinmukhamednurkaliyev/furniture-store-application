@@ -59,27 +59,36 @@ class _SignInPageState extends ConsumerState<SignInPage> {
 
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
+        child: LayoutBuilder(
+          builder: (context, viewportConstraints) => SingleChildScrollView(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 600,
+              constraints: BoxConstraints(
+                minHeight: viewportConstraints.maxHeight,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 20,
-                  children: [
-                    const SignInHeaderWidget(),
-                    SignInFormWidget(
-                      formKey: _signInFormGlobalKey,
-                      emailController: _emailTextEditingController,
-                      passwordController: _passwordTextEditingController,
-                      onSignIn: _handleSignInAttempt,
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: 600,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SignInHeaderWidget(),
+                        const SizedBox(height: 20),
+                        SignInFormWidget(
+                          formKey: _signInFormGlobalKey,
+                          emailController: _emailTextEditingController,
+                          passwordController: _passwordTextEditingController,
+                          onSignIn: _handleSignInAttempt,
+                        ),
+                        const SizedBox(height: 20),
+                        const SignInFooterWidget(),
+                      ],
                     ),
-                    const SignInFooterWidget(),
-                  ],
+                  ),
                 ),
               ),
             ),

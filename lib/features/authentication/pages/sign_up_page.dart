@@ -54,27 +54,34 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     return Scaffold(
       appBar: const ApplicationBarWidget(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
+        child: LayoutBuilder(
+          builder: (context, viewportConstraints) => SingleChildScrollView(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600),
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  spacing: 20,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SignUpHeaderWidget(),
-                    SignUpFormWidget(
-                      formKey: _formKey,
-                      nameController: _nameController,
-                      emailController: _emailController,
-                      passwordController: _passwordController,
-                      confirmPasswordController: _confirmPasswordController,
-                      onSignUp: _onSignUp,
+              constraints: BoxConstraints(minHeight: viewportConstraints.maxHeight),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SignUpHeaderWidget(),
+                        const SizedBox(height: 20),
+                        SignUpFormWidget(
+                          formKey: _formKey,
+                          nameController: _nameController,
+                          emailController: _emailController,
+                          passwordController: _passwordController,
+                          confirmPasswordController: _confirmPasswordController,
+                          onSignUp: _onSignUp,
+                        ),
+                        const SizedBox(height: 20),
+                        const SignUpFooterWidget(),
+                      ],
                     ),
-                    const SignUpFooterWidget(),
-                  ],
+                  ),
                 ),
               ),
             ),

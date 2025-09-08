@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInFormWidget extends ConsumerWidget {
   const SignInFormWidget({
@@ -64,7 +66,9 @@ class SignInFormWidget extends ConsumerWidget {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(ApplicationRoutes.forgotPassword.name);
+              },
               child: Text(
                 'Forgot Password ?',
                 style: TextStyle(

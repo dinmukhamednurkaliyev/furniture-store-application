@@ -4,8 +4,10 @@ import 'package:furniture_store_application/features/authentication/authenticati
 
 final authenticationLocalDataSourceProvider =
     FutureProvider<AuthenticationLocalDataSource>((ref) async {
-      final prefs = await ref.watch(sharedPreferencesProvider.future);
-      return AuthenticationLocalDataSourceImplementation(prefs);
+      final sharedPreferences = await ref.watch(
+        sharedPreferencesProvider.future,
+      );
+      return AuthenticationLocalDataSourceImplementation(sharedPreferences);
     });
 
 final authenticationRepositoryProvider =
