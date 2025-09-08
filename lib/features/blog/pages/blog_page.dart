@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/application/widgets/application_bar_widget.dart';
+import 'package:furniture_store_application/features/application/application.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class BlogPage extends StatelessWidget {
+  const BlogPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: ApplicationBarWidget(
-        title: 'Home',
+        title: 'Blog',
         showBackButton: false,
       ),
       body: SafeArea(
         child: Center(
-          child: Text('Home Page'),
+          child: Text('Blog Page'),
         ),
       ),
     );
