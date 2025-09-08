@@ -10,8 +10,37 @@ class ForgotPasswordPage extends ConsumerStatefulWidget {
 }
 
 class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onResetPassword() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      await ref
+          .read(authenticationNotifierProvider.notifier)
+          .resetPassword(_emailController.text);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    ref.listen(authenticationNotifierProvider, (previous, next) {
+      if (!next.hasError && !next.isLoading && (previous?.isLoading ?? false)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'If an account with this email exists, a password reset link has been sent.',
+            ),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    });
     return Scaffold(
       appBar: const ApplicationBarWidget(),
       body: SafeArea(
@@ -24,13 +53,20 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
-                  child: const Padding(
-                    padding: EdgeInsets.all(24),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 20,
                       children: [
-                        ForgotPasswordHeaderWidget(),
+                        const ForgotPasswordHeaderWidget(),
+                        ForgotPasswordFormWidget(
+                          emailController: _emailController,
+                          formKey: _formKey,
+                          onResetPassword: _onResetPassword,
+                        ),
+                        const ForgotPasswordFooterWidget(),
                       ],
                     ),
                   ),

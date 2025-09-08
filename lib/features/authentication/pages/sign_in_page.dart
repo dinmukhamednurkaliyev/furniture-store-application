@@ -12,26 +12,24 @@ class SignInPage extends ConsumerStatefulWidget {
 }
 
 class _SignInPageState extends ConsumerState<SignInPage> {
-  final GlobalKey<FormState> _signInFormGlobalKey = GlobalKey<FormState>();
-  final TextEditingController _emailTextEditingController =
-      TextEditingController();
-  final TextEditingController _passwordTextEditingController =
-      TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
-    _emailTextEditingController.dispose();
-    _passwordTextEditingController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   Future<void> _handleSignInAttempt() async {
-    if (_signInFormGlobalKey.currentState?.validate() ?? false) {
+    if (formKey.currentState?.validate() ?? false) {
       await ref
           .read(authenticationNotifierProvider.notifier)
           .signIn(
-            _emailTextEditingController.text,
-            _passwordTextEditingController.text,
+            _emailController.text,
+            _passwordController.text,
           );
     }
   }
@@ -73,18 +71,17 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 20,
                       children: [
                         const SignInHeaderWidget(),
-                        const SizedBox(height: 20),
                         SignInFormWidget(
-                          formKey: _signInFormGlobalKey,
-                          emailController: _emailTextEditingController,
-                          passwordController: _passwordTextEditingController,
+                          formKey: formKey,
+                          emailController: _emailController,
+                          passwordController: _passwordController,
                           onSignIn: _handleSignInAttempt,
                         ),
-                        const SizedBox(height: 20),
                         const SignInFooterWidget(),
                       ],
                     ),

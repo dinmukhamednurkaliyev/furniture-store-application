@@ -24,3 +24,10 @@ final setUserUsecaseProvider = FutureProvider<SetUserUsecase>((ref) async {
   final repository = await ref.watch(authenticationRepositoryProvider.future);
   return SetUserUsecase(repository);
 });
+
+final resetPasswordUsecaseProvider = FutureProvider<ResetPasswordUsecase>(
+  (ref) async {
+    final repository = await ref.watch(authenticationRepositoryProvider.future);
+    return ResetPasswordUsecase(repository);
+  },
+);

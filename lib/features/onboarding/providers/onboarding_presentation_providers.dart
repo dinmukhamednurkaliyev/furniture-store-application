@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
-export 'onboarding_action_notifier.dart';
+export 'onboarding_notifier.dart';
 
 final AutoDisposeFutureProvider<List<OnboardingItemEntity>>
 onboardingItemsProvider =
@@ -19,6 +19,6 @@ onboardingItemsProvider =
     });
 
 final onboardingActionNotifierProvider =
-    AutoDisposeNotifierProvider<OnboardingActionNotifier, AsyncValue<void>>(
-      OnboardingActionNotifier.new,
+    AutoDisposeNotifierProvider<OnboardingNotifier, AsyncValue<void>>(
+      OnboardingNotifier.new,
     );

@@ -65,11 +65,11 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 20,
                       children: [
                         const SignUpHeaderWidget(),
-                        const SizedBox(height: 20),
                         SignUpFormWidget(
                           formKey: _formKey,
                           nameController: _nameController,
@@ -78,7 +78,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           confirmPasswordController: _confirmPasswordController,
                           onSignUp: _onSignUp,
                         ),
-                        const SizedBox(height: 20),
                         const SignUpFooterWidget(),
                       ],
                     ),

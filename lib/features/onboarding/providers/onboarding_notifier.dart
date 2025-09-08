@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
-class OnboardingActionNotifier extends AutoDisposeNotifier<AsyncValue<void>> {
+class OnboardingNotifier extends AutoDisposeNotifier<AsyncValue<void>> {
   @override
   AsyncValue<void> build() {
     return const AsyncValue.data(null);
@@ -10,10 +10,10 @@ class OnboardingActionNotifier extends AutoDisposeNotifier<AsyncValue<void>> {
   Future<void> setOnboardingStatus() async {
     state = const AsyncValue.loading();
     try {
-      final setOnboardingStatus = await ref.read(
+      final setOnboardingStatusUsecase = await ref.read(
         setOnboardingStatusUsecaseProvider.future,
       );
-      final result = await setOnboardingStatus();
+      final result = await setOnboardingStatusUsecase();
 
       state = result.when(
         success: (_) => const AsyncValue.data(null),

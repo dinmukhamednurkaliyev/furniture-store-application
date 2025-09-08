@@ -8,6 +8,7 @@ class SignInHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
       children: [
         Text(
           'Welcome Back!',
@@ -15,9 +16,6 @@ class SignInHeaderWidget extends StatelessWidget {
             fontSize: 32,
             fontWeight: FontWeight.bold,
           ),
-        ),
-        const SizedBox(
-          height: 4,
         ),
         Text(
           'Sign in to continue shopping',

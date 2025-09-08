@@ -119,12 +119,33 @@ class AuthenticationNotifier extends Notifier<AsyncValue<UserEntity?>> {
         setSignInStatusUsecaseProvider.future,
       );
       final result = await setSignInStatus(status: false);
-      result.when(  
+      result.when(
         success: (_) {
           state = const AsyncValue.data(null);
         },
         error: (failure) {
           state = AsyncValue.error(failure, StackTrace.current);
+        },
+      );
+    } on Exception catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
+  }
+
+  Future<void> resetPassword(String email) async {
+    state = const AsyncValue.loading();
+    try {
+      final resetPasswordUsecase = await ref.read(
+        resetPasswordUsecaseProvider.future,
+      );
+      final result = await resetPasswordUsecase(email: email);
+
+      result.when(
+        success: (_) {
+          state = const AsyncValue.data(null);
+        },
+        error: (failure) {
+          state = AsyncError(failure, StackTrace.current);
         },
       );
     } on Exception catch (error, stackTrace) {

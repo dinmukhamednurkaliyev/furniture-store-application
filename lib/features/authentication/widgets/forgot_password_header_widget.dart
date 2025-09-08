@@ -8,12 +8,19 @@ class ForgotPasswordHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
       children: [
         Text(
           'Forgot Password?',
           style: context.headlineLarge?.copyWith(
             fontSize: 32,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          'Enter your email to reset your password',
+          style: context.bodyLarge?.copyWith(
+            color: Colors.grey.shade600,
           ),
         ),
       ],

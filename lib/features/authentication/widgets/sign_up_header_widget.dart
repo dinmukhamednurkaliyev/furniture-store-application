@@ -8,6 +8,7 @@ class SignUpHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
       children: [
         Text(
           'Create account',
@@ -15,9 +16,6 @@ class SignUpHeaderWidget extends StatelessWidget {
             fontSize: 32,
             fontWeight: FontWeight.bold,
           ),
-        ),
-        const SizedBox(
-          height: 8,
         ),
         Text(
           'Sign up to get started',

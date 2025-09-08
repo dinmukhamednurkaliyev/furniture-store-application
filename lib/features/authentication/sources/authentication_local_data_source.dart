@@ -7,6 +7,7 @@ abstract interface class AuthenticationLocalDataSource {
   Future<void> setSignInStatus({required bool status});
   Future<UserEntity> getUser();
   Future<UserEntity> setUser({required UserEntity user});
+  Future<void> resetPassword({required String email});
 }
 
 class AuthenticationLocalDataSourceImplementation
@@ -60,6 +61,18 @@ class AuthenticationLocalDataSourceImplementation
       return UserEntity(email: user.email, name: user.name);
     } catch (e) {
       throw CacheException(message: 'Error setting user: $e');
+    }
+  }
+
+  @override
+  Future<void> resetPassword({required String email}) async {
+    try {
+      final storedEmail = _sharedPreferences.getString(_userEmailKey);
+      if (storedEmail != email) {
+        return;
+      }
+    } catch (e) {
+      throw CacheException(message: 'Error resetting password: $e');
     }
   }
 }
