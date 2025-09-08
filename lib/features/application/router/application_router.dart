@@ -31,6 +31,11 @@ enum ApplicationRoutes {
     path: '/sign-up',
     name: 'sign-up',
     page: SignUpPage(),
+  ),
+  forgotPassword(
+    path: '/forgot-password',
+    name: 'forgot-password',
+    page: ForgotPasswordPage(),
   );
 
   const ApplicationRoutes({

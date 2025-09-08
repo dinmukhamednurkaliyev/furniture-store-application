@@ -13,12 +13,9 @@ class SignUpPage extends ConsumerStatefulWidget {
 
 class _SignUpPageState extends ConsumerState<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController =
-      TextEditingController();
-  final TextEditingController _emailController =
-      TextEditingController();
-  final TextEditingController _passwordController =
-      TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
@@ -33,7 +30,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
 
   void _onSignUp() {
     if (_formKey.currentState?.validate() ?? false) {
-      ref.read(authenticationNotifierProvider.notifier).signUp(
+      ref
+          .read(authenticationNotifierProvider.notifier)
+          .signUp(
             _nameController.text,
             _emailController.text,
             _passwordController.text,
@@ -57,7 +56,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         child: LayoutBuilder(
           builder: (context, viewportConstraints) => SingleChildScrollView(
             child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: viewportConstraints.maxHeight),
+              constraints: BoxConstraints(
+                minHeight: viewportConstraints.maxHeight,
+              ),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
