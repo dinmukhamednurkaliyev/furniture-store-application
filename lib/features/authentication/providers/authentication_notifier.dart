@@ -36,8 +36,8 @@ class AuthenticationNotifier extends Notifier<AsyncValue<UserEntity?>> {
           state = AsyncValue.error(failure, StackTrace.current);
         },
       );
-    } on Exception catch (e, st) {
-      state = AsyncValue.error(e, st);
+    } on Exception catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
     }
   }
 
