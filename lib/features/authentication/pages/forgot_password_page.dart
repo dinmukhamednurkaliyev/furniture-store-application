@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/features.dart';
 
 class ForgotPasswordPage extends ConsumerStatefulWidget {
@@ -54,11 +55,11 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
                   child: Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: context.paddingValues.allXLarge,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 20,
+                      spacing: context.spacingValues.xlarge,
                       children: [
                         const ForgotPasswordHeaderWidget(),
                         ForgotPasswordFormWidget(

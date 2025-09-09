@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +26,7 @@ class SignInFormWidget extends ConsumerWidget {
     return Form(
       key: formKey,
       child: Column(
-        spacing: 20,
+        spacing: context.spacingValues.xlarge,
         children: [
           AuthenticationTextFieldWidget(
             prefixIconWidget: const Icon(
@@ -45,7 +46,6 @@ class SignInFormWidget extends ConsumerWidget {
               return null;
             },
           ),
-
           AuthenticationTextFieldWidget(
             prefixIconWidget: const Icon(Icons.lock),
             labelText: 'Password',
@@ -62,7 +62,6 @@ class SignInFormWidget extends ConsumerWidget {
               return null;
             },
           ),
-
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
@@ -78,10 +77,9 @@ class SignInFormWidget extends ConsumerWidget {
               ),
             ),
           ),
-
           if (authenticationState.hasError)
             Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+              padding: EdgeInsets.only(bottom: context.paddingValues.large),
               child: Text(
                 authenticationState.error.toString(),
                 style: const TextStyle(

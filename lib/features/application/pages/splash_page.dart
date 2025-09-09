@@ -87,7 +87,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
               fadeAnimation: _fadeAnimation,
               slideAnimation: _slideAnimation,
             ),
-            const SizedBox(height: 24),
+            context.spacingValues.verticalXXLarge,
             _AnimatedTexts(
               fadeAnimation: _fadeAnimation,
               slideAnimation: _slideAnimation,
@@ -120,15 +120,15 @@ class _AnimatedLogo extends StatelessWidget {
         child: Container(
           height: logoSize,
           width: logoSize,
-          padding: const EdgeInsets.all(12),
+          padding: context.paddingValues.allMedium,
           decoration: BoxDecoration(
             color: context.primaryColor.withAlpha(25),
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: context.radiusValues.circularXXLarge,
           ),
           child: Container(
             decoration: BoxDecoration(
               color: context.primaryColor,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: context.radiusValues.circularXLarge,
             ),
             child: Icon(
               Icons.chair_outlined,
@@ -169,7 +169,7 @@ class _AnimatedTexts extends StatelessWidget {
                 fontSize: titleFontSize,
               ),
             ),
-            const SizedBox(height: 8),
+            context.spacingValues.verticalSmall,
             Text(
               'Make your home beautiful',
               style: context.bodyLarge?.copyWith(

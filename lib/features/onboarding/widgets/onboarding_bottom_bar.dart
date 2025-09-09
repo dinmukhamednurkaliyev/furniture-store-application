@@ -27,11 +27,11 @@ class OnboardingBottomBar extends StatelessWidget {
 
     final elevatedButtonStyle = ElevatedButton.styleFrom(
       minimumSize: Size(0, buttonHeight),
-      padding: const EdgeInsets.symmetric(horizontal: 32),
+      padding: context.paddingValues.hXXLarge,
     );
     final textButtonStyle = TextButton.styleFrom(
       minimumSize: Size(0, buttonHeight),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: context.paddingValues.hLarge,
     );
 
     final barContent = AnimatedSwitcher(
@@ -61,7 +61,7 @@ class OnboardingBottomBar extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 500),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: context.paddingValues.hXLarge,
           child: barContent,
         ),
       ),
@@ -80,10 +80,10 @@ class OnboardingBottomBar extends StatelessWidget {
         style: style,
         onPressed: isActionLoading ? null : onGetStarted,
         child: isActionLoading
-            ? const SizedBox(
-                height: 24,
-                width: 24,
-                child: CircularProgressIndicator(
+            ? SizedBox(
+                height: context.spacingValues.xxlarge,
+                width: context.spacingValues.xxlarge,
+                child: const CircularProgressIndicator(
                   strokeWidth: 3,
                   color: Colors.white,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/widgets/sign_up_footer_widget.dart';
 import 'package:furniture_store_application/features/features.dart';
 import 'package:go_router/go_router.dart';
@@ -63,11 +64,11 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
                   child: Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: context.paddingValues.allXLarge,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 20,
+                      spacing: context.spacingValues.xlarge,
                       children: [
                         const SignUpHeaderWidget(),
                         SignUpFormWidget(

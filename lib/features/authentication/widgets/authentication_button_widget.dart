@@ -21,25 +21,24 @@ class AuthenticationButtonWidget extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: context.primaryColor,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: context.paddingValues.vLarge,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: context.radiusValues.circularMedium,
           ),
           elevation: 0,
         ),
         child: isButtonLoading
-            ? const SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(
+            ? SizedBox(
+                height: context.spacingValues.xlarge,
+                width: context.spacingValues.xlarge,
+                child: const CircularProgressIndicator(
                   strokeWidth: 2,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               )
             : Text(
                 buttonText,
-                style: const TextStyle(
-                  fontSize: 16,
+                style: context.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),

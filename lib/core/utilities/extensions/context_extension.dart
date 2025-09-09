@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_application/features/application/application.dart';
 
 extension ThemeExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -36,6 +37,13 @@ extension ThemeExtensions on BuildContext {
   TextStyle? get labelLarge => textTheme.labelLarge;
   TextStyle? get labelMedium => textTheme.labelMedium;
   TextStyle? get labelSmall => textTheme.labelSmall;
+
+  ApplicationPaddingTheme get paddingValues =>
+      Theme.of(this).extension<ApplicationPaddingTheme>()!;
+  ApplicationRadiusTheme get radiusValues =>
+      Theme.of(this).extension<ApplicationRadiusTheme>()!;
+  ApplicationSpacingTheme get spacingValues =>
+      Theme.of(this).extension<ApplicationSpacingTheme>()!;
 }
 
 extension NaviatorExtensions on BuildContext {

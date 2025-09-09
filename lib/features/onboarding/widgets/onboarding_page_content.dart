@@ -23,12 +23,12 @@ class OnboardingPageContent extends StatelessWidget {
   Widget _buildNarrowLayout(BuildContext context) {
     final screenHeight = context.screenHeight;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: context.paddingValues.hXLarge,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(item.imagePath, height: screenHeight * 0.4),
-          const SizedBox(height: 48),
+          context.spacingValues.verticalXXXLarge,
           _TextContent(title: item.title, description: item.description),
         ],
       ),
@@ -49,7 +49,7 @@ class OnboardingPageContent extends StatelessWidget {
               height: screenHeight * 0.6,
             ),
           ),
-          const SizedBox(width: 48),
+          context.spacingValues.horizontalXXXLarge,
           Expanded(
             flex: 3,
             child: _TextContent(
@@ -79,7 +79,7 @@ class _TextContent extends StatelessWidget {
           textAlign: TextAlign.start,
           style: context.displaySmall?.copyWith(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 16),
+        context.spacingValues.verticalLarge,
         Text(
           description,
           textAlign: TextAlign.start,

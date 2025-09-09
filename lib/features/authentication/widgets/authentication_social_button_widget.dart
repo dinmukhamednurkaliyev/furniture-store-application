@@ -17,22 +17,21 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
     return OutlinedButton(
       onPressed: onPressCallback,
       style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: context.paddingValues.vLarge,
         side: BorderSide(color: Colors.grey.shade300),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: context.radiusValues.circularMedium,
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 12,
+        spacing: context.spacingValues.medium,
         children: [
           Image.asset(
             iconAssetPath,
-            height: 24,
-            width: 24,
+            height: context.spacingValues.xxlarge,
+            width: context.spacingValues.xxlarge,
           ),
-
           Text(
             buttonText,
             style: context.bodyMedium?.copyWith(

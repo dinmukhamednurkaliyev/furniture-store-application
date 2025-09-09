@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -42,7 +43,7 @@ class OnboardingView extends StatelessWidget {
             currentPage: currentPage,
             onIndicatorTapped: onIndicatorTapped,
           ),
-          const SizedBox(height: 16),
+          context.spacingValues.verticalLarge,
           OnboardingBottomBar(
             currentPage: currentPage,
             itemCount: items.length,
@@ -51,7 +52,7 @@ class OnboardingView extends StatelessWidget {
             onGetStarted: onGetStarted,
             isActionLoading: isActionLoading,
           ),
-          const SizedBox(height: 16),
+          context.spacingValues.verticalLarge,
         ],
       ),
     );

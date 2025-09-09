@@ -31,6 +31,11 @@ abstract final class ApplicationTheme {
         selectedItemColor: colorScheme.primary,
         unselectedItemColor: colorScheme.onSurface.withValues(alpha: 0.6),
       ),
+      extensions: const <ThemeExtension<dynamic>>[
+        ApplicationPaddingTheme(),
+        ApplicationRadiusTheme(),
+        ApplicationSpacingTheme(),
+      ],
     );
   }
 

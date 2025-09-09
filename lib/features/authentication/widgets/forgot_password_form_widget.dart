@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 
 class ForgotPasswordFormWidget extends ConsumerWidget {
@@ -20,7 +21,7 @@ class ForgotPasswordFormWidget extends ConsumerWidget {
     return Form(
       key: formKey,
       child: Column(
-        spacing: 20,
+        spacing: context.spacingValues.xlarge,
         children: [
           AuthenticationTextFieldWidget(
             prefixIconWidget: const Icon(Icons.email),
@@ -40,7 +41,7 @@ class ForgotPasswordFormWidget extends ConsumerWidget {
           ),
           if (authenticationState.hasError)
             Padding(
-              padding: const EdgeInsets.only(bottom: 16),
+              padding: EdgeInsets.only(bottom: context.paddingValues.large),
               child: Text(
                 authenticationState.error.toString(),
                 style: const TextStyle(

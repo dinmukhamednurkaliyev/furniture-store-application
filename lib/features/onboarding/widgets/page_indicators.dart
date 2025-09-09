@@ -42,18 +42,23 @@ class _Indicator extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       mouseCursor: SystemMouseCursors.click,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: context.radiusValues.circularLarge,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        padding: EdgeInsets.symmetric(
+          horizontal: context.paddingValues.small,
+          vertical: context.paddingValues.medium,
+        ),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          height: 8,
-          width: isActive ? 24 : 8,
+          height: context.spacingValues.small,
+          width: isActive
+              ? context.spacingValues.xxlarge
+              : context.spacingValues.small,
           decoration: BoxDecoration(
             color: isActive
                 ? context.primaryColor
                 : context.colorScheme.surfaceContainerHighest,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: context.radiusValues.circularMedium,
           ),
         ),
       ),

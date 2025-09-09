@@ -10,11 +10,11 @@ class SignUpFooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 20,
+      spacing: context.spacingValues.xlarge,
       children: [
         const AuthenticationDividerWidget(),
         Row(
-          spacing: 12,
+          spacing: context.spacingValues.medium,
           children: [
             Expanded(
               child: AuthenticationSocialButtonWidget(

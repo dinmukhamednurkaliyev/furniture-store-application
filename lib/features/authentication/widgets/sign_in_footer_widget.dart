@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/core/utilities/extensions/extensions.dart';
 import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
@@ -10,11 +11,11 @@ class SignInFooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 20,
+      spacing: context.spacingValues.xlarge,
       children: [
         const AuthenticationDividerWidget(),
         Row(
-          spacing: 12,
+          spacing: context.spacingValues.medium,
           children: [
             Expanded(
               child: AuthenticationSocialButtonWidget(
@@ -36,7 +37,7 @@ class SignInFooterWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Don\t have an account?',
+              'Dont have an account?',
               style: context.bodyLarge?.copyWith(
                 color: Colors.grey.shade600,
               ),

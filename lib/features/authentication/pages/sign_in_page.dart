@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:go_router/go_router.dart';
@@ -69,11 +70,11 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                     maxWidth: 600,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: context.paddingValues.allXLarge,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 20,
+                      spacing: context.spacingValues.xlarge,
                       children: [
                         const SignInHeaderWidget(),
                         SignInFormWidget(

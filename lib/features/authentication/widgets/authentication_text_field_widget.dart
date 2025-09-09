@@ -36,9 +36,7 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        context.spacingValues.verticalSmall,
         TextFormField(
           controller: textEditingController,
           obscureText: isPasswordInput,
@@ -59,13 +57,10 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
                 ? Colors.grey.shade100
                 : Colors.grey.shade50,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: context.radiusValues.circularMedium,
               borderSide: BorderSide.none,
             ),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 16,
-            ),
+            contentPadding: context.paddingValues.allLarge,
           ),
         ),
       ],
