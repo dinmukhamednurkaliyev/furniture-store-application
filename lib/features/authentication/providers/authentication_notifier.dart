@@ -152,4 +152,36 @@ class AuthenticationNotifier extends Notifier<AsyncValue<UserEntity?>> {
       state = AsyncValue.error(error, stackTrace);
     }
   }
+
+  Future<void> updateUser(UserEntity updatedData) async {
+    final currentUser = state.value;
+    if (currentUser == null) {
+      return;
+    }
+
+    state = const AsyncValue.loading();
+
+    try {
+      final setUser = await ref.read(setUserUsecaseProvider.future);
+      final userToSave = currentUser.copyWith(
+        name: updatedData.name,
+        email: updatedData.email,
+        phone: updatedData.phone,
+        profileImage: updatedData.profileImage,
+      );
+
+      final result = await setUser(user: userToSave);
+
+      result.when(
+        success: (savedUser) {
+          state = AsyncValue.data(savedUser);
+        },
+        error: (failure) {
+          state = AsyncValue.error(failure, StackTrace.current);
+        },
+      );
+    } on Exception catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
+  }
 }

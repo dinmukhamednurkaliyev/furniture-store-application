@@ -19,6 +19,8 @@ class AuthenticationLocalDataSourceImplementation
   static const String _isSignInKey = 'is_sign_in';
   static const String _userEmailKey = 'user_email';
   static const String _userNameKey = 'user_name';
+  static const String _userPhoneKey = 'user_phone';
+  static const String _userProfileImageKey = 'user_profile_image';
 
   @override
   Future<bool> getSignInStatus() async {
@@ -43,7 +45,14 @@ class AuthenticationLocalDataSourceImplementation
     try {
       final email = _sharedPreferences.getString(_userEmailKey);
       final name = _sharedPreferences.getString(_userNameKey);
-      return UserEntity(email: email, name: name);
+      final phone = _sharedPreferences.getString(_userPhoneKey);
+      final profileImage = _sharedPreferences.getString(_userProfileImageKey);
+      return UserEntity(
+        email: email,
+        name: name,
+        phone: phone,
+        profileImage: profileImage,
+      );
     } catch (e) {
       throw CacheException(message: 'Error getting user: $e');
     }
@@ -58,7 +67,20 @@ class AuthenticationLocalDataSourceImplementation
       if (user.name != null) {
         await _sharedPreferences.setString(_userNameKey, user.name!);
       }
-      return UserEntity(email: user.email, name: user.name);
+      if (user.phone != null) {
+        await _sharedPreferences.setString(_userPhoneKey, user.phone!);
+      } else {
+        await _sharedPreferences.remove(_userPhoneKey);
+      }
+      if (user.profileImage != null) {
+        await _sharedPreferences.setString(
+          _userProfileImageKey,
+          user.profileImage!,
+        );
+      } else {
+        await _sharedPreferences.remove(_userProfileImageKey);
+      }
+      return getUser();
     } catch (e) {
       throw CacheException(message: 'Error setting user: $e');
     }
