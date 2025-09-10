@@ -21,17 +21,15 @@ class ApplicationBarWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     final effectiveIconColor = iconColor ?? context.iconThemeColor;
+    final canPop = context.canPop();
 
     return AppBar(
       backgroundColor: backgroundColor,
       elevation: 0,
-      leading: showBackButton
+      automaticallyImplyLeading: false,
+      leading: canPop && showBackButton
           ? IconButton(
-              onPressed: () {
-                if (context.canPop()) {
-                  context.pop();
-                } else {}
-              },
+              onPressed: () => context.pop(),
               icon: Icon(
                 Icons.arrow_back,
                 color: effectiveIconColor,

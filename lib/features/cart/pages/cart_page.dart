@@ -9,7 +9,6 @@ class CartPage extends StatelessWidget {
     return const Scaffold(
       appBar: ApplicationBarWidget(
         title: 'Cart',
-        showBackButton: false,
       ),
       body: SafeArea(
         child: Center(

@@ -9,7 +9,6 @@ class WishlistPage extends StatelessWidget {
     return const Scaffold(
       appBar: ApplicationBarWidget(
         title: 'Wishlist',
-        showBackButton: false,
       ),
       body: SafeArea(
         child: Center(

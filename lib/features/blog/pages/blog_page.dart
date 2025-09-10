@@ -9,7 +9,6 @@ class BlogPage extends StatelessWidget {
     return const Scaffold(
       appBar: ApplicationBarWidget(
         title: 'Blog',
-        showBackButton: false,
       ),
       body: SafeArea(
         child: Center(

@@ -9,7 +9,6 @@ class ProfilePage extends StatelessWidget {
     return const Scaffold(
       appBar: ApplicationBarWidget(
         title: 'Profile',
-        showBackButton: false,
       ),
       body: SafeArea(
         child: Center(
