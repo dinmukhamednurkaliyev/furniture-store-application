@@ -13,18 +13,19 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: Container(
-                padding: EdgeInsets.all(
-                  context.paddingValues.large,
-                ),
-                color: Colors.white,
+            SliverPadding(
+              padding: context.paddingValues.allLarge,
+              sliver: SliverToBoxAdapter(
                 child: Column(
+                  spacing: 20,
                   children: [
                     HomeHeaderWidget(
                       onTap: () {
                         context.pushNamed(ApplicationRoutes.profile.name);
                       },
+                    ),
+                    HomeSearchBarWidget(
+                      onTap: () {},
                     ),
                   ],
                 ),

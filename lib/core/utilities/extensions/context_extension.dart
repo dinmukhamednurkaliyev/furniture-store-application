@@ -6,6 +6,7 @@ extension ThemeExtensions on BuildContext {
 
   ColorScheme get colorScheme => theme.colorScheme;
 
+  Color get hintColor => theme.hintColor;
   Color get primaryColor => colorScheme.primary;
   Color get onPrimaryColor => colorScheme.onPrimary;
   Color get secondaryColor => colorScheme.secondary;
