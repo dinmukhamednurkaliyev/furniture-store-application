@@ -52,7 +52,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     });
 
     return Scaffold(
-      appBar: const ApplicationBarWidget(),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, viewportConstraints) => SingleChildScrollView(

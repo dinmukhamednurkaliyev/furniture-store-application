@@ -14,7 +14,9 @@ class HomeHeaderWidget extends ConsumerWidget {
 
     return authenticationState.when(
       data: (user) {
-        final authenticatedUser = user!;
+        final displayName = user?.name ?? 'Guest';
+        final profileImage = user?.profileImage;
+
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -22,15 +24,17 @@ class HomeHeaderWidget extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Welcome,',
-                  style: context.textTheme.bodyLarge?.copyWith(
+                  'Welcome',
+                  style: context.bodyLarge?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                   ),
                 ),
                 context.spacingValues.verticalXSmall,
                 Text(
-                  authenticatedUser.name!,
-                  style: context.textTheme.titleLarge,
+                  displayName,
+                  style: context.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -38,8 +42,8 @@ class HomeHeaderWidget extends ConsumerWidget {
               onTap: onTap,
               child: CircleAvatar(
                 radius: context.spacingValues.xxlarge,
-                backgroundImage: authenticatedUser.profileImage != null
-                    ? NetworkImage(authenticatedUser.profileImage!)
+                backgroundImage: profileImage != null
+                    ? NetworkImage(profileImage)
                     : const AssetImage('assets/images/profile.png')
                           as ImageProvider,
               ),

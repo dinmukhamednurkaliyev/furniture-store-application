@@ -10,10 +10,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ApplicationBarWidget(
-        title: 'Home',
-        showBackButton: false,
-      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [

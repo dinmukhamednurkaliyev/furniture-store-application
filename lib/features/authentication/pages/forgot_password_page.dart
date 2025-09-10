@@ -43,7 +43,6 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
       }
     });
     return Scaffold(
-      appBar: const ApplicationBarWidget(),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, viewportConstraints) => SingleChildScrollView(
