@@ -8,41 +8,37 @@ class HomeSearchBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      decoration: BoxDecoration(
-        color: context.surfaceColor,
-        borderRadius: context.radiusValues.circularLarge,
-        border: Border.all(
-          color: context.colorScheme.outline.withValues(alpha: 0.1),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
+    return SearchBar(
+      onTap: onTap,
+      leading: Icon(
+        Icons.search_rounded,
+        color: context.hintColor,
       ),
-      child: InkWell(
-        borderRadius: context.radiusValues.circularLarge,
-        onTap: onTap,
-        child: Padding(
-          padding: EdgeInsets.all(context.paddingValues.large),
-          child: Row(
-            spacing: context.spacingValues.medium,
-            children: [
-              Icon(
-                Icons.search,
-                color: context.hintColor,
-              ),
-              Text(
-                'Search furniture...',
-                style: context.bodyLarge?.copyWith(
-                  color: context.hintColor,
-                ),
-              ),
-            ],
-          ),
+      hintText: 'Find your favorite furniture',
+      trailing: [
+        Icon(
+          Icons.tune_rounded,
+          color: context.hintColor,
+        ),
+      ],
+      backgroundColor: WidgetStateProperty.all(context.surfaceColor),
+      elevation: WidgetStateProperty.all(0),
+      overlayColor: WidgetStateProperty.all(
+        context.colorScheme.primary.withValues(alpha: 0.1),
+      ),
+      hintStyle: WidgetStateProperty.all(
+        context.bodyLarge?.copyWith(
+          color: context.hintColor,
+        ),
+      ),
+      textStyle: WidgetStateProperty.all(
+        context.bodyLarge?.copyWith(
+          color: context.colorScheme.onSurface,
+        ),
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: context.radiusValues.circularLarge,
         ),
       ),
     );

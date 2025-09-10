@@ -40,6 +40,7 @@ class HomeHeaderWidget extends ConsumerWidget {
             ),
             InkWell(
               onTap: onTap,
+              customBorder: const CircleBorder(),
               child: CircleAvatar(
                 radius: context.spacingValues.xxlarge,
                 backgroundImage: profileImage != null
