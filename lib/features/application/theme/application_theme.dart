@@ -49,9 +49,20 @@ abstract final class ApplicationTheme {
 
     return baseTextTheme.copyWith(
       displayLarge: ApplicationTextTheme.displayLarge,
+      displayMedium: ApplicationTextTheme.displayMedium,
+      displaySmall: ApplicationTextTheme.displaySmall,
+      headlineLarge: ApplicationTextTheme.headlineLarge,
+      headlineMedium: ApplicationTextTheme.headlineMedium,
+      headlineSmall: ApplicationTextTheme.headlineSmall,
       titleLarge: ApplicationTextTheme.titleLarge,
+      titleMedium: ApplicationTextTheme.titleMedium,
+      titleSmall: ApplicationTextTheme.titleSmall,
+      labelLarge: ApplicationTextTheme.labelLarge,
+      labelMedium: ApplicationTextTheme.labelMedium,
+      labelSmall: ApplicationTextTheme.labelSmall,
       bodyLarge: ApplicationTextTheme.bodyLarge,
       bodyMedium: ApplicationTextTheme.bodyMedium,
+      bodySmall: ApplicationTextTheme.bodySmall,
     );
   }
 }
