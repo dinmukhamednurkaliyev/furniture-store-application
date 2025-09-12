@@ -16,11 +16,31 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: onPressCallback,
-      style: OutlinedButton.styleFrom(
-        padding: context.paddingValues.vLarge,
-        side: BorderSide(color: Colors.grey.shade300),
-        shape: RoundedRectangleBorder(
-          borderRadius: context.radiusValues.circularMedium,
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all(context.paddingValues.vLarge),
+        side: WidgetStateProperty.resolveWith<BorderSide>(
+          (states) {
+            if (states.contains(WidgetState.pressed)) {
+              return BorderSide(color: context.primaryColor);
+            }
+            return BorderSide(color: Colors.grey.shade300);
+          },
+        ),
+        backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (states) {
+            if (states.contains(WidgetState.hovered)) {
+              return Colors.grey.shade100;
+            }
+            if (states.contains(WidgetState.pressed)) {
+              return context.primaryColor.withValues(alpha: 0.1);
+            }
+            return Colors.transparent;
+          },
+        ),
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: context.radiusValues.circularMedium,
+          ),
         ),
       ),
       child: Row(

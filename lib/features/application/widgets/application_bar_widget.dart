@@ -30,6 +30,16 @@ class ApplicationBarWidget extends StatelessWidget
       leading: canPop && showBackButton
           ? IconButton(
               onPressed: () => context.pop(),
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                  (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.hovered)) {
+                      return Colors.black.withValues(alpha: 0.04);
+                    }
+                    return Colors.transparent;
+                  },
+                ),
+              ),
               icon: Icon(
                 Icons.arrow_back,
                 color: effectiveIconColor,

@@ -18,14 +18,25 @@ class AuthenticationButtonWidget extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: isButtonLoading ? null : onPressCallback,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: context.primaryColor,
-          foregroundColor: Colors.white,
-          padding: context.paddingValues.vLarge,
-          shape: RoundedRectangleBorder(
-            borderRadius: context.radiusValues.circularMedium,
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.pressed)) {
+                return context.primaryColor.withValues(alpha: 0.8);
+              } else if (states.contains(WidgetState.disabled)) {
+                return Colors.grey;
+              }
+              return context.primaryColor;
+            },
           ),
-          elevation: 0,
+          foregroundColor: WidgetStateProperty.all(Colors.white),
+          padding: WidgetStateProperty.all(context.paddingValues.vLarge),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: context.radiusValues.circularMedium,
+            ),
+          ),
+          elevation: WidgetStateProperty.all(0),
         ),
         child: isButtonLoading
             ? SizedBox(
