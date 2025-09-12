@@ -89,16 +89,8 @@ class ApplicationRouter {
           builder: (context, state) => const OnboardingPage(),
         ),
         SignInRoute.route,
-        GoRoute(
-          path: ApplicationRoutes.signUp.path,
-          name: ApplicationRoutes.signUp.name,
-          builder: (context, state) => const SignUpPage(),
-        ),
-        GoRoute(
-          path: ApplicationRoutes.forgotPassword.path,
-          name: ApplicationRoutes.forgotPassword.name,
-          builder: (context, state) => const ForgotPasswordPage(),
-        ),
+        SignUpRoute.route,
+        ForgotPasswordRoute.route,
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return BottomNavigationBarWidget(
