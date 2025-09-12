@@ -19,6 +19,6 @@ onboardingItemsProvider =
     });
 
 final onboardingActionNotifierProvider =
-    AutoDisposeNotifierProvider<OnboardingNotifier, AsyncValue<void>>(
+    AutoDisposeAsyncNotifierProvider<OnboardingNotifier, void>(
       OnboardingNotifier.new,
     );
