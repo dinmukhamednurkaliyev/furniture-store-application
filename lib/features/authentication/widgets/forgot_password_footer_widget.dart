@@ -21,10 +21,13 @@ class ForgotPasswordFooterWidget extends StatelessWidget {
           onPressed: () {
             context.pushNamed(ApplicationRoutes.signIn.name);
           },
-          child: Text(
+          style: TextButton.styleFrom(
+            foregroundColor: context.primaryColor,
+            overlayColor: context.primaryColor.withValues(alpha: 0.1),
+          ),
+          child: const Text(
             'Sign in',
             style: TextStyle(
-              color: context.primaryColor,
               fontWeight: FontWeight.w600,
             ),
           ),

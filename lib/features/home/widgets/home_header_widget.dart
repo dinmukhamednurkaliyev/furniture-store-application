@@ -41,6 +41,9 @@ class HomeHeaderWidget extends ConsumerWidget {
             InkWell(
               onTap: onTap,
               customBorder: const CircleBorder(),
+              overlayColor: WidgetStateProperty.all(
+                context.primaryColor.withValues(alpha: 0.1),
+              ),
               child: CircleAvatar(
                 radius: context.spacingValues.xxlarge,
                 backgroundImage: profileImage != null

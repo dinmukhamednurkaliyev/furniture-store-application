@@ -43,6 +43,9 @@ class _Indicator extends StatelessWidget {
       onTap: onTap,
       mouseCursor: SystemMouseCursors.click,
       borderRadius: context.radiusValues.circularLarge,
+      overlayColor: WidgetStateProperty.all(
+        context.primaryColor.withValues(alpha: 0.1),
+      ),
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.paddingValues.small,

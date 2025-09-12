@@ -25,13 +25,22 @@ class OnboardingBottomBar extends StatelessWidget {
     final buttonHeight = (screenHeight * 0.065).clamp(48.0, 60.0);
     final isLastPage = currentPage == itemCount - 1;
 
-    final elevatedButtonStyle = ElevatedButton.styleFrom(
-      minimumSize: Size(0, buttonHeight),
-      padding: context.paddingValues.hXXLarge,
-    );
+    final elevatedButtonStyle =
+        ElevatedButton.styleFrom(
+          minimumSize: Size(0, buttonHeight),
+          padding: context.paddingValues.hXXLarge,
+          backgroundColor: context.primaryColor,
+          foregroundColor: Colors.white,
+        ).copyWith(
+          overlayColor: WidgetStateProperty.all(
+            Colors.white.withValues(alpha: 0.1),
+          ),
+        );
     final textButtonStyle = TextButton.styleFrom(
       minimumSize: Size(0, buttonHeight),
       padding: context.paddingValues.hLarge,
+      foregroundColor: context.primaryColor,
+      overlayColor: context.primaryColor.withValues(alpha: 0.1),
     );
 
     final barContent = AnimatedSwitcher(

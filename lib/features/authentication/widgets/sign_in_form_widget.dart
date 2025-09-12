@@ -68,10 +68,13 @@ class SignInFormWidget extends ConsumerWidget {
               onPressed: () {
                 context.pushNamed(ApplicationRoutes.forgotPassword.name);
               },
-              child: Text(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.grey.shade700,
+                overlayColor: context.primaryColor.withValues(alpha: 0.1),
+              ),
+              child: const Text(
                 'Forgot Password ?',
                 style: TextStyle(
-                  color: Colors.grey.shade700,
                   fontWeight: FontWeight.w500,
                 ),
               ),

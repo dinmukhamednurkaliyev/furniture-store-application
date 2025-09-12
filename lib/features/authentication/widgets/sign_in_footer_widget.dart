@@ -46,10 +46,13 @@ class SignInFooterWidget extends StatelessWidget {
               onPressed: () {
                 context.pushNamed(ApplicationRoutes.signUp.name);
               },
-              child: Text(
+              style: TextButton.styleFrom(
+                foregroundColor: context.primaryColor,
+                overlayColor: context.primaryColor.withValues(alpha: 0.1),
+              ),
+              child: const Text(
                 'Sign up',
                 style: TextStyle(
-                  color: context.primaryColor,
                   fontWeight: FontWeight.w600,
                 ),
               ),
