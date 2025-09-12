@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/application/application.dart';
-import 'package:go_router/go_router.dart';
+import 'package:furniture_store_application/features/authentication/authentication.dart';
 
 class ForgotPasswordFooterWidget extends StatelessWidget {
   const ForgotPasswordFooterWidget({super.key});
@@ -19,7 +18,7 @@ class ForgotPasswordFooterWidget extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            context.pushNamed(ApplicationRoutes.signIn.name);
+            SignInRoute.push(context);
           },
           style: TextButton.styleFrom(
             foregroundColor: context.primaryColor,

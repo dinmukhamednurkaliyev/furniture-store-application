@@ -15,4 +15,8 @@ class SignInRoute {
   static void go(BuildContext context) {
     context.goNamed(name);
   }
+
+  static void push(BuildContext context) {
+    context.pushNamed(name);
+  }
 }

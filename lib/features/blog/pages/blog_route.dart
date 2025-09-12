@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/authentication/authentication.dart';
+import 'package:furniture_store_application/features/blog/blog.dart';
+import 'package:furniture_store_application/features/blog/pages/blog_page.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpRoute {
-  static const String path = '/sign-up';
-  static const String name = 'sign-up';
+class BlogRoute {
+  static const String path = '/blog';
+  static const String name = 'blog';
 
   static GoRoute get route => GoRoute(
     path: path,
     name: name,
-    builder: (context, state) => const SignUpPage(),
+    builder: (context, state) => const BlogPage(),
   );
 
   static void go(BuildContext context) {

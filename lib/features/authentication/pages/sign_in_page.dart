@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
-import 'package:go_router/go_router.dart';
+import 'package:furniture_store_application/features/home/home.dart';
 
 class SignInPage extends ConsumerStatefulWidget {
   const SignInPage({super.key});
@@ -41,7 +40,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
       next.when(
         data: (user) {
           if (user != null) {
-            context.goNamed(ApplicationRoutes.home.name);
+            HomeRoute.go(context);
           }
         },
         error: (error, stackTrace) {

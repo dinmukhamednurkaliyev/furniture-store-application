@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/home/home.dart';
-import 'package:go_router/go_router.dart';
+import 'package:furniture_store_application/features/profile/profile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,7 +20,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     HomeHeaderWidget(
                       onTap: () {
-                        context.pushNamed(ApplicationRoutes.profile.name);
+                        ProfileRoute.push(context);
                       },
                     ),
                     HomeSearchBarWidget(

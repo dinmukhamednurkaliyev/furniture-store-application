@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/authentication/widgets/sign_up_footer_widget.dart';
 import 'package:furniture_store_application/features/features.dart';
-import 'package:go_router/go_router.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
   const SignUpPage({super.key});
@@ -46,7 +44,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     ref.listen(authenticationNotifierProvider, (previous, next) {
       next.whenData((user) {
         if (user != null) {
-          context.goNamed(ApplicationRoutes.home.name);
+          HomeRoute.go(context);
         }
       });
     });

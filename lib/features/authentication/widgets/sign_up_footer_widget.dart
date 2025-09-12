@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
-import 'package:go_router/go_router.dart';
 
 class SignUpFooterWidget extends StatelessWidget {
   const SignUpFooterWidget({super.key});
@@ -43,7 +41,7 @@ class SignUpFooterWidget extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context.pushNamed(ApplicationRoutes.signIn.name);
+                SignInRoute.push(context);
               },
               style: TextButton.styleFrom(
                 foregroundColor: context.primaryColor,
