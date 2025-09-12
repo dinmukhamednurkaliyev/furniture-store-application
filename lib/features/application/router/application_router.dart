@@ -1,41 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/features/application/pages/splash_route.dart';
+import 'package:furniture_store_application/features/application/router/router_observer.dart';
+import 'package:furniture_store_application/features/application/widgets/bottom_navigation_bar_widget.dart';
 import 'package:furniture_store_application/features/authentication/pages/forgot_password_route.dart';
 import 'package:furniture_store_application/features/authentication/pages/sign_in_route.dart';
 import 'package:furniture_store_application/features/authentication/pages/sign_up_route.dart';
 import 'package:furniture_store_application/features/blog/pages/blog_route.dart';
 import 'package:furniture_store_application/features/cart/pages/cart_route.dart';
 import 'package:furniture_store_application/features/home/pages/home_route.dart';
-import 'package:furniture_store_application/features/onboarding/onboarding.dart';
+import 'package:furniture_store_application/features/onboarding/pages/onboarding_route.dart';
 import 'package:furniture_store_application/features/profile/pages/profile_route.dart';
 import 'package:furniture_store_application/features/wishlist/pages/wishlist_route.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod/riverpod.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-
-// The enum is now redundant, but we will keep it for now
-// to avoid breaking other parts of the code. A full refactor would
-// remove this enum entirely.
-enum ApplicationRoutes {
-  splash(
-    path: '/',
-    name: 'splash',
-  ),
-  onboarding(
-    path: '/onboarding',
-    name: 'onboarding',
-  );
-
-  const ApplicationRoutes({
-    required this.path,
-    required this.name,
-  });
-
-  final String path;
-
-  final String name;
-}
 
 @immutable
 class ApplicationRouter {
@@ -47,20 +25,12 @@ class ApplicationRouter {
 
   static GoRouter _buildRouter() {
     return GoRouter(
-      initialLocation: ApplicationRoutes.splash.path,
+      initialLocation: SplashRoute.path,
       observers: [RouterObserver()],
       navigatorKey: _rootNavigatorKey,
       routes: [
-        GoRoute(
-          path: ApplicationRoutes.splash.path,
-          name: ApplicationRoutes.splash.name,
-          builder: (context, state) => const SplashPage(),
-        ),
-        GoRoute(
-          path: ApplicationRoutes.onboarding.path,
-          name: ApplicationRoutes.onboarding.name,
-          builder: (context, state) => const OnboardingPage(),
-        ),
+        SplashRoute.route,
+        OnboardingRoute.route,
         SignInRoute.route,
         SignUpRoute.route,
         ForgotPasswordRoute.route,
@@ -71,38 +41,14 @@ class ApplicationRouter {
             );
           },
           branches: [
-            StatefulShellBranch(
-              routes: [
-                HomeRoute.route,
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                CartRoute.route,
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                WishlistRoute.route,
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                BlogRoute.route,
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                ProfileRoute.route,
-              ],
-            ),
-          ],
+            HomeRoute.route,
+            CartRoute.route,
+            WishlistRoute.route,
+            BlogRoute.route,
+            ProfileRoute.route,
+          ].map((route) => StatefulShellBranch(routes: [route])).toList(),
         ),
       ],
     );
   }
 }
-
-final routerProvider = Provider<GoRouter>((ref) {
-  return ApplicationRouter().router;
-});
