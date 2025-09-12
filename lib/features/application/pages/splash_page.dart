@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
-import 'package:furniture_store_application/features/onboarding/providers/onboarding_domain_providers.dart';
+import 'package:furniture_store_application/features/authentication/authentication.dart';
+import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
@@ -63,7 +64,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
     );
 
     if (hasSeenOnboarding) {
-      context.goNamed(ApplicationRoutes.signIn.name);
+      SignInRoute.go(context);
     } else {
       context.goNamed(ApplicationRoutes.onboarding.name);
     }

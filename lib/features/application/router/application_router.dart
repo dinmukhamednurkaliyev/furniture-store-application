@@ -88,11 +88,7 @@ class ApplicationRouter {
           name: ApplicationRoutes.onboarding.name,
           builder: (context, state) => const OnboardingPage(),
         ),
-        GoRoute(
-          path: ApplicationRoutes.signIn.path,
-          name: ApplicationRoutes.signIn.name,
-          builder: (context, state) => const SignInPage(),
-        ),
+        SignInRoute.route,
         GoRoute(
           path: ApplicationRoutes.signUp.path,
           name: ApplicationRoutes.signUp.name,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
-import 'package:go_router/go_router.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
@@ -58,7 +57,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         next.when(
           data: (_) {
             if (previous is AsyncLoading) {
-              context.goNamed(ApplicationRoutes.signIn.name);
+              SignInRoute.go(context);
             }
           },
           error: (error, stackTrace) {
