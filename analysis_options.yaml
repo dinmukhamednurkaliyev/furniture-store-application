@@ -5,6 +5,7 @@ linter:
 dart_code_metrics:
   extends:
   - recommended
+  - flutter
 analyzer:
   errors:
     eol_at_end_of_file: ignore
