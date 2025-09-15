@@ -6,4 +6,5 @@ export 'home/home.dart';
 export 'onboarding/onboarding.dart';
 export 'product/product.dart';
 export 'profile/profile.dart';
+export 'special_offers/special_offers.dart';
 export 'wishlist/wishlist.dart';

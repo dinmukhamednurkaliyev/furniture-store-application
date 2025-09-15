@@ -1,0 +1,1 @@
+export 'get_offers_by_ids_usecase.dart';

@@ -1,0 +1,1 @@
+export 'special_offer_entity.dart';
