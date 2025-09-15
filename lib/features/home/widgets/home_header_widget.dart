@@ -55,7 +55,7 @@ class HomeHeaderWidget extends ConsumerWidget {
           ],
         );
       },
-      error: (error, stackTrace) => Text('Error: $error'),
+      error: (error, stackTrace) => Center(child: Text('Error: $error')),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
