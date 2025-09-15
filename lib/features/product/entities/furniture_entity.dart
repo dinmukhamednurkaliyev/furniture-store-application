@@ -26,6 +26,8 @@ class FurnitureEntity {
   final bool isFavorite;
   final List<String> specialOfferIds;
 
+  bool get hasSpecialOffer => specialOfferIds.isNotEmpty;
+
   FurnitureEntity copyWith({
     String? id,
     String? name,
