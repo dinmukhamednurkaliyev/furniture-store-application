@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/application/pages/splash_route.dart';
-import 'package:furniture_store_application/features/application/router/router_observer.dart';
-import 'package:furniture_store_application/features/application/widgets/bottom_navigation_bar_widget.dart';
-import 'package:furniture_store_application/features/authentication/pages/forgot_password_route.dart';
-import 'package:furniture_store_application/features/authentication/pages/sign_in_route.dart';
-import 'package:furniture_store_application/features/authentication/pages/sign_up_route.dart';
-import 'package:furniture_store_application/features/blog/pages/blog_route.dart';
-import 'package:furniture_store_application/features/cart/pages/cart_route.dart';
-import 'package:furniture_store_application/features/home/pages/home_route.dart';
-import 'package:furniture_store_application/features/onboarding/pages/onboarding_route.dart';
-import 'package:furniture_store_application/features/profile/pages/profile_route.dart';
-import 'package:furniture_store_application/features/wishlist/pages/wishlist_route.dart';
+import 'package:furniture_store_application/features/features.dart';
 import 'package:go_router/go_router.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -34,6 +23,8 @@ class ApplicationRouter {
         SignInRoute.route,
         SignUpRoute.route,
         ForgotPasswordRoute.route,
+        ProductRoute.route,
+        SpecialOffersRoute.route,
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return BottomNavigationBarWidget(
