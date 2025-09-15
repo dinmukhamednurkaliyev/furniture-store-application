@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
                     HomeSearchBarWidget(
                       onTap: () {},
                     ),
+                    const HomeBodyWidget(),
                   ],
                 ),
               ),

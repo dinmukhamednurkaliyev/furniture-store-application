@@ -4,5 +4,6 @@ export 'blog/blog.dart';
 export 'cart/cart.dart';
 export 'home/home.dart';
 export 'onboarding/onboarding.dart';
+export 'product/product.dart';
 export 'profile/profile.dart';
 export 'wishlist/wishlist.dart';
