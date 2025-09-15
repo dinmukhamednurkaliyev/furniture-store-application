@@ -3,38 +3,61 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 
-class ProductNotifier extends AsyncNotifier<List<FurnitureEntity>> {
+class ProductNotifier extends AsyncNotifier<ProductState> {
   @override
-  Future<List<FurnitureEntity>> build() async {
+  Future<ProductState> build() async {
     final getProducts = ref.read(getProductsUsecaseProvider);
-    final result = await getProducts();
-    return result.when(
-      success: (products) => products,
+    final getCategories = ref.read(getCategoriesUsecaseProvider);
+
+    final productsFuture = getProducts();
+    final categoriesFuture = getCategories();
+
+    final productsResult = await productsFuture;
+    final categoriesResult = await categoriesFuture;
+
+    final products = productsResult.when(
+      success: (data) => data,
       error: (failure) => throw Exception(failure.toString()),
     );
+    final categories = categoriesResult.when(
+      success: (data) => data,
+      error: (failure) => throw Exception(failure.toString()),
+    );
+
+    return ProductState(
+      products: products,
+      categories: categories,
+    );
+  }
+
+  Future<void> selectCategory(String? category) async {
+    final currentState = state.valueOrNull;
+    if (currentState != null) {
+      state = AsyncData(currentState.copyWith(selectedCategory: category));
+    }
   }
 
   Future<void> toggleFavorite(String productId) async {
     final toggleFavoriteUsecase = ref.read(toggleFavoriteUsecaseProvider);
 
-    final previousState = await future;
+    final currentState = state.valueOrNull;
+    if (currentState == null) return;
 
-    state = AsyncData(
-      [
-        for (final product in previousState)
-          if (product.id == productId)
-            product.copyWith(isFavorite: !product.isFavorite)
-          else
-            product,
-      ],
-    );
+    final newProducts = [
+      for (final product in currentState.products)
+        if (product.id == productId)
+          product.copyWith(isFavorite: !product.isFavorite)
+        else
+          product,
+    ];
+    state = AsyncData(currentState.copyWith(products: newProducts));
 
     final result = await toggleFavoriteUsecase(productId);
 
     result.when(
       success: (_) {},
       error: (failure) {
-        state = AsyncData(previousState);
+        state = AsyncData(currentState);
       },
     );
   }
