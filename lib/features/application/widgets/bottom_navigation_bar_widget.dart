@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/core/core.dart';
 import 'package:go_router/go_router.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
@@ -17,10 +16,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: (int index) => _onTap(context, index),
-        indicatorColor: context.colorScheme.primary.withValues(alpha: 0.2),
-        overlayColor: WidgetStateProperty.all(
-          context.colorScheme.primary.withValues(alpha: 0.1),
-        ),
         destinations: const <Widget>[
           NavigationDestination(
             icon: Icon(Icons.home_outlined),

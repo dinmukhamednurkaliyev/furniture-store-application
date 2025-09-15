@@ -31,6 +31,19 @@ abstract final class ApplicationTheme {
         selectedItemColor: colorScheme.primary,
         unselectedItemColor: colorScheme.onSurface.withValues(alpha: 0.6),
       ),
+      navigationBarTheme: NavigationBarThemeData(
+        elevation: 0,
+        backgroundColor: colorScheme.surface,
+        indicatorColor: Colors.transparent,
+        iconTheme: WidgetStateProperty.resolveWith<IconThemeData?>(
+          (states) {
+            if (states.contains(WidgetState.selected)) {
+              return IconThemeData(color: colorScheme.primary);
+            }
+            return IconThemeData(color: colorScheme.onSurfaceVariant);
+          },
+        ),
+      ),
       extensions: const <ThemeExtension<dynamic>>[
         ApplicationPaddingTheme(),
         ApplicationRadiusTheme(),
