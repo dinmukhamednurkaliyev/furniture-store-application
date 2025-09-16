@@ -3,7 +3,7 @@ import 'package:furniture_store_application/features/special_offers/special_offe
 
 final specialOfferLocalDataSourceProvider =
     Provider<SpecialOfferLocalDataSource>((ref) {
-      return SpecialOfferLocalDataSource();
+      return SpecialOfferLocalDataSourceImplementation();
     });
 
 final specialOfferRepositoryProvider = Provider<SpecialOfferRepository>((ref) {

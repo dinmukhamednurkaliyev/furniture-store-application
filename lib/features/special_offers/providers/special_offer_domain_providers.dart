@@ -5,3 +5,24 @@ final getOffersByIdsUsecaseProvider = Provider<GetOffersByIdsUsecase>((ref) {
   final repository = ref.watch(specialOfferRepositoryProvider);
   return GetOffersByIdsUsecase(repository);
 });
+
+final getApplicableOffersUsecaseProvider = Provider<GetApplicableOffersUsecase>(
+  (ref) {
+    final repository = ref.watch(specialOfferRepositoryProvider);
+    return GetApplicableOffersUsecase(repository);
+  },
+);
+
+final getBestOfferUsecaseProvider = Provider<GetBestOfferUsecase>((ref) {
+  final getApplicableOffersUsecase = ref.watch(
+    getApplicableOffersUsecaseProvider,
+  );
+  return GetBestOfferUsecase(getApplicableOffersUsecase);
+});
+
+final getDiscountedPriceUsecaseProvider = Provider<GetDiscountedPriceUsecase>((
+  ref,
+) {
+  final getBestOfferUsecase = ref.watch(getBestOfferUsecaseProvider);
+  return GetDiscountedPriceUsecase(getBestOfferUsecase);
+});
