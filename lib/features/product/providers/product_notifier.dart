@@ -9,11 +9,8 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
     final getProducts = ref.read(getProductsUsecaseProvider);
     final getCategories = ref.read(getCategoriesUsecaseProvider);
 
-    final productsFuture = getProducts();
-    final categoriesFuture = getCategories();
-
-    final productsResult = await productsFuture;
-    final categoriesResult = await categoriesFuture;
+    final productsResult = await getProducts();
+    final categoriesResult = await getCategories();
 
     final products = productsResult.when(
       success: (data) => data,
@@ -33,31 +30,34 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
   Future<void> selectCategory(String? category) async {
     final currentState = state.valueOrNull;
     if (currentState != null) {
-      state = AsyncData(currentState.copyWith(selectedCategory: category));
+      state = AsyncValue.data(
+        currentState.copyWith(selectedCategory: category),
+      );
     }
   }
 
   Future<void> toggleFavorite(String productId) async {
     final toggleFavoriteUsecase = ref.read(toggleFavoriteUsecaseProvider);
 
-    final currentState = state.valueOrNull;
-    if (currentState == null) return;
+    final previousState = state;
+    final currentStateValue = state.valueOrNull;
+    if (currentStateValue == null) return;
 
     final newProducts = [
-      for (final product in currentState.products)
+      for (final product in currentStateValue.products)
         if (product.id == productId)
           product.copyWith(isFavorite: !product.isFavorite)
         else
           product,
     ];
-    state = AsyncData(currentState.copyWith(products: newProducts));
+    state = AsyncValue.data(currentStateValue.copyWith(products: newProducts));
 
     final result = await toggleFavoriteUsecase(productId);
 
     result.when(
       success: (_) {},
       error: (failure) {
-        state = AsyncData(currentState);
+        state = previousState;
       },
     );
   }
