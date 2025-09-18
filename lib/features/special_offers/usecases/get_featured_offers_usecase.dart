@@ -11,51 +11,58 @@ class GetFeaturedOffersUsecase {
   final ProductRepository _productRepository;
   final SpecialOfferRepository _specialOfferRepository;
 
-  Future<Result<List<FeaturedOfferDisplayEntity>>> call() async {
-    final productResult = await _productRepository.getFeaturedProducts();
+  Future<Result<List<FeaturedOfferDisplayEntity>>> call() {
+    return Result.guardAsync(() async {
+      final products = await _productRepository.getFeaturedProducts().then(
+        (result) => result.when(
+          success: (data) => data,
+          error: (failure) =>
+              throw ApplicationException(message: failure.message),
+        ),
+      );
 
-    switch (productResult) {
-      case Success(data: final products):
-        if (products.isEmpty) {
-          return const Success<List<FeaturedOfferDisplayEntity>>([]);
-        }
+      if (products.isEmpty) {
+        return <FeaturedOfferDisplayEntity>[];
+      }
 
-        final offerIds = products
-            .expand((p) => p.specialOfferIds)
-            .toSet()
-            .toList();
-        if (offerIds.isEmpty) {
-          return const Success<List<FeaturedOfferDisplayEntity>>([]);
-        }
+      final offerIds = products
+          .expand((product) => product.specialOfferIds)
+          .toSet()
+          .toList();
+      if (offerIds.isEmpty) {
+        return <FeaturedOfferDisplayEntity>[];
+      }
 
-        final offersResult = await _specialOfferRepository.getOffersByIds(
-          offerIds,
-        );
+      final offers = await _specialOfferRepository
+          .getOffersByIds(offerIds)
+          .then(
+            (result) => result.when(
+              success: (data) => data,
+              error: (failure) =>
+                  throw ApplicationException(message: failure.message),
+            ),
+          );
 
-        return offersResult.map((offers) {
-          final productByOfferId = <String, FurnitureEntity>{};
-          for (final product in products) {
-            for (final offerId in product.specialOfferIds) {
-              if (!productByOfferId.containsKey(offerId)) {
-                productByOfferId[offerId] = product;
-              }
-            }
+      final productByOfferId = <String, FurnitureEntity>{};
+      for (final product in products) {
+        for (final offerId in product.specialOfferIds) {
+          if (!productByOfferId.containsKey(offerId)) {
+            productByOfferId[offerId] = product;
           }
+        }
+      }
 
-          final displayOffers = offers
-              .map((offer) {
-                final product = productByOfferId[offer.id];
-                return product != null
-                    ? FeaturedOfferDisplayEntity(offer: offer, product: product)
-                    : null;
-              })
-              .whereType<FeaturedOfferDisplayEntity>()
-              .toList();
+      final displayOffers = offers
+          .map((offer) {
+            final product = productByOfferId[offer.id];
+            return product != null
+                ? FeaturedOfferDisplayEntity(offer: offer, product: product)
+                : null;
+          })
+          .whereType<FeaturedOfferDisplayEntity>()
+          .toList();
 
-          return displayOffers;
-        });
-      case Error(failure: final failure):
-        return Error(failure);
-    }
+      return displayOffers;
+    });
   }
 }
