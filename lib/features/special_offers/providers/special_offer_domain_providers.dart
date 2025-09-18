@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/features/product/product.dart';
 import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 
 final getOffersByIdsUsecaseProvider = Provider<GetOffersByIdsUsecase>((ref) {
@@ -25,4 +26,12 @@ final getDiscountedPriceUsecaseProvider = Provider<GetDiscountedPriceUsecase>((
 ) {
   final getBestOfferUsecase = ref.watch(getBestOfferUsecaseProvider);
   return GetDiscountedPriceUsecase(getBestOfferUsecase);
+});
+
+final getFeaturedOffersUsecaseProvider = Provider<GetFeaturedOffersUsecase>((
+  ref,
+) {
+  final productRepository = ref.watch(productRepositoryProvider);
+  final specialOfferRepository = ref.watch(specialOfferRepositoryProvider);
+  return GetFeaturedOffersUsecase(productRepository, specialOfferRepository);
 });

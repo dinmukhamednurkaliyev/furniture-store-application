@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/home/home.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 
 class HomeBodyWidget extends ConsumerWidget {
@@ -26,19 +27,16 @@ class HomeBodyWidget extends ConsumerWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: context.paddingValues.large,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(12),
-          child: _CategoryFilter(
-            categories: state.categories,
-            selectedCategory: state.selectedCategory,
-            onCategorySelected: (category) {
-              ref
-                  .read(productNotifierProvider.notifier)
-                  .selectCategory(category);
-            },
-          ),
+        _CategoryFilter(
+          categories: state.categories,
+          selectedCategory: state.selectedCategory,
+          onCategorySelected: (category) {
+            ref.read(productNotifierProvider.notifier).selectCategory(category);
+          },
         ),
+        const SpecialOffersWidget(),
       ],
     );
   }

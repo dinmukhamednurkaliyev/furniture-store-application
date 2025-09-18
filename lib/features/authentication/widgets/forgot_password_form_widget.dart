@@ -27,7 +27,7 @@ class ForgotPasswordFormWidget extends ConsumerWidget {
             prefixIconWidget: const Icon(Icons.email),
             labelText: 'Email',
             hintTextInputText: 'Enter your email',
-            textEditingController: emailController,
+            textController: emailController,
             keyboardInputType: TextInputType.emailAddress,
             validator: (String? value) {
               if (value == null || value.isEmpty) {

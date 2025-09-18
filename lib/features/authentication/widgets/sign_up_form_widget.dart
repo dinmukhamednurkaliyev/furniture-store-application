@@ -34,7 +34,7 @@ class SignUpFormWidget extends ConsumerWidget {
             prefixIconWidget: const Icon(
               Icons.person,
             ),
-            textEditingController: nameController,
+            textController: nameController,
             hintTextInputText: 'Enter your full name',
             labelText: 'Full Name',
             validator: (String? value) {
@@ -48,7 +48,7 @@ class SignUpFormWidget extends ConsumerWidget {
             prefixIconWidget: const Icon(
               Icons.email,
             ),
-            textEditingController: emailController,
+            textController: emailController,
             hintTextInputText: 'Enter your email',
             labelText: 'Email',
             keyboardInputType: TextInputType.emailAddress,
@@ -66,7 +66,7 @@ class SignUpFormWidget extends ConsumerWidget {
             prefixIconWidget: const Icon(
               Icons.lock,
             ),
-            textEditingController: passwordController,
+            textController: passwordController,
             isPasswordInput: true,
             hintTextInputText: 'Create a password',
             labelText: 'Password',
@@ -84,7 +84,7 @@ class SignUpFormWidget extends ConsumerWidget {
             prefixIconWidget: const Icon(
               Icons.lock,
             ),
-            textEditingController: confirmPasswordController,
+            textController: confirmPasswordController,
             isPasswordInput: true,
             hintTextInputText: 'Confirm your password',
             labelText: 'Confirm Password',

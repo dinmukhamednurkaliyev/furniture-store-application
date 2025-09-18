@@ -32,7 +32,7 @@ class SignInFormWidget extends ConsumerWidget {
             ),
             labelText: 'Email',
             hintTextInputText: 'Enter your email',
-            textEditingController: emailController,
+            textController: emailController,
             keyboardInputType: TextInputType.emailAddress,
             validator: (String? value) {
               if (value == null || value.isEmpty) {
@@ -48,7 +48,7 @@ class SignInFormWidget extends ConsumerWidget {
             prefixIconWidget: const Icon(Icons.lock),
             labelText: 'Password',
             hintTextInputText: 'Enter your password',
-            textEditingController: passwordController,
+            textController: passwordController,
             isPasswordInput: true,
             validator: (String? value) {
               if (value == null || value.isEmpty) {

@@ -3,7 +3,7 @@ import 'package:furniture_store_application/core/core.dart';
 
 class AuthenticationTextFieldWidget extends StatelessWidget {
   const AuthenticationTextFieldWidget({
-    required this.textEditingController,
+    required this.textController,
     required this.hintTextInputText,
     required this.labelText,
     this.textInputActionListener = TextInputAction.none,
@@ -17,7 +17,7 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
   final String labelText;
   final String hintTextInputText;
   final bool isPasswordInput;
-  final TextEditingController textEditingController;
+  final TextEditingController textController;
   final String? Function(String?)? validator;
   final TextInputType keyboardInputType;
   final TextInputAction textInputActionListener;
@@ -38,7 +38,7 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
         ),
         context.spacingValues.verticalSmall,
         TextFormField(
-          controller: textEditingController,
+          controller: textController,
           obscureText: isPasswordInput,
           validator: validator,
           keyboardType: keyboardInputType,
