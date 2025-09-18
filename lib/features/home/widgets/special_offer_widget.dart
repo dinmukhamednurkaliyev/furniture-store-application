@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/product/product.dart';
 import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 
 class SpecialOffersWidget extends ConsumerStatefulWidget {
@@ -13,20 +14,6 @@ class SpecialOffersWidget extends ConsumerStatefulWidget {
 
 class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
   final _pageController = PageController(viewportFraction: 0.9);
-  int _currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController.addListener(() {
-      final page = _pageController.page?.round() ?? 0;
-      if (_currentPage != page) {
-        setState(() {
-          _currentPage = page;
-        });
-      }
-    });
-  }
 
   @override
   void dispose() {
@@ -46,7 +33,7 @@ class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: context.paddingValues.large,
+          spacing: context.spacingValues.large,
           children: [
             Text(
               'Special Offers',
@@ -63,13 +50,13 @@ class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
                   final displayOffer = offers[index];
                   return _OfferCard(displayOffer: displayOffer);
                 },
-              ),
+              ),  
             ),
             if (offers.length > 1)
               Center(
                 child: _PageIndicators(
+                  controller: _pageController,
                   itemCount: offers.length,
-                  currentPage: _currentPage,
                   onIndicatorTapped: (index) {
                     _pageController.animateToPage(
                       index,
@@ -95,14 +82,13 @@ class _OfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final offer = displayOffer.offer;
-    final product = displayOffer.product;
-
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        // TODO: Navigate to product page
+      },
       borderRadius: context.radiusValues.circularLarge,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
+        margin: context.paddingValues.hSmall,
         decoration: BoxDecoration(
           borderRadius: context.radiusValues.circularLarge,
           gradient: LinearGradient(
@@ -118,46 +104,10 @@ class _OfferCard extends StatelessWidget {
           borderRadius: context.radiusValues.circularLarge,
           child: Stack(
             children: [
-              Padding(
-                padding: context.paddingValues.allLarge,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${offer.discountPercentage.toInt()}% OFF',
-                      style: context.headlineMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    context.spacingValues.verticalSmall,
-                    Text(
-                      offer.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.titleMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                right: -30,
-                bottom: -20,
-                child: IgnorePointer(
-                  child: Opacity(
-                    opacity: 0.8,
-                    child: Image.asset(
-                      product.imageUrl,
-                      height: 160,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
+              _OfferContent(offer: displayOffer.offer),
+              const _DecorativeCircles(),
+              _ProductImage(product: displayOffer.product),
+              _OfferTag(offer: displayOffer.offer),
             ],
           ),
         ),
@@ -166,25 +116,156 @@ class _OfferCard extends StatelessWidget {
   }
 }
 
-class _PageIndicators extends StatelessWidget {
-  const _PageIndicators({
-    required this.itemCount,
-    required this.currentPage,
-    required this.onIndicatorTapped,
-  });
+class _OfferContent extends StatelessWidget {
+  const _OfferContent({required this.offer});
 
+  final SpecialOfferEntity offer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: context.paddingValues.allLarge,
+      child: FractionallySizedBox(
+        widthFactor: 0.6,
+        alignment: Alignment.centerLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '${offer.discountPercentage.toInt()}% OFF',
+              style: context.headlineMedium?.copyWith(
+                color: context.onPrimaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            context.spacingValues.verticalSmall,
+            Text(
+              offer.description,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: context.titleMedium?.copyWith(
+                color: context.onPrimaryColor,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DecorativeCircles extends StatelessWidget {
+  const _DecorativeCircles();
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          right: -30,
+          bottom: -30,
+          child: CircleAvatar(
+            radius: 100,
+            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.05),
+          ),
+        ),
+        Positioned(
+          right: -20,
+          bottom: -20,
+          child: CircleAvatar(
+            radius: 60,
+            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.07),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ProductImage extends StatelessWidget {
+  const _ProductImage({required this.product});
+
+  final FurnitureEntity product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      right: -30,
+      bottom: -20,
+      child: IgnorePointer(
+        child: Opacity(
+          opacity: 0.8,
+          child: Image.asset(
+            product.imageUrl,
+            height: 180,
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _OfferTag extends StatelessWidget {
+  const _OfferTag({required this.offer});
+
+  final SpecialOfferEntity offer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: context.paddingValues.medium,
+        horizontal: context.paddingValues.large,
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.paddingValues.small,
+              vertical: context.paddingValues.xsmall,
+            ),
+            decoration: BoxDecoration(
+              color: context.onPrimaryColor,
+              borderRadius: context.radiusValues.circularXLarge,
+            ),
+            child: Text(
+              offer.name,
+              style: context.bodySmall?.copyWith(
+                color: context.primaryColor,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PageIndicators extends AnimatedWidget {
+  const _PageIndicators({
+    required this.controller,
+    required this.itemCount,
+    required this.onIndicatorTapped,
+  }) : super(listenable: controller);
+
+  final PageController controller;
   final int itemCount;
-  final int currentPage;
   final ValueChanged<int> onIndicatorTapped;
 
   @override
   Widget build(BuildContext context) {
+    final page = controller.page?.round() ?? 0;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         itemCount,
         (index) => _Indicator(
-          isActive: currentPage == index,
+          isActive: page == index,
           onTap: () => onIndicatorTapped(index),
         ),
       ),
@@ -217,6 +298,7 @@ class _Indicator extends StatelessWidget {
         ),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
           height: context.spacingValues.small,
           width: isActive
               ? context.spacingValues.xxlarge

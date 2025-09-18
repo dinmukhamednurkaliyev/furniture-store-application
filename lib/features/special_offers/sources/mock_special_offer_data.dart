@@ -4,7 +4,7 @@ final offers = [
   SpecialOfferEntity(
     id: 'summer_sale',
     discountPercentage: 15,
-    title: 'Summer Sale',
+    name: 'Summer Sale',
     description: '15% off on selected items.',
     startDate: DateTime.now().subtract(const Duration(days: 10)),
     endDate: DateTime.now().add(const Duration(days: 20)),
@@ -13,7 +13,7 @@ final offers = [
   SpecialOfferEntity(
     id: 'storage_special',
     discountPercentage: 25,
-    title: 'Storage Solutions',
+    name: 'Storage Solutions',
     description: '25% off on all storage items.',
     startDate: DateTime.now().subtract(const Duration(days: 1)),
     endDate: DateTime.now().add(const Duration(days: 30)),
@@ -23,7 +23,7 @@ final offers = [
   SpecialOfferEntity(
     id: 'premium_discount',
     discountPercentage: 30,
-    title: 'Premium Furniture Deal',
+    name: 'Premium Furniture Deal',
     description: '30% off for premium members.',
     startDate: DateTime.now().subtract(const Duration(days: 1)),
     endDate: DateTime.now().add(const Duration(days: 30)),

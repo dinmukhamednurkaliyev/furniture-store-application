@@ -4,7 +4,7 @@ import 'package:furniture_store_application/features/product/product.dart';
 @immutable
 class SpecialOfferEntity {
   const SpecialOfferEntity({
-    required this.title,
+    required this.name,
     required this.id,
     required this.discountPercentage,
     required this.description,
@@ -17,7 +17,7 @@ class SpecialOfferEntity {
   });
 
   final String id;
-  final String title;
+  final String name;
   final String description;
   final double discountPercentage;
   final DateTime startDate;
@@ -71,7 +71,7 @@ class SpecialOfferEntity {
   }) {
     return SpecialOfferEntity(
       id: id ?? this.id,
-      title: title ?? this.title,
+      name: title ?? name,
       description: description ?? this.description,
       discountPercentage: discountPercentage ?? this.discountPercentage,
       startDate: startDate ?? this.startDate,
