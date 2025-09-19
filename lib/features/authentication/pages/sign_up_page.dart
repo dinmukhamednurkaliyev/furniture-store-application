@@ -49,42 +49,23 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
       });
     });
 
-    return Scaffold(
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, viewportConstraints) => SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: viewportConstraints.maxHeight,
-              ),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 600),
-                  child: Padding(
-                    padding: context.paddingValues.allXLarge,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: context.spacingValues.xlarge,
-                      children: [
-                        const SignUpHeaderWidget(),
-                        SignUpFormWidget(
-                          formKey: _formKey,
-                          nameController: _nameController,
-                          emailController: _emailController,
-                          passwordController: _passwordController,
-                          confirmPasswordController: _confirmPasswordController,
-                          onSignUp: _onSignUp,
-                        ),
-                        const SignUpFooterWidget(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+    return AuthenticationPageLayout(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: context.spacingValues.xlarge,
+        children: [
+          const SignUpHeaderWidget(),
+          SignUpFormWidget(
+            formKey: _formKey,
+            nameController: _nameController,
+            emailController: _emailController,
+            passwordController: _passwordController,
+            confirmPasswordController: _confirmPasswordController,
+            onSignUp: _onSignUp,
           ),
-        ),
+          const SignUpFooterWidget(),
+        ],
       ),
     );
   }
