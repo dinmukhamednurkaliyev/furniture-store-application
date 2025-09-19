@@ -13,7 +13,7 @@ class SpecialOffersWidget extends ConsumerStatefulWidget {
 }
 
 class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
-  final _pageController = PageController(viewportFraction: 0.9);
+  final _pageController = PageController();
 
   @override
   void dispose() {
@@ -42,7 +42,7 @@ class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
               ),
             ),
             SizedBox(
-              height: 180,
+              height: 210,
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: offers.length,
@@ -50,7 +50,7 @@ class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
                   final displayOffer = offers[index];
                   return _OfferCard(displayOffer: displayOffer);
                 },
-              ),  
+              ),
             ),
             if (offers.length > 1)
               Center(
@@ -82,32 +82,33 @@ class _OfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        // TODO: Navigate to product page
-      },
-      borderRadius: context.radiusValues.circularLarge,
-      child: Container(
-        margin: context.paddingValues.hSmall,
-        decoration: BoxDecoration(
-          borderRadius: context.radiusValues.circularLarge,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              context.primaryColor,
-              context.primaryColor.withValues(alpha: 0.8),
-            ],
+    return Card(
+      margin: context.paddingValues.hSmall,
+      shape: RoundedRectangleBorder(
+        borderRadius: context.radiusValues.circularLarge,
+      ),
+      clipBehavior: Clip.antiAlias,
+      elevation: 2,
+      child: InkWell(
+        onTap: () {
+          // TODO: Navigate to product page
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                context.primaryColor,
+                context.primaryColor.withValues(alpha: 0.8),
+              ],
+            ),
           ),
-        ),
-        child: ClipRRect(
-          borderRadius: context.radiusValues.circularLarge,
           child: Stack(
             children: [
-              _OfferContent(offer: displayOffer.offer),
+              _OfferDetails(offer: displayOffer.offer),
               const _DecorativeCircles(),
               _ProductImage(product: displayOffer.product),
-              _OfferTag(offer: displayOffer.offer),
             ],
           ),
         ),
@@ -116,8 +117,8 @@ class _OfferCard extends StatelessWidget {
   }
 }
 
-class _OfferContent extends StatelessWidget {
-  const _OfferContent({required this.offer});
+class _OfferDetails extends StatelessWidget {
+  const _OfferDetails({required this.offer});
 
   final SpecialOfferEntity offer;
 
@@ -130,23 +131,71 @@ class _OfferContent extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              '${offer.discountPercentage.toInt()}% OFF',
-              style: context.headlineMedium?.copyWith(
+            // Tag from _OfferTag
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.paddingValues.large,
+                vertical: context.paddingValues.xsmall,
+              ),
+              decoration: BoxDecoration(
                 color: context.onPrimaryColor,
-                fontWeight: FontWeight.bold,
+                borderRadius: context.radiusValues.circularXLarge,
+              ),
+              child: Text(
+                offer.name,
+                style: context.bodySmall?.copyWith(
+                  color: context.primaryColor,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-            context.spacingValues.verticalSmall,
-            Text(
-              offer.description,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: context.titleMedium?.copyWith(
-                color: context.onPrimaryColor,
-                fontWeight: FontWeight.w600,
+            // Content from _OfferContent
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '${offer.discountPercentage.toInt()}% OFF',
+                  style: context.headlineMedium?.copyWith(
+                    color: context.onPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                context.spacingValues.verticalSmall,
+                Text(
+                  offer.description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.titleMedium?.copyWith(
+                    color: context.onPrimaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            // Button
+            ElevatedButton(
+              onPressed: () {
+                // TODO: Navigate to product page or offer page
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: context.onPrimaryColor,
+                foregroundColor: context.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: context.radiusValues.circularXLarge,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.paddingValues.large,
+                  vertical: context.paddingValues.xsmall,
+                ),
+              ),
+              child: const Text(
+                'Shop now',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
@@ -168,7 +217,7 @@ class _DecorativeCircles extends StatelessWidget {
           bottom: -30,
           child: CircleAvatar(
             radius: 100,
-            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.05),
+            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.12),
           ),
         ),
         Positioned(
@@ -176,7 +225,7 @@ class _DecorativeCircles extends StatelessWidget {
           bottom: -20,
           child: CircleAvatar(
             radius: 60,
-            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.07),
+            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.10),
           ),
         ),
       ],
@@ -203,43 +252,6 @@ class _ProductImage extends StatelessWidget {
             fit: BoxFit.contain,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _OfferTag extends StatelessWidget {
-  const _OfferTag({required this.offer});
-
-  final SpecialOfferEntity offer;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: context.paddingValues.medium,
-        horizontal: context.paddingValues.large,
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: context.paddingValues.small,
-              vertical: context.paddingValues.xsmall,
-            ),
-            decoration: BoxDecoration(
-              color: context.onPrimaryColor,
-              borderRadius: context.radiusValues.circularXLarge,
-            ),
-            child: Text(
-              offer.name,
-              style: context.bodySmall?.copyWith(
-                color: context.primaryColor,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
