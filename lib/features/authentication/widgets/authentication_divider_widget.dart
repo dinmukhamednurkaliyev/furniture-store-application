@@ -10,22 +10,22 @@ class AuthenticationDividerWidget extends StatelessWidget {
       children: [
         Expanded(
           child: Divider(
-            color: Colors.grey.shade300,
+            color: context.colorScheme.outlineVariant,
           ),
         ),
         Padding(
           padding: context.paddingValues.hLarge,
           child: Text(
             ' Or continue with',
-            style: TextStyle(
-              color: Colors.grey.shade600,
+            style: context.textTheme.bodyMedium?.copyWith(
+              color: context.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
             ),
           ),
         ),
         Expanded(
           child: Divider(
-            color: Colors.grey.shade300,
+            color: context.colorScheme.outlineVariant,
           ),
         ),
       ],

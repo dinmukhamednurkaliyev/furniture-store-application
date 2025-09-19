@@ -20,7 +20,7 @@ class SignInHeaderWidget extends StatelessWidget {
         Text(
           'Sign in to continue shopping',
           style: context.bodyLarge?.copyWith(
-            color: Colors.grey.shade600,
+            color: context.colorScheme.onSurfaceVariant,
           ),
         ),
       ],

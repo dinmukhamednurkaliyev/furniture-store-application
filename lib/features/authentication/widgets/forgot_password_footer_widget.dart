@@ -13,7 +13,7 @@ class ForgotPasswordFooterWidget extends StatelessWidget {
         Text(
           'Remember your password?',
           style: context.bodyLarge?.copyWith(
-            color: Colors.grey.shade600,
+            color: context.colorScheme.onSurfaceVariant,
           ),
         ),
         TextButton(

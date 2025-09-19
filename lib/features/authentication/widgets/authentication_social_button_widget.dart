@@ -23,13 +23,13 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
             if (states.contains(WidgetState.pressed)) {
               return BorderSide(color: context.primaryColor);
             }
-            return BorderSide(color: Colors.grey.shade300);
+            return BorderSide(color: context.colorScheme.outline);
           },
         ),
         backgroundColor: WidgetStateProperty.resolveWith<Color?>(
           (states) {
             if (states.contains(WidgetState.hovered)) {
-              return Colors.grey.shade100;
+              return context.colorScheme.surfaceContainerLowest;
             }
             if (states.contains(WidgetState.pressed)) {
               return context.primaryColor.withValues(alpha: 0.1);
@@ -55,7 +55,7 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
           Text(
             buttonText,
             style: context.bodyMedium?.copyWith(
-              color: Colors.grey.shade800,
+              color: context.colorScheme.onSurface,
               fontWeight: FontWeight.w500,
             ),
           ),

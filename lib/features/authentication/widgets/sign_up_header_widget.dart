@@ -21,7 +21,7 @@ class SignUpHeaderWidget extends StatelessWidget {
           'Sign up to get started',
           style: context.headlineLarge?.copyWith(
             fontSize: 16,
-            color: Colors.grey.shade600,
+            color: context.colorScheme.onSurfaceVariant,
           ),
         ),
       ],

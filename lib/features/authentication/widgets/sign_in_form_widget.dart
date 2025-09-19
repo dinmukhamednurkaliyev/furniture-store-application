@@ -67,7 +67,7 @@ class SignInFormWidget extends ConsumerWidget {
                 ForgotPasswordRoute.push(context);
               },
               style: TextButton.styleFrom(
-                foregroundColor: Colors.grey.shade700,
+                foregroundColor: context.colorScheme.onSurfaceVariant,
                 overlayColor: context.primaryColor.withValues(alpha: 0.1),
               ),
               child: const Text(

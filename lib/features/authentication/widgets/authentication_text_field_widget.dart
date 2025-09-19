@@ -32,7 +32,7 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
         Text(
           labelText,
           style: context.bodyLarge?.copyWith(
-            color: Colors.grey.shade700,
+            color: context.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -50,12 +50,12 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
             prefixIconColor: context.colorScheme.onSurfaceVariant,
             hintText: hintTextInputText,
             hintStyle: context.bodyLarge?.copyWith(
-              color: Colors.grey.shade400,
+              color: context.colorScheme.onSurfaceVariant,
             ),
             filled: true,
             fillColor: isEnabledInput
-                ? Colors.grey.shade100
-                : Colors.grey.shade50,
+                ? context.colorScheme.surfaceContainerHighest
+                : context.colorScheme.surfaceContainer,
             border: OutlineInputBorder(
               borderRadius: context.radiusValues.circularMedium,
               borderSide: BorderSide.none,

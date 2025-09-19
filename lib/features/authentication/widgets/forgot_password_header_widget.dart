@@ -20,7 +20,7 @@ class ForgotPasswordHeaderWidget extends StatelessWidget {
         Text(
           'Enter your email to reset your password',
           style: context.bodyLarge?.copyWith(
-            color: Colors.grey.shade600,
+            color: context.colorScheme.onSurfaceVariant,
           ),
         ),
       ],

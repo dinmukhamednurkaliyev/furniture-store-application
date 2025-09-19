@@ -36,7 +36,7 @@ class SignUpFooterWidget extends StatelessWidget {
             Text(
               'Already have an account?',
               style: context.bodyLarge?.copyWith(
-                color: Colors.grey.shade600,
+                color: context.colorScheme.onSurfaceVariant,
               ),
             ),
             TextButton(
