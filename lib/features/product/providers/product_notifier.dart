@@ -28,20 +28,24 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
   }
 
   Future<void> selectCategory(String? category) async {
-    final currentState = state.valueOrNull;
-    if (currentState != null) {
-      state = AsyncValue.data(
-        currentState.copyWith(selectedCategory: category),
-      );
-    }
+    state.whenOrNull(
+      data: (currentState) {
+        state = AsyncValue.data(
+          currentState.copyWith(selectedCategory: category),
+        );
+      },
+    );
   }
 
   Future<void> toggleFavorite(String productId) async {
     final toggleFavoriteUsecase = ref.read(toggleFavoriteUsecaseProvider);
 
     final previousState = state;
-    final currentStateValue = state.valueOrNull;
-    if (currentStateValue == null) return;
+
+    final currentStateValue = state.whenOrNull(data: (data) => data);
+    if (currentStateValue == null) {
+      return;
+    }
 
     final newProducts = [
       for (final product in currentStateValue.products)
@@ -62,5 +66,3 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
     );
   }
 }
-
-
