@@ -55,21 +55,42 @@ class _SignInPageState extends ConsumerState<SignInPage> {
       );
     });
 
-    return AuthenticationPageLayout(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: context.spacingValues.xlarge,
-        children: [
-          const SignInHeaderWidget(),
-          SignInFormWidget(
-            formKey: formKey,
-            emailController: _emailController,
-            passwordController: _passwordController,
-            onSignIn: _handleSignInAttempt,
+    return Scaffold(
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, viewportConstraints) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: viewportConstraints.maxHeight,
+              ),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: 600,
+                  ),
+                  child: Padding(
+                    padding: context.paddingValues.allXLarge,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: context.spacingValues.xlarge,
+                      children: [
+                        const SignInHeaderWidget(),
+                        SignInFormWidget(
+                          formKey: formKey,
+                          emailController: _emailController,
+                          passwordController: _passwordController,
+                          onSignIn: _handleSignInAttempt,
+                        ),
+                        const SignInFooterWidget(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
-          const SignInFooterWidget(),
-        ],
+        ),
       ),
     );
   }

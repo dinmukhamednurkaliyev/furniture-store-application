@@ -1,6 +1,5 @@
 export 'authentication_button_widget.dart';
 export 'authentication_divider_widget.dart';
-export 'authentication_page_layout.dart';
 export 'authentication_social_button_widget.dart';
 export 'authentication_text_field_widget.dart';
 export 'forgot_password_footer_widget.dart';

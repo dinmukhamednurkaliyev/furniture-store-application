@@ -18,6 +18,26 @@ class AuthenticationButtonWidget extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: isButtonLoading ? null : onPressCallback,
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.pressed)) {
+                return context.primaryColor.withValues(alpha: 0.8);
+              } else if (states.contains(WidgetState.disabled)) {
+                return Colors.grey;
+              }
+              return context.primaryColor;
+            },
+          ),
+          foregroundColor: WidgetStateProperty.all(Colors.white),
+          padding: WidgetStateProperty.all(context.paddingValues.vLarge),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: context.radiusValues.circularMedium,
+            ),
+          ),
+          elevation: WidgetStateProperty.all(0),
+        ),
         child: isButtonLoading
             ? SizedBox(
                 height: context.spacingValues.xlarge,
@@ -29,6 +49,9 @@ class AuthenticationButtonWidget extends StatelessWidget {
               )
             : Text(
                 buttonText,
+                style: context.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
       ),
     );
