@@ -4,9 +4,8 @@ import 'package:furniture_store_application/features/authentication/authenticati
 class AuthenticationNotifier extends AsyncNotifier<UserEntity?> {
   @override
   Future<UserEntity?> build() async {
-    final getSignInStatus = await ref.read(
-      getSignInStatusUsecaseProvider.future,
-    );
+    final getSignInStatus =
+        await ref.read(getSignInStatusUsecaseProvider.future);
     final getUser = await ref.read(getUserUsecaseProvider.future);
 
     final signInResult = await getSignInStatus();
@@ -30,9 +29,8 @@ class AuthenticationNotifier extends AsyncNotifier<UserEntity?> {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final getUser = await ref.read(getUserUsecaseProvider.future);
-      final setSignInStatus = await ref.read(
-        setSignInStatusUsecaseProvider.future,
-      );
+      final setSignInStatus =
+          await ref.read(setSignInStatusUsecaseProvider.future);
 
       final userResult = await getUser();
       final fetchedUser = userResult.when(
@@ -58,9 +56,8 @@ class AuthenticationNotifier extends AsyncNotifier<UserEntity?> {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final setUser = await ref.read(setUserUsecaseProvider.future);
-      final setSignInStatus = await ref.read(
-        setSignInStatusUsecaseProvider.future,
-      );
+      final setSignInStatus =
+          await ref.read(setSignInStatusUsecaseProvider.future);
 
       final userToSave = UserEntity(email: email, name: name);
       final userResult = await setUser(user: userToSave);
@@ -83,9 +80,8 @@ class AuthenticationNotifier extends AsyncNotifier<UserEntity?> {
   Future<void> signOut() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final setSignInStatus = await ref.read(
-        setSignInStatusUsecaseProvider.future,
-      );
+      final setSignInStatus =
+          await ref.read(setSignInStatusUsecaseProvider.future);
       final result = await setSignInStatus(status: false);
       result.when(
         success: (_) {},
@@ -96,25 +92,18 @@ class AuthenticationNotifier extends AsyncNotifier<UserEntity?> {
   }
 
   Future<void> resetPassword(String email) async {
-    final resetPasswordUsecase = await ref.read(
-      resetPasswordUsecaseProvider.future,
-    );
+    final resetPasswordUsecase =
+        await ref.read(resetPasswordUsecaseProvider.future);
     final result = await resetPasswordUsecase(email: email);
-    result.when(
-      success: (_) {},
-      error: (failure) => throw Exception(failure.toString()),
-    );
+    result.when(success: (_) {}, error: (f) => throw Exception(f.toString()));
   }
 
   Future<void> updateUser(UserEntity updatedData) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final currentUser = state.whenOrNull(data: (user) => user);
-
+      final currentUser = state.valueOrNull;
       if (currentUser == null) {
-        throw Exception(
-          'User not authenticated or data not available',
-        );
+        throw Exception('User not authenticated');
       }
 
       final setUser = await ref.read(setUserUsecaseProvider.future);

@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
-class OnboardingNotifier extends AsyncNotifier<void> {
+class OnboardingNotifier extends AutoDisposeAsyncNotifier<void> {
   @override
-  Future<void> build() async {}
+  void build() {
+    // No initial async work needed, initial state is AsyncData(null)
+  }
 
   Future<void> setOnboardingStatus() async {
     state = const AsyncValue.loading();
