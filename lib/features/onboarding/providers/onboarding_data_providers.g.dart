@@ -49,7 +49,7 @@ final class OnboardingLocalDataSourceProvider
 }
 
 String _$onboardingLocalDataSourceHash() =>
-    r'116b55a477a77c9847e456bbbef6ff69a522ac2c';
+    r'8cedfe8f1f7fbefb3b98db3b2a1ac6978cbc4157';
 
 @ProviderFor(onboardingRepository)
 const onboardingRepositoryProvider = OnboardingRepositoryProvider._();
@@ -91,4 +91,4 @@ final class OnboardingRepositoryProvider
 }
 
 String _$onboardingRepositoryHash() =>
-    r'20ef4bf5131f56051916e9e80b2f4138500d523e';
+    r'79d1e9f8c6e7f1ac6ab390324dd21918978c0923';

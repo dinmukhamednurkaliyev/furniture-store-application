@@ -1,33 +1,34 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final getSignInStatusUsecaseProvider = FutureProvider<GetSignInStatusUsecase>((
-  ref,
-) async {
+part 'authentication_domain_providers.g.dart';
+
+@riverpod
+Future<GetSignInStatusUsecase> getSignInStatusUsecase(Ref ref) async {
   final repository = await ref.watch(authenticationRepositoryProvider.future);
   return GetSignInStatusUsecase(repository);
-});
+}
 
-final getUserUsecaseProvider = FutureProvider<GetUserUsecase>((ref) async {
+@riverpod
+Future<GetUserUsecase> getUserUsecase(Ref ref) async {
   final repository = await ref.watch(authenticationRepositoryProvider.future);
   return GetUserUsecase(repository);
-});
+}
 
-final setSignInStatusUsecaseProvider = FutureProvider<SetSignInStatusUsecase>((
-  ref,
-) async {
+@riverpod
+Future<SetSignInStatusUsecase> setSignInStatusUsecase(Ref ref) async {
   final repository = await ref.watch(authenticationRepositoryProvider.future);
   return SetSignInStatusUsecase(repository);
-});
+}
 
-final setUserUsecaseProvider = FutureProvider<SetUserUsecase>((ref) async {
+@riverpod
+Future<SetUserUsecase> setUserUsecase(Ref ref) async {
   final repository = await ref.watch(authenticationRepositoryProvider.future);
   return SetUserUsecase(repository);
-});
+}
 
-final resetPasswordUsecaseProvider = FutureProvider<ResetPasswordUsecase>(
-  (ref) async {
-    final repository = await ref.watch(authenticationRepositoryProvider.future);
-    return ResetPasswordUsecase(repository);
-  },
-);
+@riverpod
+Future<ResetPasswordUsecase> resetPasswordUsecase(Ref ref) async {
+  final repository = await ref.watch(authenticationRepositoryProvider.future);
+  return ResetPasswordUsecase(repository);
+}

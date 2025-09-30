@@ -50,7 +50,7 @@ final class GetOnboardingStatusUsecaseProvider
 }
 
 String _$getOnboardingStatusUsecaseHash() =>
-    r'fa3ad59f790068a86d2e303e954c05c14b4724f1';
+    r'2480e3248b2cc359f81144aa992ee942d2e35287';
 
 @ProviderFor(setOnboardingStatusUsecase)
 const setOnboardingStatusUsecaseProvider =
@@ -93,7 +93,7 @@ final class SetOnboardingStatusUsecaseProvider
 }
 
 String _$setOnboardingStatusUsecaseHash() =>
-    r'1276e8a6c7c90482177ef4960ecd97bb6298b3bb';
+    r'c92603edb32205b72b9fe42566c602492d0380b9';
 
 @ProviderFor(getOnboardingItemsUsecase)
 const getOnboardingItemsUsecaseProvider = GetOnboardingItemsUsecaseProvider._();
@@ -135,4 +135,4 @@ final class GetOnboardingItemsUsecaseProvider
 }
 
 String _$getOnboardingItemsUsecaseHash() =>
-    r'44a998ad6b22d911d62d9276c044ded69356a52e';
+    r'489697826f9ec71b9b20cc866a8416ece9f25d8a';
