@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
@@ -18,14 +20,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    _pageController.addListener(() {
-      final newPage = _pageController.page?.round() ?? 0;
-      if (newPage != _currentPage) {
-        setState(() {
-          _currentPage = newPage;
-        });
-      }
-    });
   }
 
   @override
@@ -35,26 +29,40 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   void _onIndicatorTapped(int index) {
-    _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
+    unawaited(
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      ),
     );
   }
 
-  void _onNext() {
-    _pageController.nextPage(
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
+  void _onNext(int totalItems) {
+    if (_currentPage < totalItems - 1) {
+      unawaited(
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
+        ),
+      );
+    }
+  }
+
+  void _completeOnboarding() {
+    unawaited(
+      ref.read(onboardingActionProvider.notifier).setOnboardingStatus(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     ref.listen(
-      onboardingActionNotifierProvider,
+      onboardingActionProvider,
       (previous, next) {
-        next.when(
+        if (!mounted) return;
+
+        next.whenOrNull(
           data: (_) {
             if (previous is AsyncLoading) {
               SignInRoute.go(context);
@@ -65,15 +73,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               SnackBar(content: Text(error.toString())),
             );
           },
-          loading: () {},
         );
       },
     );
 
     final onboardingItems = ref.watch(onboardingItemsProvider);
-    final isActionLoading = ref
-        .watch(onboardingActionNotifierProvider)
-        .isLoading;
+    final onboardingActionState = ref.watch(onboardingActionProvider);
 
     return Scaffold(
       body: onboardingItems.when(
@@ -82,17 +87,18 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             Center(child: Text('An error occurred: $error')),
         data: (items) => OnboardingView(
           items: items,
-          isActionLoading: isActionLoading,
+          isActionLoading: onboardingActionState.isLoading,
           currentPage: _currentPage,
           pageController: _pageController,
+          onPageChanged: (newPage) {
+            setState(() {
+              _currentPage = newPage;
+            });
+          },
           onIndicatorTapped: _onIndicatorTapped,
-          onNext: _onNext,
-          onSkip: () => ref
-              .read(onboardingActionNotifierProvider.notifier)
-              .setOnboardingStatus(),
-          onGetStarted: () => ref
-              .read(onboardingActionNotifierProvider.notifier)
-              .setOnboardingStatus(),
+          onNext: () => _onNext(items.length),
+          onSkip: _completeOnboarding,
+          onGetStarted: _completeOnboarding,
         ),
       ),
     );

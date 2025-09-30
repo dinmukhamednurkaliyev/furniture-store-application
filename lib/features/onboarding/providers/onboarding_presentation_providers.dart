@@ -1,24 +1,20 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-export 'onboarding_notifier.dart';
+part 'onboarding_presentation_providers.g.dart';
 
-final AutoDisposeFutureProvider<List<OnboardingItemEntity>>
-onboardingItemsProvider =
-    FutureProvider.autoDispose<List<OnboardingItemEntity>>((ref) async {
-      final getOnboardingItems = await ref.watch(
-        getOnboardingItemsUsecaseProvider.future,
-      );
-      final result = await getOnboardingItems();
-      return result.when(
-        success: (items) => items,
-        error: (failure) =>
-            throw ApplicationException(message: failure.message),
-      );
-    });
+@riverpod
+Future<List<OnboardingItemEntity>> onboardingItems(
+  Ref ref,
+) async {
+  final getOnboardingItems = await ref.watch(
+    getOnboardingItemsUsecaseProvider.future,
+  );
+  final result = await getOnboardingItems();
 
-final onboardingActionNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<OnboardingNotifier, void>(
-      OnboardingNotifier.new,
-    );
+  return result.when(
+    success: (items) => items,
+    error: (failure) => throw ApplicationException(message: failure.message),
+  );
+}

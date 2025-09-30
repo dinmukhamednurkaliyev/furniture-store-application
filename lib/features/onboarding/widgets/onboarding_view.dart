@@ -1,3 +1,5 @@
+// lib/features/onboarding/presentation/widgets/onboarding_view.dart
+
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
@@ -12,6 +14,7 @@ class OnboardingView extends StatelessWidget {
     required this.onNext,
     required this.onSkip,
     required this.onGetStarted,
+    required this.onPageChanged,
     super.key,
   });
 
@@ -23,6 +26,7 @@ class OnboardingView extends StatelessWidget {
   final VoidCallback onNext;
   final VoidCallback onSkip;
   final VoidCallback onGetStarted;
+  final ValueChanged<int> onPageChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,7 @@ class OnboardingView extends StatelessWidget {
           Expanded(
             child: PageView.builder(
               controller: pageController,
+              onPageChanged: onPageChanged,
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return OnboardingPageContent(item: items[index]);
