@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'onboarding_notifier.dart';
+part of 'forgot_password.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,33 +9,33 @@ part of 'onboarding_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(OnboardingAction)
-const onboardingActionProvider = OnboardingActionProvider._();
+@ProviderFor(ForgotPassword)
+const forgotPasswordProvider = ForgotPasswordProvider._();
 
-final class OnboardingActionProvider
-    extends $AsyncNotifierProvider<OnboardingAction, void> {
-  const OnboardingActionProvider._()
+final class ForgotPasswordProvider
+    extends $AsyncNotifierProvider<ForgotPassword, void> {
+  const ForgotPasswordProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'onboardingActionProvider',
+        name: r'forgotPasswordProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$onboardingActionHash();
+  String debugGetCreateSourceHash() => _$forgotPasswordHash();
 
   @$internal
   @override
-  OnboardingAction create() => OnboardingAction();
+  ForgotPassword create() => ForgotPassword();
 }
 
-String _$onboardingActionHash() => r'005956fdde3946b94470989cc1188fc89a6b21b1';
+String _$forgotPasswordHash() => r'3fc9079058cbe085500f25382a2296a577dbf3b7';
 
-abstract class _$OnboardingAction extends $AsyncNotifier<void> {
+abstract class _$ForgotPassword extends $AsyncNotifier<void> {
   FutureOr<void> build();
   @$mustCallSuper
   @override

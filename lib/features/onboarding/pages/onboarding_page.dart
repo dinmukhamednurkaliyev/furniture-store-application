@@ -51,14 +51,14 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   void _completeOnboarding() {
     unawaited(
-      ref.read(onboardingActionProvider.notifier).setOnboardingStatus(),
+      ref.read(onboardingProvider.notifier).setOnboardingStatus(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     ref.listen(
-      onboardingActionProvider,
+      onboardingProvider,
       (previous, next) {
         if (!mounted) return;
 
@@ -78,7 +78,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
 
     final onboardingItems = ref.watch(onboardingItemsProvider);
-    final onboardingActionState = ref.watch(onboardingActionProvider);
+    final onboardingActionState = ref.watch(onboardingProvider);
 
     return Scaffold(
       body: onboardingItems.when(

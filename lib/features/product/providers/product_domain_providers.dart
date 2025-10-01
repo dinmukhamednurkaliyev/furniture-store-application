@@ -1,17 +1,22 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/product/product.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final getProductsUsecaseProvider = Provider<GetProductsUsecase>((ref) {
+part 'product_domain_providers.g.dart';
+
+@riverpod
+GetProductsUsecase getProductsUsecase(Ref ref) {
   final repository = ref.watch(productRepositoryProvider);
   return GetProductsUsecase(repository);
-});
+}
 
-final getCategoriesUsecaseProvider = Provider<GetCategoriesUsecase>((ref) {
+@riverpod
+GetCategoriesUsecase getCategoriesUsecase(Ref ref) {
   final repository = ref.watch(productRepositoryProvider);
   return GetCategoriesUsecase(repository);
-});
+}
 
-final toggleFavoriteUsecaseProvider = Provider<ToggleFavoriteUsecase>((ref) {
+@riverpod
+ToggleFavoriteUsecase toggleFavoriteUsecase(Ref ref) {
   final repository = ref.watch(productRepositoryProvider);
   return ToggleFavoriteUsecase(repository);
-});
+}

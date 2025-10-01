@@ -1,10 +1,10 @@
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'authentication_notifier.g.dart';
+part 'authentication.g.dart';
 
 @riverpod
-class AuthenticationNotifier extends _$AuthenticationNotifier {
+class Authentication extends _$Authentication {
   @override
   Future<UserEntity?> build() async {
     final getSignInStatus = await ref.read(
@@ -96,17 +96,6 @@ class AuthenticationNotifier extends _$AuthenticationNotifier {
       );
       return null;
     });
-  }
-
-  Future<void> resetPassword(String email) async {
-    final resetPasswordUsecase = await ref.read(
-      resetPasswordUsecaseProvider.future,
-    );
-    final result = await resetPasswordUsecase(email: email);
-    result.when(
-      success: (_) {},
-      error: (f) => throw Exception(f.toString()),
-    );
   }
 
   Future<void> updateUser(UserEntity updatedData) async {

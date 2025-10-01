@@ -1,40 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/home/home.dart';
-import 'package:furniture_store_application/features/product/product.dart';
 
-class HomeBodyWidget extends ConsumerWidget {
-  const HomeBodyWidget({super.key});
+class HomeBodyWidget extends StatelessWidget {
+  const HomeBodyWidget({
+    required this.categories,
+    required this.onCategorySelected,
+    this.selectedCategory,
+    super.key,
+  });
+
+  final List<String> categories;
+  final String? selectedCategory;
+  final ValueChanged<String> onCategorySelected;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final productState = ref.watch(productNotifierProvider);
-
-    return productState.when(
-      data: (state) => _buildProductView(context, ref, state),
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stack) => Center(child: Text('Error: $error')),
-    );
-  }
-
-  Widget _buildProductView(
-    BuildContext context,
-    WidgetRef ref,
-    ProductState state,
-  ) {
-    final filteredList = state.filteredProducts;
-
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: context.paddingValues.large,
       children: [
         _CategoryFilter(
-          categories: state.categories,
-          selectedCategory: state.selectedCategory,
-          onCategorySelected: (category) {
-            ref.read(productNotifierProvider.notifier).selectCategory(category);
-          },
+          categories: categories,
+          selectedCategory: selectedCategory,
+          onCategorySelected: onCategorySelected,
         ),
         const SpecialOffersWidget(),
       ],
@@ -77,15 +66,15 @@ class _CategoryFilter extends StatelessWidget {
                 child: ChoiceChip(
                   shape: const StadiumBorder(),
                   label: Text(category),
-                  selected: selectedCategory == category,
-                  onSelected: (isSelected) {
-                    if (isSelected) {
+                  selected: isSelected,
+                  onSelected: (wasSelected) {
+                    if (wasSelected) {
                       onCategorySelected(category);
                     }
                   },
                   selectedColor: context.primaryColor,
                   labelStyle: TextStyle(
-                    color: selectedCategory == category
+                    color: isSelected
                         ? context.colorScheme.onPrimary
                         : context.colorScheme.onSurface,
                   ),

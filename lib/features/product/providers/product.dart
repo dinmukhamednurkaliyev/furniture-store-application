@@ -1,9 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/product/product.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class ProductNotifier extends AsyncNotifier<ProductState> {
+part 'product.g.dart';
+
+@riverpod
+class Product extends _$Product {
   @override
   Future<ProductState> build() async {
     final getProducts = ref.read(getProductsUsecaseProvider);
@@ -27,8 +30,8 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
     );
   }
 
-  Future<void> selectCategory(String? category) async {
-    final currentState = state.valueOrNull;
+  void selectCategory(String? category) {
+    final currentState = state.asData?.value;
     if (currentState != null) {
       state = AsyncValue.data(
         currentState.copyWith(selectedCategory: category),
@@ -37,10 +40,9 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
   }
 
   Future<void> toggleFavorite(String productId) async {
-    final toggleFavoriteUsecase = ref.read(toggleFavoriteUsecaseProvider);
-
     final previousState = state;
-    final currentStateValue = state.valueOrNull;
+
+    final currentStateValue = state.asData?.value;
     if (currentStateValue == null) return;
 
     final newProducts = [
@@ -52,6 +54,7 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
     ];
     state = AsyncValue.data(currentStateValue.copyWith(products: newProducts));
 
+    final toggleFavoriteUsecase = ref.read(toggleFavoriteUsecaseProvider);
     final result = await toggleFavoriteUsecase(productId);
 
     result.when(
@@ -62,5 +65,3 @@ class ProductNotifier extends AsyncNotifier<ProductState> {
     );
   }
 }
-
-

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
@@ -23,23 +25,25 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     super.dispose();
   }
 
-  Future<void> _handleSignInAttempt() async {
+  void _handleSignInAttempt() {
     if (formKey.currentState?.validate() ?? false) {
-      await ref
-          .read(authenticationNotifierProvider.notifier)
-          .signIn(
-            _emailController.text,
-            _passwordController.text,
-          );
+      unawaited(
+        ref
+            .read(authenticationProvider.notifier)
+            .signIn(
+              _emailController.text,
+              _passwordController.text,
+            ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(authenticationNotifierProvider, (previous, next) {
-      next.when(
+    ref.listen(authenticationProvider, (previous, next) {
+      next.whenOrNull(
         data: (user) {
-          if (user != null) {
+          if (user != null && previous is AsyncLoading) {
             HomeRoute.go(context);
           }
         },
@@ -51,9 +55,10 @@ class _SignInPageState extends ConsumerState<SignInPage> {
             ),
           );
         },
-        loading: () {},
       );
     });
+
+    final authenticationState = ref.watch(authenticationProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -76,11 +81,13 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                       spacing: context.spacingValues.xlarge,
                       children: [
                         const SignInHeaderWidget(),
+
                         SignInFormWidget(
                           formKey: formKey,
                           emailController: _emailController,
                           passwordController: _passwordController,
                           onSignIn: _handleSignInAttempt,
+                          isButtonLoading: authenticationState.isLoading,
                         ),
                         const SignInFooterWidget(),
                       ],

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 
-class SignUpFormWidget extends ConsumerWidget {
+class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
     required this.formKey,
     required this.nameController,
@@ -11,6 +10,9 @@ class SignUpFormWidget extends ConsumerWidget {
     required this.passwordController,
     required this.confirmPasswordController,
     required this.onSignUp,
+
+    required this.isButtonLoading,
+    this.error,
     super.key,
   });
 
@@ -21,19 +23,18 @@ class SignUpFormWidget extends ConsumerWidget {
   final TextEditingController confirmPasswordController;
   final VoidCallback onSignUp;
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authenticationState = ref.watch(authenticationNotifierProvider);
+  final bool isButtonLoading;
+  final Object? error;
 
+  @override
+  Widget build(BuildContext context) {
     return Form(
       key: formKey,
       child: Column(
         spacing: context.spacingValues.xlarge,
         children: [
           AuthenticationTextFieldWidget(
-            prefixIconWidget: const Icon(
-              Icons.person,
-            ),
+            prefixIconWidget: const Icon(Icons.person),
             textController: nameController,
             hintTextInputText: 'Enter your full name',
             labelText: 'Full Name',
@@ -45,9 +46,7 @@ class SignUpFormWidget extends ConsumerWidget {
             },
           ),
           AuthenticationTextFieldWidget(
-            prefixIconWidget: const Icon(
-              Icons.email,
-            ),
+            prefixIconWidget: const Icon(Icons.email),
             textController: emailController,
             hintTextInputText: 'Enter your email',
             labelText: 'Email',
@@ -63,9 +62,7 @@ class SignUpFormWidget extends ConsumerWidget {
             },
           ),
           AuthenticationTextFieldWidget(
-            prefixIconWidget: const Icon(
-              Icons.lock,
-            ),
+            prefixIconWidget: const Icon(Icons.lock),
             textController: passwordController,
             isPasswordInput: true,
             hintTextInputText: 'Create a password',
@@ -81,9 +78,7 @@ class SignUpFormWidget extends ConsumerWidget {
             },
           ),
           AuthenticationTextFieldWidget(
-            prefixIconWidget: const Icon(
-              Icons.lock,
-            ),
+            prefixIconWidget: const Icon(Icons.lock),
             textController: confirmPasswordController,
             isPasswordInput: true,
             hintTextInputText: 'Confirm your password',
@@ -93,26 +88,25 @@ class SignUpFormWidget extends ConsumerWidget {
                 return 'Please confirm your password';
               }
               if (value != passwordController.text) {
-                return 'Password do not match';
+                return 'Passwords do not match';
               }
               return null;
             },
           ),
-          if (authenticationState.hasError)
+
+          if (error != null)
             Padding(
               padding: EdgeInsets.only(bottom: context.paddingValues.large),
               child: Text(
-                authenticationState.error.toString(),
-                style: const TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                ),
+                error.toString(),
+                style: const TextStyle(color: Colors.red, fontSize: 14),
               ),
             ),
           AuthenticationButtonWidget(
             buttonText: 'Sign Up',
             onPressCallback: onSignUp,
-            isButtonLoading: authenticationState.isLoading,
+
+            isButtonLoading: isButtonLoading,
           ),
         ],
       ),

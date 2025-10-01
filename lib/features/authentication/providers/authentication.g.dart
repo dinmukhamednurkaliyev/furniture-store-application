@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'authentication_notifier.dart';
+part of 'authentication.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,12 +9,12 @@ part of 'authentication_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(AuthenticationNotifier)
-const authenticationProvider = AuthenticationNotifierProvider._();
+@ProviderFor(Authentication)
+const authenticationProvider = AuthenticationProvider._();
 
-final class AuthenticationNotifierProvider
-    extends $AsyncNotifierProvider<AuthenticationNotifier, UserEntity?> {
-  const AuthenticationNotifierProvider._()
+final class AuthenticationProvider
+    extends $AsyncNotifierProvider<Authentication, UserEntity?> {
+  const AuthenticationProvider._()
     : super(
         from: null,
         argument: null,
@@ -26,17 +26,16 @@ final class AuthenticationNotifierProvider
       );
 
   @override
-  String debugGetCreateSourceHash() => _$authenticationNotifierHash();
+  String debugGetCreateSourceHash() => _$authenticationHash();
 
   @$internal
   @override
-  AuthenticationNotifier create() => AuthenticationNotifier();
+  Authentication create() => Authentication();
 }
 
-String _$authenticationNotifierHash() =>
-    r'28fb2dc198ac84c69d814f6c9acba28bfb7afc8f';
+String _$authenticationHash() => r'659934a1f49d69710436bdd10615aceca6a90fd3';
 
-abstract class _$AuthenticationNotifier extends $AsyncNotifier<UserEntity?> {
+abstract class _$Authentication extends $AsyncNotifier<UserEntity?> {
   FutureOr<UserEntity?> build();
   @$mustCallSuper
   @override

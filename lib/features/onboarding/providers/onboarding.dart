@@ -1,10 +1,10 @@
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'onboarding_notifier.g.dart';
+part 'onboarding.g.dart';
 
 @riverpod
-class OnboardingAction extends _$OnboardingAction {
+class Onboarding extends _$Onboarding {
   @override
   Future<void> build() async {}
 

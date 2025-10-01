@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
@@ -20,28 +22,45 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
     super.dispose();
   }
 
-  Future<void> _onResetPassword() async {
+  void _onResetPassword() {
     if (_formKey.currentState?.validate() ?? false) {
-      await ref
-          .read(authenticationNotifierProvider.notifier)
-          .resetPassword(_emailController.text);
+      unawaited(
+        ref
+            .read(forgotPasswordProvider.notifier)
+            .resetPassword(_emailController.text),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(authenticationNotifierProvider, (previous, next) {
-      if (!next.hasError && !next.isLoading && (previous?.isLoading ?? false)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'If an account with this email exists, a password reset link has been sent.',
+    ref.listen(forgotPasswordProvider, (previous, next) {
+      next.whenOrNull(
+        data: (_) {
+          if (previous is AsyncLoading) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'If an account with this email exists, a password reset link has been sent.',
+                ),
+                backgroundColor: Colors.green,
+              ),
+            );
+          }
+        },
+        error: (error, stackTrace) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(error.toString()),
+              backgroundColor: Colors.red,
             ),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
+          );
+        },
+      );
     });
+
+    final forgotPasswordState = ref.watch(forgotPasswordProvider);
+
     return Scaffold(
       body: SafeArea(
         child: LayoutBuilder(
@@ -61,10 +80,14 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                       spacing: context.spacingValues.xlarge,
                       children: [
                         const ForgotPasswordHeaderWidget(),
+
                         ForgotPasswordFormWidget(
                           emailController: _emailController,
                           formKey: _formKey,
                           onResetPassword: _onResetPassword,
+
+                          isButtonLoading: forgotPasswordState.isLoading,
+                          error: forgotPasswordState.error,
                         ),
                         const ForgotPasswordFooterWidget(),
                       ],

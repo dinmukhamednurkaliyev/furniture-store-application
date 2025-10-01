@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
@@ -29,25 +31,39 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
 
   void _onSignUp() {
     if (_formKey.currentState?.validate() ?? false) {
-      ref
-          .read(authenticationNotifierProvider.notifier)
-          .signUp(
-            _nameController.text,
-            _emailController.text,
-            _passwordController.text,
-          );
+      unawaited(
+        ref
+            .read(authenticationProvider.notifier)
+            .signUp(
+              _nameController.text,
+              _emailController.text,
+              _passwordController.text,
+            ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(authenticationNotifierProvider, (previous, next) {
-      next.whenData((user) {
-        if (user != null) {
-          HomeRoute.go(context);
-        }
-      });
+    ref.listen(authenticationProvider, (previous, next) {
+      next.whenOrNull(
+        data: (user) {
+          if (user != null && previous is AsyncLoading) {
+            HomeRoute.go(context);
+          }
+        },
+        error: (error, stackTrace) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(error.toString()),
+              backgroundColor: Colors.red,
+            ),
+          );
+        },
+      );
     });
+
+    final authenticationState = ref.watch(authenticationProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -75,6 +91,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           passwordController: _passwordController,
                           confirmPasswordController: _confirmPasswordController,
                           onSignUp: _onSignUp,
+                          isButtonLoading: authenticationState.isLoading,
                         ),
                         const SignUpFooterWidget(),
                       ],

@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 
-class ForgotPasswordFormWidget extends ConsumerWidget {
+class ForgotPasswordFormWidget extends StatelessWidget {
   const ForgotPasswordFormWidget({
     required this.onResetPassword,
     required this.emailController,
     required this.formKey,
+    required this.isButtonLoading,
+    this.error,
     super.key,
   });
 
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final VoidCallback onResetPassword;
+  final bool isButtonLoading;
+  final Object? error;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authenticationState = ref.watch(authenticationNotifierProvider);
+  Widget build(BuildContext context) {
     return Form(
       key: formKey,
       child: Column(
@@ -39,11 +41,11 @@ class ForgotPasswordFormWidget extends ConsumerWidget {
               return null;
             },
           ),
-          if (authenticationState.hasError)
+          if (error != null)
             Padding(
               padding: EdgeInsets.only(bottom: context.paddingValues.large),
               child: Text(
-                authenticationState.error.toString(),
+                error.toString(),
                 style: const TextStyle(
                   color: Colors.red,
                   fontSize: 14,
@@ -53,7 +55,7 @@ class ForgotPasswordFormWidget extends ConsumerWidget {
           AuthenticationButtonWidget(
             buttonText: 'Reset Password',
             onPressCallback: onResetPassword,
-            isButtonLoading: authenticationState.isLoading,
+            isButtonLoading: isButtonLoading,
           ),
         ],
       ),
