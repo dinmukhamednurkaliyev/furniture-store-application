@@ -2,19 +2,16 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/authentication/authentication.dart';
-import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
-class SplashPage extends ConsumerStatefulWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
-  ConsumerState<SplashPage> createState() => _SplashPageState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends ConsumerState<SplashPage>
+class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   static const _animationDuration = Duration(milliseconds: 1500);
 
@@ -42,30 +39,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
       end: Offset.zero,
     ).animate(curvedAnimation);
 
-    _animationController.forward();
-    _checkStatusAndNavigate();
-  }
-
-  Future<void> _checkStatusAndNavigate() async {
-    await Future<void>.delayed(_animationDuration);
-
-    final getOnboardingStatus = await ref.read(
-      getOnboardingStatusUsecaseProvider.future,
-    );
-    final onboardingResult = await getOnboardingStatus();
-
-    if (!mounted) return;
-
-    final hasSeenOnboarding = onboardingResult.when(
-      success: (status) => status,
-      error: (_) => false,
-    );
-
-    if (hasSeenOnboarding) {
-      SignInRoute.go(context);
-    } else {
-      OnboardingRoute.go(context);
-    }
+    unawaited(_animationController.forward());
   }
 
   @override
