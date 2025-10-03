@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/application/application.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 
-class SpecialOffersWidget extends ConsumerStatefulWidget {
-  const SpecialOffersWidget({super.key});
+class SpecialOffersWidget extends StatefulWidget {
+  const SpecialOffersWidget({
+    required this.offers,
+    super.key,
+  });
+
+  final List<FeaturedOfferDisplayEntity> offers;
 
   @override
-  ConsumerState<SpecialOffersWidget> createState() =>
-      _SpecialOffersWidgetState();
+  State<SpecialOffersWidget> createState() => _SpecialOffersWidgetState();
 }
 
-class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
+class _SpecialOffersWidgetState extends State<SpecialOffersWidget> {
   final _pageController = PageController();
 
   @override
@@ -24,54 +26,40 @@ class _SpecialOffersWidgetState extends ConsumerState<SpecialOffersWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final featuredOffersState = ref.watch(featuredOffersProvider);
+    if (widget.offers.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
-    return featuredOffersState.when(
-      data: (offers) {
-        if (offers.isEmpty) {
-          return const SizedBox.shrink();
-        }
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: context.spacingValues.large,
-          children: [
-            Text(
-              'Special Offers',
-              style: context.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: context.spacingValues.large,
+      children: [
+        SizedBox(
+          height: 210,
+          child: PageView.builder(
+            controller: _pageController,
+            itemCount: widget.offers.length,
+            itemBuilder: (context, index) {
+              final displayOffer = widget.offers[index];
+              return _OfferCard(displayOffer: displayOffer);
+            },
+          ),
+        ),
+        if (widget.offers.length > 1)
+          Center(
+            child: _PageIndicators(
+              controller: _pageController,
+              itemCount: widget.offers.length,
+              onIndicatorTapped: (index) {
+                _pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                );
+              },
             ),
-            SizedBox(
-              height: 210,
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: offers.length,
-                itemBuilder: (context, index) {
-                  final displayOffer = offers[index];
-                  return _OfferCard(displayOffer: displayOffer);
-                },
-              ),
-            ),
-            if (offers.length > 1)
-              Center(
-                child: _PageIndicators(
-                  controller: _pageController,
-                  itemCount: offers.length,
-                  onIndicatorTapped: (index) {
-                    _pageController.animateToPage(
-                      index,
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                ),
-              ),
-          ],
-        );
-      },
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stack) => Center(child: Text('Error: $error')),
+          ),
+      ],
     );
   }
 }
@@ -91,9 +79,7 @@ class _OfferCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       elevation: 2,
       child: InkWell(
-        onTap: () {
-          // TODO: Navigate to product page
-        },
+        onTap: () {},
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -134,7 +120,6 @@ class _OfferDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // Tag from _OfferTag
             Container(
               padding: EdgeInsets.symmetric(
                 horizontal: context.paddingValues.large,
@@ -152,7 +137,7 @@ class _OfferDetails extends StatelessWidget {
                 ),
               ),
             ),
-            // Content from _OfferContent
+
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -176,11 +161,9 @@ class _OfferDetails extends StatelessWidget {
                 ),
               ],
             ),
-            // Button
+
             ElevatedButton(
-              onPressed: () {
-                // TODO: Navigate to product page or offer page
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: context.onPrimaryColor,
                 foregroundColor: context.primaryColor,

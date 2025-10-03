@@ -11,16 +11,18 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authenticationProvider);
-    final productState = ref.watch(productProvider);
+    final authenticationState = ref.watch(authenticationProvider);
+
+    final homeDataState = ref.watch(homePageDataProvider);
 
     return Scaffold(
       body: SafeArea(
-        child: productState.when(
+        child: homeDataState.when(
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stack) => Center(child: Text('Error: $error')),
-          data: (productData) {
-            final user = authState.value;
+          data: (homeData) {
+            final user = authenticationState.value;
+            final productData = homeData.productState;
 
             return CustomScrollView(
               slivers: [
@@ -28,7 +30,7 @@ class HomePage extends ConsumerWidget {
                   padding: context.paddingValues.allLarge,
                   sliver: SliverToBoxAdapter(
                     child: Column(
-                      spacing: 20,
+                      spacing: context.spacingValues.medium,
                       children: [
                         HomeHeaderWidget(
                           displayName: user?.name ?? 'Guest',
@@ -36,10 +38,11 @@ class HomePage extends ConsumerWidget {
                           onTap: () => ProfileRoute.push(context),
                         ),
                         HomeSearchBarWidget(onTap: () {}),
-
                         HomeBodyWidget(
                           categories: productData.categories,
                           selectedCategory: productData.selectedCategory,
+                          featuredOffers: homeData.featuredOffers,
+                          featuredProducts: homeData.featuredProducts,
                           onCategorySelected: (category) {
                             ref
                                 .read(productProvider.notifier)

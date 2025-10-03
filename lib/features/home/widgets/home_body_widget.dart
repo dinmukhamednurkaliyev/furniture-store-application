@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/home/home.dart';
+import 'package:furniture_store_application/features/product/product.dart';
+import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 
 class HomeBodyWidget extends StatelessWidget {
   const HomeBodyWidget({
     required this.categories,
     required this.onCategorySelected,
+    required this.featuredOffers,
+    required this.featuredProducts,
     this.selectedCategory,
     super.key,
   });
@@ -13,6 +17,8 @@ class HomeBodyWidget extends StatelessWidget {
   final List<String> categories;
   final String? selectedCategory;
   final ValueChanged<String> onCategorySelected;
+  final List<FeaturedOfferDisplayEntity> featuredOffers;
+  final List<FurnitureEntity> featuredProducts;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,8 @@ class HomeBodyWidget extends StatelessWidget {
           selectedCategory: selectedCategory,
           onCategorySelected: onCategorySelected,
         ),
-        const SpecialOffersWidget(),
+        SpecialOffersWidget(offers: featuredOffers),
+        FeaturedItemsWidget(featuredProducts: featuredProducts),
       ],
     );
   }
@@ -51,7 +58,7 @@ class _CategoryFilter extends StatelessWidget {
           padding: EdgeInsets.only(bottom: context.paddingValues.large),
           child: Text(
             'Categories',
-            style: context.textTheme.titleMedium?.copyWith(
+            style: context.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
