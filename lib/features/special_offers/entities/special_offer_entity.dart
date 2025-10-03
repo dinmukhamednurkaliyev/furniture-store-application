@@ -1,31 +1,27 @@
-import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 
-@immutable
-class SpecialOfferEntity {
-  const SpecialOfferEntity({
-    required this.name,
-    required this.id,
-    required this.discountPercentage,
-    required this.description,
-    required this.startDate,
-    required this.endDate,
-    this.applicableCategories,
-    this.applicableProductId,
-    this.minimumPurchaseAmount,
-    this.isActive = true,
-  });
+part 'special_offer_entity.freezed.dart';
+part 'special_offer_entity.g.dart';
 
-  final String id;
-  final String name;
-  final String description;
-  final double discountPercentage;
-  final DateTime startDate;
-  final DateTime endDate;
-  final List<String>? applicableCategories;
-  final List<String>? applicableProductId;
-  final double? minimumPurchaseAmount;
-  final bool isActive;
+@freezed
+abstract class SpecialOfferEntity with _$SpecialOfferEntity {
+  const factory SpecialOfferEntity({
+    required String id,
+    required String name,
+    required String description,
+    required double discountPercentage,
+    required DateTime startDate,
+    required DateTime endDate,
+    List<String>? applicableCategories,
+    List<String>? applicableProductId,
+    double? minimumPurchaseAmount,
+    @Default(true) bool isActive,
+  }) = _SpecialOfferEntity;
+
+  factory SpecialOfferEntity.fromJson(Map<String, dynamic> json) =>
+      _$SpecialOfferEntityFromJson(json);
+  const SpecialOfferEntity._();
 
   bool isApplicableToProduct(FurnitureEntity product) {
     if (!isActive) {
@@ -56,43 +52,4 @@ class SpecialOfferEntity {
 
     return isGenerallyApplicable || appliesToProduct || appliesToCategory;
   }
-
-  SpecialOfferEntity copyWith({
-    String? id,
-    String? title,
-    String? description,
-    double? discountPercentage,
-    DateTime? startDate,
-    DateTime? endDate,
-    List<String>? applicableCategories,
-    List<String>? applicableProductId,
-    double? minimumPurchaseAmount,
-    bool? isActive,
-  }) {
-    return SpecialOfferEntity(
-      id: id ?? this.id,
-      name: title ?? name,
-      description: description ?? this.description,
-      discountPercentage: discountPercentage ?? this.discountPercentage,
-      startDate: startDate ?? this.startDate,
-      endDate: endDate ?? this.endDate,
-      applicableCategories: applicableCategories ?? this.applicableCategories,
-      applicableProductId: applicableProductId ?? this.applicableProductId,
-      minimumPurchaseAmount:
-          minimumPurchaseAmount ?? this.minimumPurchaseAmount,
-      isActive: isActive ?? this.isActive,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is SpecialOfferEntity &&
-        other.id == id &&
-        other.discountPercentage == discountPercentage;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ discountPercentage.hashCode;
 }

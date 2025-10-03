@@ -1,3 +1,4 @@
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

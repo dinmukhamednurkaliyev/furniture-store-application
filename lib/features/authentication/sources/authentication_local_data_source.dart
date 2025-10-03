@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,10 +19,7 @@ class AuthenticationLocalDataSourceImplementation
   final SharedPreferences _sharedPreferences;
 
   static const String _isSignInKey = 'is_sign_in';
-  static const String _userEmailKey = 'user_email';
-  static const String _userNameKey = 'user_name';
-  static const String _userPhoneKey = 'user_phone';
-  static const String _userProfileImageKey = 'user_profile_image';
+  static const String _userKey = 'user_entity';
 
   @override
   Future<bool> getSignInStatus() async {
@@ -43,16 +42,13 @@ class AuthenticationLocalDataSourceImplementation
   @override
   Future<UserEntity> getUser() async {
     try {
-      final email = _sharedPreferences.getString(_userEmailKey);
-      final name = _sharedPreferences.getString(_userNameKey);
-      final phone = _sharedPreferences.getString(_userPhoneKey);
-      final profileImage = _sharedPreferences.getString(_userProfileImageKey);
-      return UserEntity(
-        email: email,
-        name: name,
-        phone: phone,
-        profileImage: profileImage,
-      );
+      final jsonString = _sharedPreferences.getString(_userKey);
+      if (jsonString != null) {
+        return UserEntity.fromJson(
+          json.decode(jsonString) as Map<String, dynamic>,
+        );
+      }
+      return const UserEntity(email: null, name: null);
     } catch (e) {
       throw CacheException(message: 'Error getting user: $e');
     }
@@ -61,26 +57,9 @@ class AuthenticationLocalDataSourceImplementation
   @override
   Future<UserEntity> setUser({required UserEntity user}) async {
     try {
-      if (user.email != null) {
-        await _sharedPreferences.setString(_userEmailKey, user.email!);
-      }
-      if (user.name != null) {
-        await _sharedPreferences.setString(_userNameKey, user.name!);
-      }
-      if (user.phone != null) {
-        await _sharedPreferences.setString(_userPhoneKey, user.phone!);
-      } else {
-        await _sharedPreferences.remove(_userPhoneKey);
-      }
-      if (user.profileImage != null) {
-        await _sharedPreferences.setString(
-          _userProfileImageKey,
-          user.profileImage!,
-        );
-      } else {
-        await _sharedPreferences.remove(_userProfileImageKey);
-      }
-      return getUser();
+      final jsonString = json.encode(user.toJson());
+      await _sharedPreferences.setString(_userKey, jsonString);
+      return user;
     } catch (e) {
       throw CacheException(message: 'Error setting user: $e');
     }
@@ -89,8 +68,8 @@ class AuthenticationLocalDataSourceImplementation
   @override
   Future<void> resetPassword({required String email}) async {
     try {
-      final storedEmail = _sharedPreferences.getString(_userEmailKey);
-      if (storedEmail != email) {
+      final user = await getUser();
+      if (user.email != email) {
         return;
       }
     } catch (e) {

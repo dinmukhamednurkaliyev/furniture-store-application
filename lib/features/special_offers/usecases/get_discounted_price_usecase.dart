@@ -12,12 +12,15 @@ class GetDiscountedPriceUsecase {
   }) async {
     final bestOfferResult = await _getBestOfferUsecase(product: product);
 
-    return bestOfferResult.map((bestOffer) {
-      if (bestOffer == null) {
-        return product.price;
-      }
-      final discount = product.price * bestOffer.discountPercentage / 100;
-      return product.price - discount;
-    });
+    return bestOfferResult.when(
+      success: (bestOffer) {
+        if (bestOffer == null) {
+          return Result.success(product.price);
+        }
+        final discount = product.price * bestOffer.discountPercentage / 100;
+        return Result.success(product.price - discount);
+      },
+      error: (failure) => Result.error(failure),
+    );
   }
 }

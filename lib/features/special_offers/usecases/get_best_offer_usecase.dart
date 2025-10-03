@@ -12,16 +12,20 @@ class GetBestOfferUsecase {
       product: product,
     );
 
-    return applicableOfferResult.map((offers) {
-      if (offers.isEmpty) {
-        return null;
-      }
+    return applicableOfferResult.when(
+      success: (offers) {
+        if (offers.isEmpty) {
+          return const Result.success(null);
+        }
 
-      return offers.reduce((current, next) {
-        return current.discountPercentage > next.discountPercentage
-            ? current
-            : next;
-      });
-    });
+        final bestOffer = offers.reduce((current, next) {
+          return current.discountPercentage > next.discountPercentage
+              ? current
+              : next;
+        });
+        return Result.success(bestOffer);
+      },
+      error: (failure) => Result.error(failure),
+    );
   }
 }

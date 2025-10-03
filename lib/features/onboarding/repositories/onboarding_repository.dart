@@ -41,6 +41,6 @@ class OnboardingRepositoryImplementation implements OnboardingRepository {
         imagePath: 'assets/images/onboarding3.png',
       ),
     ];
-    return const Success(items);
+    return const Result.success(items);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/features.dart';
 
 class SpecialOfferNotifier extends AsyncNotifier<SpecialOfferState> {
@@ -40,4 +41,3 @@ class SpecialOfferNotifier extends AsyncNotifier<SpecialOfferState> {
     });
   }
 }
-

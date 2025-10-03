@@ -1,14 +1,12 @@
-import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-class OnboardingItemEntity {
-  const OnboardingItemEntity({
-    required this.title,
-    required this.description,
-    required this.imagePath,
-  });
+part 'onboarding_item_entity.freezed.dart';
 
-  final String title;
-  final String description;
-  final String imagePath;
+@freezed
+abstract class OnboardingItemEntity with _$OnboardingItemEntity {
+  const factory OnboardingItemEntity({
+    required String title,
+    required String description,
+    required String imagePath,
+  }) = _OnboardingItemEntity;
 }

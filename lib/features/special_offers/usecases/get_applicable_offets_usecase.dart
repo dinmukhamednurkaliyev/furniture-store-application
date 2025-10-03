@@ -10,19 +10,21 @@ class GetApplicableOffersUsecase {
     required FurnitureEntity product,
   }) async {
     if (product.specialOfferIds.isEmpty) {
-      return const Success([]);
+      return const Result.success([]);
     }
 
     final offersResult = await _repository.getOffersByIds(
       product.specialOfferIds,
     );
 
-    return offersResult.map((offers) {
-      final applicableOffers = offers.where((offer) {
-        return offer.isApplicableToProduct(product);
-      }).toList();
-
-      return applicableOffers;
-    });
+    return offersResult.when(
+      success: (offers) {
+        final applicableOffers = offers.where((offer) {
+          return offer.isApplicableToProduct(product);
+        }).toList();
+        return Result.success(applicableOffers);
+      },
+      error: (failure) => Result.error(failure),
+    );
   }
 }
