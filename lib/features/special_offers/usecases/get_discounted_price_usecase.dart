@@ -20,7 +20,7 @@ class GetDiscountedPriceUsecase {
         final discount = product.price * bestOffer.discountPercentage / 100;
         return Result.success(product.price - discount);
       },
-      error: (failure) => Result.error(failure),
+      error: Result.error,
     );
   }
 }

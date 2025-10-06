@@ -25,7 +25,7 @@ class GetBestOfferUsecase {
         });
         return Result.success(bestOffer);
       },
-      error: (failure) => Result.error(failure),
+      error: Result.error,
     );
   }
 }

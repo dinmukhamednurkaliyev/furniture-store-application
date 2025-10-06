@@ -24,7 +24,7 @@ class GetApplicableOffersUsecase {
         }).toList();
         return Result.success(applicableOffers);
       },
-      error: (failure) => Result.error(failure),
+      error: Result.error,
     );
   }
 }

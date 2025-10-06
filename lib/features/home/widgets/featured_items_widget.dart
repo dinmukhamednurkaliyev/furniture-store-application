@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/home/home.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 
 class FeaturedItemsWidget extends StatelessWidget {
@@ -13,7 +14,6 @@ class FeaturedItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: context.spacingValues.medium,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
@@ -31,17 +31,12 @@ class FeaturedItemsWidget extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {},
-                style: TextButton.styleFrom(
-                  foregroundColor: context.primaryColor,
-                  textStyle: context.textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
                 child: const Text('View all'),
               ),
             ],
           ),
         ),
+        SizedBox(height: context.spacingValues.medium),
         if (featuredProducts.isEmpty)
           const SizedBox(
             height: 100,
@@ -57,74 +52,26 @@ class FeaturedItemsWidget extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: featuredProducts.length,
               itemBuilder: (context, index) {
-                final item = featuredProducts[index];
-                return _ProductCard(product: item);
+                final product = featuredProducts[index];
+                return SizedBox(
+                  width: 180,
+                  child: AnimatedListItemWidget(
+                    index: index,
+                    child: Hero(
+                      tag: 'featured_${product.id}',
+                      child: ProductCard(
+                        product: product,
+                        onTap: () {},
+                      ),
+                    ),
+                  ),
+                );
               },
-
               separatorBuilder: (context, index) =>
                   SizedBox(width: context.paddingValues.medium),
             ),
           ),
       ],
-    );
-  }
-}
-
-class _ProductCard extends StatelessWidget {
-  const _ProductCard({required this.product});
-
-  final FurnitureEntity product;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 180,
-
-      child: Card.filled(
-        color: context.colorScheme.surface,
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 180,
-              width: double.infinity,
-              child: Padding(
-                padding: context.paddingValues.allSmall,
-
-                child: Image.asset(
-                  product.imageUrl,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            Padding(
-              padding: context.paddingValues.allMedium,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.name,
-                    style: context.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  context.spacingValues.verticalSmall,
-                  Text(
-                    '\$${product.price.toStringAsFixed(0)}',
-                    style: context.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: context.primaryColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
