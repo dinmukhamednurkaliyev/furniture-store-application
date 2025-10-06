@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/product/product.dart';
@@ -51,10 +53,12 @@ class _SpecialOffersWidgetState extends State<SpecialOffersWidget> {
               controller: _pageController,
               itemCount: widget.offers.length,
               onIndicatorTapped: (index) {
-                _pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeInOut,
+                unawaited(
+                  _pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeInOut,
+                  ),
                 );
               },
             ),

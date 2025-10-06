@@ -13,8 +13,8 @@ class FeaturedItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       spacing: context.spacingValues.medium,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
@@ -50,14 +50,19 @@ class FeaturedItemsWidget extends StatelessWidget {
         else
           SizedBox(
             height: 280,
-            child: ListView.builder(
-              padding: EdgeInsets.only(left: context.paddingValues.large),
+            child: ListView.separated(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.paddingValues.large,
+              ),
               scrollDirection: Axis.horizontal,
               itemCount: featuredProducts.length,
               itemBuilder: (context, index) {
                 final item = featuredProducts[index];
                 return _ProductCard(product: item);
               },
+
+              separatorBuilder: (context, index) =>
+                  SizedBox(width: context.paddingValues.medium),
             ),
           ),
       ],
@@ -74,28 +79,22 @@ class _ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 180,
-      child: Card(
-        margin: EdgeInsets.only(right: context.paddingValues.medium),
+
+      child: Card.filled(
+        color: context.colorScheme.surface,
         clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: context.radiusValues.circularLarge,
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 180,
               width: double.infinity,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: context.colorScheme.surfaceContainerHighest,
-                ),
-                child: Padding(
-                  padding: context.paddingValues.allSmall,
-                  child: Image.asset(
-                    product.imageUrl,
-                    fit: BoxFit.contain,
-                  ),
+              child: Padding(
+                padding: context.paddingValues.allSmall,
+
+                child: Image.asset(
+                  product.imageUrl,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
