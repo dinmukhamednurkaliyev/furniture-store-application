@@ -20,6 +20,19 @@ class OnboardingPageContent extends StatelessWidget {
     );
   }
 
+  Widget _buildImage(BuildContext context, {required double height}) {
+    return item.image.when(
+      local: (asset) => asset.image(
+        height: height,
+        fit: BoxFit.contain,
+      ),
+
+      remote: (url) {
+        return const Icon(Icons.error, color: Colors.red);
+      },
+    );
+  }
+
   Widget _buildNarrowLayout(BuildContext context) {
     final screenHeight = context.screenHeight;
     return Padding(
@@ -27,7 +40,7 @@ class OnboardingPageContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(item.imagePath, height: screenHeight * 0.4),
+          _buildImage(context, height: screenHeight * 0.4),
           context.spacingValues.verticalXXXLarge,
           _TextContent(title: item.title, description: item.description),
         ],
@@ -44,10 +57,8 @@ class OnboardingPageContent extends StatelessWidget {
         children: [
           Expanded(
             flex: 2,
-            child: Image.asset(
-              item.imagePath,
-              height: screenHeight * 0.6,
-            ),
+
+            child: _buildImage(context, height: screenHeight * 0.6),
           ),
           context.spacingValues.horizontalXXXLarge,
           Expanded(

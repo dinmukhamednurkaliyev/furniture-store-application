@@ -8,14 +8,16 @@ class ApplicationRootWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const title = 'Furniture Store';
-    final router = ref.watch(routerProvider);
+    final routerConfig = ref.watch(routerProvider);
+    final theme = ApplicationThemes.light.themeData;
+    final darkTheme = ApplicationThemes.dark.themeData;
 
     return MaterialApp.router(
       title: title,
       debugShowCheckedModeBanner: false,
-      theme: ApplicationThemes.light.themeData,
-      darkTheme: ApplicationThemes.dark.themeData,
-      routerConfig: router,
+      theme: theme,
+      darkTheme: darkTheme,
+      routerConfig: routerConfig,
     );
   }
 }

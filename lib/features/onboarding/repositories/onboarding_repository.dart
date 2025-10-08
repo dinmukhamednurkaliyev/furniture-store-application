@@ -1,3 +1,4 @@
+import 'package:furniture_store_application/.generated/assets.gen.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
@@ -23,24 +24,24 @@ class OnboardingRepositoryImplementation implements OnboardingRepository {
 
   @override
   Future<Result<List<OnboardingItemEntity>>> getOnboardingItems() async {
-    const items = [
+    final items = [
       OnboardingItemEntity(
         title: 'Welcome to Furniture Store',
         description: 'Discover the best furniture for your home.',
-        imagePath: 'assets/images/onboarding1.png',
+        image: ImageEntity.local(Assets.images.onboarding1),
       ),
       OnboardingItemEntity(
         title: 'Quality Products',
         description: 'We offer high-quality furniture at affordable prices.',
-        imagePath: 'assets/images/onboarding2.png',
+        image: ImageEntity.local(Assets.images.onboarding2),
       ),
       OnboardingItemEntity(
         title: 'Easy Shopping',
         description:
             'Shop from the comfort of your home with our easy-to-use app.',
-        imagePath: 'assets/images/onboarding3.png',
+        image: ImageEntity.local(Assets.images.onboarding3),
       ),
     ];
-    return const Result.success(items);
+    return Result.success(items);
   }
 }

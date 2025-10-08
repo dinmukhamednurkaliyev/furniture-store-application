@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_application/.generated/assets.gen.dart';
 import 'package:furniture_store_application/core/core.dart';
 
 class AuthenticationSocialButtonWidget extends StatelessWidget {
   const AuthenticationSocialButtonWidget({
-    required this.iconAssetPath,
+    required this.icon,
     required this.onPressCallback,
     required this.buttonText,
     super.key,
   });
+
   final String buttonText;
-  final String iconAssetPath;
+  final AssetGenImage icon;
   final VoidCallback onPressCallback;
 
   @override
@@ -47,8 +49,7 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: context.spacingValues.medium,
         children: [
-          Image.asset(
-            iconAssetPath,
+          icon.image(
             height: context.spacingValues.xxlarge,
             width: context.spacingValues.xxlarge,
           ),
