@@ -9,15 +9,19 @@ class ApplicationRootWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const title = 'Furniture Store';
     final routerConfig = ref.watch(routerProvider);
-    final theme = ApplicationThemes.light.themeData;
-    final darkTheme = ApplicationThemes.dark.themeData;
+    final themeModeAsync = ref.watch(themeModeSelectionProvider);
 
-    return MaterialApp.router(
-      title: title,
-      debugShowCheckedModeBanner: false,
-      theme: theme,
-      darkTheme: darkTheme,
-      routerConfig: routerConfig,
+    return themeModeAsync.when(
+      data: (themeMode) => MaterialApp.router(
+        title: title,
+        debugShowCheckedModeBanner: false,
+        theme: ApplicationThemes.light.themeData,
+        darkTheme: ApplicationThemes.dark.themeData,
+        themeMode: themeMode,
+        routerConfig: routerConfig,
+      ),
+      loading: () => const CircularProgressIndicator(),
+      error: (error, stack) => Text('Error: $error'),
     );
   }
 }

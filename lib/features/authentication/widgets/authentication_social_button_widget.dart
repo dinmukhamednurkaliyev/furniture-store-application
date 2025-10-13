@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/.generated/assets.gen.dart';
 import 'package:furniture_store_application/core/core.dart';
 
 class AuthenticationSocialButtonWidget extends StatelessWidget {
