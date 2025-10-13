@@ -27,26 +27,35 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: context.paddingValues.allSmall,
-                    child: product.imageUrl.when(
-                      local: (path) => Image.asset(
-                        path,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Center(
-                            child: Icon(Icons.broken_image, color: Colors.grey),
-                          );
-                        },
-                      ),
-                      remote: (url) => Image.network(
-                        url,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Center(
-                            child: Icon(Icons.broken_image, color: Colors.grey),
-                          );
-                        },
+                  child: ColoredBox(
+                    color: Colors.grey.shade200,
+                    child: Padding(
+                      padding: context.paddingValues.allSmall,
+                      child: product.imageUrl.when(
+                        local: (path) => Image.asset(
+                          path,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(
+                                Icons.broken_image,
+                                color: Colors.grey,
+                              ),
+                            );
+                          },
+                        ),
+                        remote: (url) => Image.network(
+                          url,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(
+                                Icons.broken_image,
+                                color: Colors.grey,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -87,8 +96,8 @@ class ProductCard extends StatelessWidget {
             top: 4,
             right: 4,
             child: Container(
-              height: 36,
-              width: 36,
+              height: 30,
+              width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: context.colorScheme.surface,
