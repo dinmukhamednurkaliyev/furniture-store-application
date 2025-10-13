@@ -6,10 +6,12 @@ import 'package:furniture_store_application/features/product/product.dart';
 class FeaturedItemsWidget extends StatelessWidget {
   const FeaturedItemsWidget({
     required this.featuredProducts,
+    required this.onFavoriteToggle,
     super.key,
   });
 
   final List<FurnitureEntity> featuredProducts;
+  final ValueChanged<String> onFavoriteToggle;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +64,7 @@ class FeaturedItemsWidget extends StatelessWidget {
                       child: ProductCard(
                         product: product,
                         onTap: () {},
+                        onFavoritePressed: () => onFavoriteToggle(product.id),
                       ),
                     ),
                   ),

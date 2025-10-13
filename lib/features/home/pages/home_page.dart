@@ -48,6 +48,11 @@ class HomePage extends ConsumerWidget {
                                 .read(productProvider.notifier)
                                 .selectCategory(category);
                           },
+                          onFavoriteToggle: (productId) {
+                            ref
+                                .read(productProvider.notifier)
+                                .toggleFavorite(productId);
+                          },
                         ),
                       ],
                     ),
