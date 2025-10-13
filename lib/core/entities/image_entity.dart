@@ -1,10 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:furniture_store_application/.generated/assets.gen.dart';
 
-part 'application_image.freezed.dart';
+part 'image_entity.freezed.dart';
+part 'image_entity.g.dart';
 
 @freezed
-abstract class ImageEntity with _$ApplicationImage {
-  const factory ImageEntity.local(AssetGenImage asset) = _Local;
+sealed class ImageEntity with _$ImageEntity {
+  const factory ImageEntity.local(String path) = _Local;
   const factory ImageEntity.remote(String url) = _Remote;
+
+  factory ImageEntity.fromJson(Map<String, dynamic> json) =>
+      _$ImageEntityFromJson(json);
 }

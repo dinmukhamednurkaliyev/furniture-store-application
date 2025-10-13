@@ -17,14 +17,14 @@ class SignUpFooterWidget extends StatelessWidget {
           children: [
             Expanded(
               child: AuthenticationSocialButtonWidget(
-                icon: Assets.icons.google,
+                icon: Assets.icons.google.path,
                 onPressCallback: () {},
                 buttonText: 'Google',
               ),
             ),
             Expanded(
               child: AuthenticationSocialButtonWidget(
-                icon: Assets.icons.facebook,
+                icon: Assets.icons.facebook.path,
                 onPressCallback: () {},
                 buttonText: 'Facebook',
               ),

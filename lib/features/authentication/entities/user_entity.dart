@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:furniture_store_application/core/core.dart';
 
 part 'user_entity.freezed.dart';
 part 'user_entity.g.dart';
@@ -10,7 +11,7 @@ abstract class UserEntity with _$UserEntity {
     required String? name,
     String? id,
     String? phone,
-    String? profileImage,
+    ImageEntity? profileImage,
     DateTime? memberSince,
     @Default(true) bool isActive,
   }) = _UserEntity;

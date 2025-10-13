@@ -5,16 +5,23 @@ class HomeHeaderWidget extends StatelessWidget {
   const HomeHeaderWidget({
     required this.displayName,
     required this.onTap,
-    this.profileImageUrl,
+    this.profileImage,
     super.key,
   });
 
   final String displayName;
-  final String? profileImageUrl;
+  final ImageEntity? profileImage;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
+    final imageProvider =
+        profileImage?.when<ImageProvider>(
+          local: AssetImage.new,
+          remote: NetworkImage.new,
+        ) ??
+        const AssetImage('assets/images/profile.png');
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -44,10 +51,7 @@ class HomeHeaderWidget extends StatelessWidget {
           ),
           child: CircleAvatar(
             radius: context.spacingValues.xxlarge,
-            backgroundImage: profileImageUrl != null
-                ? NetworkImage(profileImageUrl!)
-                : const AssetImage('assets/images/profile.png')
-                      as ImageProvider,
+            backgroundImage: imageProvider,
           ),
         ),
       ],

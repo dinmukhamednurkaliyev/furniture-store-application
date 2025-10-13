@@ -1,8 +1,11 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/features.dart';
 
-class SpecialOfferNotifier extends AsyncNotifier<SpecialOfferState> {
+part 'special_offer_notifier.g.dart';
+
+@riverpod
+class SpecialOfferNotifier extends _$SpecialOfferNotifier {
   @override
   Future<SpecialOfferState> build() async {
     return const SpecialOfferState();

@@ -11,9 +11,9 @@ abstract interface class ProductLocalDataSource {
 
 class ProductLocalDataSourceImplementation implements ProductLocalDataSource {
   ProductLocalDataSourceImplementation()
-    : _products = kMockFurnitureData
-          .map((product) => product.copyWith())
-          .toList();
+      : _products = kMockFurnitureData
+            .map((product) => product.copyWith())
+            .toList();
 
   final List<FurnitureEntity> _products;
 
@@ -32,7 +32,7 @@ class ProductLocalDataSourceImplementation implements ProductLocalDataSource {
     await Future.delayed(_kMediumDelay);
     final product = _products.firstWhere(
       (product) => product.id == id,
-      orElse: () => throw const ServerException(message: 'Product not found'),
+      orElse: () => throw const ApplicationException.serverException(message: 'Product not found'),
     );
     return product;
   }
@@ -46,7 +46,7 @@ class ProductLocalDataSourceImplementation implements ProductLocalDataSource {
     if (index != -1) {
       _products[index] = product;
     } else {
-      throw CacheException(
+      throw ApplicationException.cacheException(
         message: 'Product with id ${product.id} not found for update.',
       );
     }

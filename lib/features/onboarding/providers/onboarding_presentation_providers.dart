@@ -15,6 +15,6 @@ Future<List<OnboardingItemEntity>> onboardingItems(
 
   return result.when(
     success: (items) => items,
-    error: (failure) => throw ApplicationException(message: failure.message),
+    error: (failure) => throw Exception(failure.message),
   );
 }

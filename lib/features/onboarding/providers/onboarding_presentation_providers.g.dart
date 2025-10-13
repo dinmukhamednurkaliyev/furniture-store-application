@@ -48,4 +48,4 @@ final class OnboardingItemsProvider
   }
 }
 
-String _$onboardingItemsHash() => r'e7891f98d1f9367fc362bb9a633fbfe515741263';
+String _$onboardingItemsHash() => r'347ca97156f5cf72b62e1ee95eb3958ec368de26';

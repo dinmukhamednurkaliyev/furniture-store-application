@@ -32,3 +32,21 @@ Future<ResetPasswordUsecase> resetPasswordUsecase(Ref ref) async {
   final repository = await ref.watch(authenticationRepositoryProvider.future);
   return ResetPasswordUsecase(repository);
 }
+
+@riverpod
+Future<SignInUsecase> signInUsecase(Ref ref) async {
+  final repository = await ref.watch(authenticationRepositoryProvider.future);
+  return SignInUsecase(repository);
+}
+
+@riverpod
+Future<SignUpUsecase> signUpUsecase(Ref ref) async {
+  final repository = await ref.watch(authenticationRepositoryProvider.future);
+  return SignUpUsecase(repository);
+}
+
+@riverpod
+Future<SignOutUsecase> signOutUsecase(Ref ref) async {
+  final repository = await ref.watch(authenticationRepositoryProvider.future);
+  return SignOutUsecase(repository);
+}

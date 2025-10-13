@@ -25,14 +25,25 @@ class ProductCard extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: context.paddingValues.allSmall,
-                child: Image.asset(
-                  product.imageUrl,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Center(
-                      child: Icon(Icons.broken_image, color: Colors.grey),
-                    );
-                  },
+                child: product.imageUrl.when(
+                  local: (path) => Image.asset(
+                    path,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(Icons.broken_image, color: Colors.grey),
+                      );
+                    },
+                  ),
+                  remote: (url) => Image.network(
+                    url,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(Icons.broken_image, color: Colors.grey),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

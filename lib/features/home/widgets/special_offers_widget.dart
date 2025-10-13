@@ -234,10 +234,17 @@ class _ProductImage extends StatelessWidget {
       child: IgnorePointer(
         child: Opacity(
           opacity: 0.8,
-          child: Image.asset(
-            product.imageUrl,
-            height: 180,
-            fit: BoxFit.contain,
+          child: product.imageUrl.when(
+            local: (path) => Image.asset(
+              path,
+              height: 180,
+              fit: BoxFit.contain,
+            ),
+            remote: (url) => Image.network(
+              url,
+              height: 180,
+              fit: BoxFit.contain,
+            ),
           ),
         ),
       ),

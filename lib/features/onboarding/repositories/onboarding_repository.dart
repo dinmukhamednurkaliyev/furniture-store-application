@@ -28,18 +28,18 @@ class OnboardingRepositoryImplementation implements OnboardingRepository {
       OnboardingItemEntity(
         title: 'Welcome to Furniture Store',
         description: 'Discover the best furniture for your home.',
-        image: ImageEntity.local(Assets.images.onboarding1),
+        image: ImageEntity.local(Assets.images.onboarding1.path),
       ),
       OnboardingItemEntity(
         title: 'Quality Products',
         description: 'We offer high-quality furniture at affordable prices.',
-        image: ImageEntity.local(Assets.images.onboarding2),
+        image: ImageEntity.local(Assets.images.onboarding2.path),
       ),
       OnboardingItemEntity(
         title: 'Easy Shopping',
         description:
             'Shop from the comfort of your home with our easy-to-use app.',
-        image: ImageEntity.local(Assets.images.onboarding3),
+        image: ImageEntity.local(Assets.images.onboarding3.path),
       ),
     ];
     return Result.success(items);

@@ -18,7 +18,7 @@ class OnboardingLocalDataSourceImplementation
     try {
       return _sharedPreferences.getBool(_hasSeenOnboardingKey) ?? false;
     } catch (e) {
-      throw CacheException(message: 'Error getting onboarding status: $e');
+      throw ApplicationException.cacheException(message: 'Error getting onboarding status: $e');
     }
   }
 
@@ -27,7 +27,7 @@ class OnboardingLocalDataSourceImplementation
     try {
       await _sharedPreferences.setBool(_hasSeenOnboardingKey, true);
     } catch (e) {
-      throw CacheException(message: 'Error setting onboarding status: $e');
+      throw ApplicationException.cacheException(message: 'Error setting onboarding status: $e');
     }
   }
 }

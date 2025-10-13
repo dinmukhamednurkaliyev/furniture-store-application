@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:furniture_store_application/core/core.dart';
 
 part 'furniture_entity.freezed.dart';
 part 'furniture_entity.g.dart';
@@ -11,8 +12,8 @@ abstract class FurnitureEntity with _$FurnitureEntity {
     required String category,
     required String description,
     required double price,
-    required String imageUrl,
-    required List<String> images,
+    required ImageEntity imageUrl,
+    required List<ImageEntity> images,
     required List<String> colors,
     @Default([]) List<String> specialOfferIds,
     @Default(false) bool isFavorite,

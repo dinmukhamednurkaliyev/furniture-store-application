@@ -22,14 +22,19 @@ class OnboardingPageContent extends StatelessWidget {
 
   Widget _buildImage(BuildContext context, {required double height}) {
     return item.image.when(
-      local: (asset) => asset.image(
+      local: (path) => Image.asset(
+        path,
         height: height,
         fit: BoxFit.contain,
       ),
-
-      remote: (url) {
-        return const Icon(Icons.error, color: Colors.red);
-      },
+      remote: (url) => Image.network(
+        url,
+        height: height,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) {
+          return const Icon(Icons.error, color: Colors.red);
+        },
+      ),
     );
   }
 

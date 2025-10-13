@@ -33,7 +33,7 @@ final class AuthenticationProvider
   Authentication create() => Authentication();
 }
 
-String _$authenticationHash() => r'659934a1f49d69710436bdd10615aceca6a90fd3';
+String _$authenticationHash() => r'23f19b3525c8bba2cdd7f2def343038962988efa';
 
 abstract class _$Authentication extends $AsyncNotifier<UserEntity?> {
   FutureOr<UserEntity?> build();

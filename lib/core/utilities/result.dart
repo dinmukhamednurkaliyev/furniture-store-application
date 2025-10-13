@@ -13,18 +13,19 @@ sealed class Result<T> with _$Result<T> {
   static Result<T> guard<T>(T Function() operation) {
     try {
       return Result.success(operation());
-    } on ServerException catch (e) {
-      return Result.error(
-        ApplicationFailure.serverFailure(
-          message: e.message,
-          statusCode: e.statusCode,
+    } on ApplicationException catch (e) {
+      return e.when(
+        serverException: (message, statusCode) => Result.error(
+          ApplicationFailure.serverFailure(
+            message: message,
+            statusCode: statusCode,
+          ),
         ),
-      );
-    } on CacheException catch (e) {
-      return Result.error(ApplicationFailure.cacheFailure(message: e.message));
-    } on NetworkException catch (e) {
-      return Result.error(
-        ApplicationFailure.networkFailure(message: e.message),
+        cacheException: (message) =>
+            Result.error(ApplicationFailure.cacheFailure(message: message)),
+        networkException: (message) => Result.error(
+          ApplicationFailure.networkFailure(message: message),
+        ),
       );
     } on Exception catch (e) {
       return Result.error(
@@ -36,18 +37,19 @@ sealed class Result<T> with _$Result<T> {
   static Future<Result<T>> guardAsync<T>(Future<T> Function() operation) async {
     try {
       return Result.success(await operation());
-    } on ServerException catch (e) {
-      return Result.error(
-        ApplicationFailure.serverFailure(
-          message: e.message,
-          statusCode: e.statusCode,
+    } on ApplicationException catch (e) {
+      return e.when(
+        serverException: (message, statusCode) => Result.error(
+          ApplicationFailure.serverFailure(
+            message: message,
+            statusCode: statusCode,
+          ),
         ),
-      );
-    } on CacheException catch (e) {
-      return Result.error(ApplicationFailure.cacheFailure(message: e.message));
-    } on NetworkException catch (e) {
-      return Result.error(
-        ApplicationFailure.networkFailure(message: e.message),
+        cacheException: (message) =>
+            Result.error(ApplicationFailure.cacheFailure(message: message)),
+        networkException: (message) => Result.error(
+          ApplicationFailure.networkFailure(message: message),
+        ),
       );
     } on Exception catch (e) {
       return Result.error(

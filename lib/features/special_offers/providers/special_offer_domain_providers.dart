@@ -1,37 +1,40 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 import 'package:furniture_store_application/features/special_offers/special_offers.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final getOffersByIdsUsecaseProvider = Provider<GetOffersByIdsUsecase>((ref) {
+part 'special_offer_domain_providers.g.dart';
+
+@riverpod
+GetOffersByIdsUsecase getOffersByIdsUsecase(Ref ref) {
   final repository = ref.watch(specialOfferRepositoryProvider);
   return GetOffersByIdsUsecase(repository);
-});
+}
 
-final getApplicableOffersUsecaseProvider = Provider<GetApplicableOffersUsecase>(
-  (ref) {
-    final repository = ref.watch(specialOfferRepositoryProvider);
-    return GetApplicableOffersUsecase(repository);
-  },
-);
+@riverpod
+GetApplicableOffersUsecase getApplicableOffersUsecase(
+  Ref ref,
+) {
+  final repository = ref.watch(specialOfferRepositoryProvider);
+  return GetApplicableOffersUsecase(repository);
+}
 
-final getBestOfferUsecaseProvider = Provider<GetBestOfferUsecase>((ref) {
+@riverpod
+GetBestOfferUsecase getBestOfferUsecase(Ref ref) {
   final getApplicableOffersUsecase = ref.watch(
     getApplicableOffersUsecaseProvider,
   );
   return GetBestOfferUsecase(getApplicableOffersUsecase);
-});
+}
 
-final getDiscountedPriceUsecaseProvider = Provider<GetDiscountedPriceUsecase>((
-  ref,
-) {
+@riverpod
+GetDiscountedPriceUsecase getDiscountedPriceUsecase(Ref ref) {
   final getBestOfferUsecase = ref.watch(getBestOfferUsecaseProvider);
   return GetDiscountedPriceUsecase(getBestOfferUsecase);
-});
+}
 
-final getFeaturedOffersUsecaseProvider = Provider<GetFeaturedOffersUsecase>((
-  ref,
-) {
+@riverpod
+GetFeaturedOffersUsecase getFeaturedOffersUsecase(Ref ref) {
   final productRepository = ref.watch(productRepositoryProvider);
   final specialOfferRepository = ref.watch(specialOfferRepositoryProvider);
   return GetFeaturedOffersUsecase(productRepository, specialOfferRepository);
-});
+}

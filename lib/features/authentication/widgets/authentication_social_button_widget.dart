@@ -11,7 +11,7 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
   });
 
   final String buttonText;
-  final AssetGenImage icon;
+  final String icon;
   final VoidCallback onPressCallback;
 
   @override
@@ -49,7 +49,8 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: context.spacingValues.medium,
         children: [
-          icon.image(
+          Image.asset(
+            icon,
             height: context.spacingValues.xxlarge,
             width: context.spacingValues.xxlarge,
           ),

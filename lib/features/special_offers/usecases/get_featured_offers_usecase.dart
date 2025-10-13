@@ -16,8 +16,7 @@ class GetFeaturedOffersUsecase {
       final products = await _productRepository.getFeaturedProducts().then(
         (result) => result.when(
           success: (data) => data,
-          error: (failure) =>
-              throw ApplicationException(message: failure.message),
+          error: (failure) => throw Exception(failure.message),
         ),
       );
 
@@ -38,8 +37,7 @@ class GetFeaturedOffersUsecase {
           .then(
             (result) => result.when(
               success: (data) => data,
-              error: (failure) =>
-                  throw ApplicationException(message: failure.message),
+              error: (failure) => throw Exception(failure.message),
             ),
           );
 

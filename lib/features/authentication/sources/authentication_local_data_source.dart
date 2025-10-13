@@ -26,7 +26,9 @@ class AuthenticationLocalDataSourceImplementation
     try {
       return _sharedPreferences.getBool(_isSignInKey) ?? false;
     } catch (e) {
-      throw CacheException(message: 'Error getting sign-in status: $e');
+      throw ApplicationException.cacheException(
+        message: 'Error getting sign-in status: $e',
+      );
     }
   }
 
@@ -35,7 +37,9 @@ class AuthenticationLocalDataSourceImplementation
     try {
       await _sharedPreferences.setBool(_isSignInKey, status);
     } catch (e) {
-      throw CacheException(message: 'Error setting sign-in status: $e');
+      throw ApplicationException.cacheException(
+        message: 'Error setting sign-in status: $e',
+      );
     }
   }
 
@@ -50,7 +54,9 @@ class AuthenticationLocalDataSourceImplementation
       }
       return const UserEntity(email: null, name: null);
     } catch (e) {
-      throw CacheException(message: 'Error getting user: $e');
+      throw ApplicationException.cacheException(
+        message: 'Error getting user: $e',
+      );
     }
   }
 
@@ -61,7 +67,9 @@ class AuthenticationLocalDataSourceImplementation
       await _sharedPreferences.setString(_userKey, jsonString);
       return user;
     } catch (e) {
-      throw CacheException(message: 'Error setting user: $e');
+      throw ApplicationException.cacheException(
+        message: 'Error setting user: $e',
+      );
     }
   }
 
@@ -73,7 +81,9 @@ class AuthenticationLocalDataSourceImplementation
         return;
       }
     } catch (e) {
-      throw CacheException(message: 'Error resetting password: $e');
+      throw ApplicationException.cacheException(
+        message: 'Error resetting password: $e',
+      );
     }
   }
 }

@@ -8,7 +8,7 @@ part 'authentication.g.dart';
 class Authentication extends _$Authentication {
   @override
   Future<UserEntity?> build() async {
-    final getSignInStatus = await ref.read(
+    final getSignInStatus = await ref.watch(
       getSignInStatusUsecaseProvider.future,
     );
     final getUser = await ref.read(getUserUsecaseProvider.future);
@@ -32,65 +32,37 @@ class Authentication extends _$Authentication {
 
   Future<void> signIn(String email, String password) async {
     state = const AsyncValue.loading();
+    final signInUsecase = await ref.read(signInUsecaseProvider.future);
     state = await AsyncValue.guard(() async {
-      final getUser = await ref.read(getUserUsecaseProvider.future);
-      final setSignInStatus = await ref.read(
-        setSignInStatusUsecaseProvider.future,
-      );
-
-      final userResult = await getUser();
-      final fetchedUser = userResult.when(
+      final result = await signInUsecase(email: email, password: password);
+      return result.when(
         success: (user) => user,
         error: (failure) => throw Exception(failure.toString()),
       );
-
-      if (fetchedUser.email != email) {
-        throw Exception('Incorrect email or password.');
-      }
-
-      final signInResult = await setSignInStatus(status: true);
-      signInResult.when(
-        success: (_) {},
-        error: (failure) => throw Exception(failure.toString()),
-      );
-
-      return fetchedUser;
     });
   }
 
   Future<void> signUp(String name, String email, String password) async {
     state = const AsyncValue.loading();
+    final signUpUsecase = await ref.read(signUpUsecaseProvider.future);
     state = await AsyncValue.guard(() async {
-      final setUser = await ref.read(setUserUsecaseProvider.future);
-      final setSignInStatus = await ref.read(
-        setSignInStatusUsecaseProvider.future,
+      final result = await signUpUsecase(
+        name: name,
+        email: email,
+        password: password,
       );
-
-      final userToSave = UserEntity(email: email, name: name);
-      final userResult = await setUser(user: userToSave);
-
-      final savedUser = userResult.when(
+      return result.when(
         success: (user) => user,
         error: (failure) => throw Exception(failure.toString()),
       );
-
-      final signInResult = await setSignInStatus(status: true);
-      signInResult.when(
-        success: (_) {},
-        error: (failure) => throw Exception(failure.toString()),
-      );
-
-      return savedUser;
     });
   }
 
   Future<void> signOut() async {
     state = const AsyncValue.loading();
+    final signOutUsecase = await ref.read(signOutUsecaseProvider.future);
     state = await AsyncValue.guard(() async {
-      final setSignInStatus = await ref.read(
-        setSignInStatusUsecaseProvider.future,
-      );
-      final result = await setSignInStatus(status: false);
+      final result = await signOutUsecase();
       result.when(
         success: (_) {},
         error: (failure) => throw Exception(failure.toString()),

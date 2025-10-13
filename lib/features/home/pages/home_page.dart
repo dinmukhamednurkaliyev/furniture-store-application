@@ -34,7 +34,7 @@ class HomePage extends ConsumerWidget {
                       children: [
                         HomeHeaderWidget(
                           displayName: user?.name ?? 'Guest',
-                          profileImageUrl: user?.profileImage,
+                          profileImage: user?.profileImage,
                           onTap: () => ProfileRoute.push(context),
                         ),
                         HomeSearchBarWidget(onTap: () {}),

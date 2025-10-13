@@ -1,12 +1,16 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 
-final specialOfferLocalDataSourceProvider =
-    Provider<SpecialOfferLocalDataSource>((ref) {
-      return SpecialOfferLocalDataSourceImplementation();
-    });
+part 'special_offer_data_providers.g.dart';
 
-final specialOfferRepositoryProvider = Provider<SpecialOfferRepository>((ref) {
+@riverpod
+SpecialOfferLocalDataSource specialOfferLocalDataSource(
+    Ref ref) {
+  return SpecialOfferLocalDataSourceImplementation();
+}
+
+@riverpod
+SpecialOfferRepository specialOfferRepository(Ref ref) {
   final localDataSource = ref.watch(specialOfferLocalDataSourceProvider);
   return SpecialOfferRepositoryImplementation(localDataSource);
-});
+}

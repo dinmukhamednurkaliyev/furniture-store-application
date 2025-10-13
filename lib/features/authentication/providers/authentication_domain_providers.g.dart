@@ -212,3 +212,120 @@ final class ResetPasswordUsecaseProvider
 
 String _$resetPasswordUsecaseHash() =>
     r'bbc72c786b7c2deddad5431c961ccc75ca201782';
+
+@ProviderFor(signInUsecase)
+const signInUsecaseProvider = SignInUsecaseProvider._();
+
+final class SignInUsecaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<SignInUsecase>,
+          SignInUsecase,
+          FutureOr<SignInUsecase>
+        >
+    with $FutureModifier<SignInUsecase>, $FutureProvider<SignInUsecase> {
+  const SignInUsecaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'signInUsecaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$signInUsecaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<SignInUsecase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<SignInUsecase> create(Ref ref) {
+    return signInUsecase(ref);
+  }
+}
+
+String _$signInUsecaseHash() => r'd8b84447700859056e1e5da8faffdc5f9b646a2f';
+
+@ProviderFor(signUpUsecase)
+const signUpUsecaseProvider = SignUpUsecaseProvider._();
+
+final class SignUpUsecaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<SignUpUsecase>,
+          SignUpUsecase,
+          FutureOr<SignUpUsecase>
+        >
+    with $FutureModifier<SignUpUsecase>, $FutureProvider<SignUpUsecase> {
+  const SignUpUsecaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'signUpUsecaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$signUpUsecaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<SignUpUsecase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<SignUpUsecase> create(Ref ref) {
+    return signUpUsecase(ref);
+  }
+}
+
+String _$signUpUsecaseHash() => r'8bcdc026117ef91780fe04982797184424c4d902';
+
+@ProviderFor(signOutUsecase)
+const signOutUsecaseProvider = SignOutUsecaseProvider._();
+
+final class SignOutUsecaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<SignOutUsecase>,
+          SignOutUsecase,
+          FutureOr<SignOutUsecase>
+        >
+    with $FutureModifier<SignOutUsecase>, $FutureProvider<SignOutUsecase> {
+  const SignOutUsecaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'signOutUsecaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$signOutUsecaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<SignOutUsecase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<SignOutUsecase> create(Ref ref) {
+    return signOutUsecase(ref);
+  }
+}
+
+String _$signOutUsecaseHash() => r'8b6e20a2a7de1c64d45a5215bb4e2366184638a6';
