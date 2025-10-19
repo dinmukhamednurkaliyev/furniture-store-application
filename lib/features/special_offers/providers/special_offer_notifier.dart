@@ -1,6 +1,6 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/features.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'special_offer_notifier.g.dart';
 

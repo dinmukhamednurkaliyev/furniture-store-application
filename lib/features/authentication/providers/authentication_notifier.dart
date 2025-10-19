@@ -2,10 +2,10 @@ import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'authentication.g.dart';
+part 'authentication_notifier.g.dart';
 
 @riverpod
-class Authentication extends _$Authentication {
+class AuthenticationNotifier extends _$AuthenticationNotifier {
   @override
   Future<UserEntity?> build() async {
     final getSignInStatus = await ref.watch(

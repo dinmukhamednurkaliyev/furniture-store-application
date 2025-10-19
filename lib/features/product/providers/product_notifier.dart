@@ -4,10 +4,10 @@ import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'product.g.dart';
+part 'product_notifier.g.dart';
 
 @riverpod
-class Product extends _$Product {
+class ProductNotifier extends _$ProductNotifier {
   @override
   Future<ProductState> build() async {
     final getProducts = ref.read(getProductsUsecaseProvider);
