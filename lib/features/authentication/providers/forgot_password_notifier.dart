@@ -2,10 +2,10 @@ import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'forgot_password.g.dart';
+part 'forgot_password_notifier.g.dart';
 
 @riverpod
-class ForgotPassword extends _$ForgotPassword {
+class ForgotPasswordNotifier extends _$ForgotPasswordNotifier {
   @override
   FutureOr<void> build() {}
 

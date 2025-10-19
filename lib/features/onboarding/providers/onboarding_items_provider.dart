@@ -2,7 +2,7 @@ import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'onboarding_presentation_providers.g.dart';
+part 'onboarding_items_provider.g.dart';
 
 @riverpod
 Future<List<OnboardingItemEntity>> onboardingItems(

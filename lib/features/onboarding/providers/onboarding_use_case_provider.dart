@@ -1,7 +1,7 @@
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'onboarding_domain_providers.g.dart';
+part 'onboarding_use_case_provider.g.dart';
 
 @riverpod
 Future<GetOnboardingStatusUsecase> getOnboardingStatusUsecase(

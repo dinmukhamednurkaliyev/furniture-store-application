@@ -2,7 +2,7 @@ import 'package:furniture_store_application/features/product/product.dart';
 import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'special_offer_domain_providers.g.dart';
+part 'special_offer_use_case_provider.g.dart';
 
 @riverpod
 GetOffersByIdsUsecase getOffersByIdsUsecase(Ref ref) {

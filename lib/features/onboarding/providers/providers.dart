@@ -1,4 +1,4 @@
 export 'onboarding_notifier.dart';
-export 'onboarding_data_providers.dart';
-export 'onboarding_domain_providers.dart';
-export 'onboarding_presentation_providers.dart';
+export 'onboarding_repository_provider.dart';
+export 'onboarding_use_case_provider.dart';
+export 'onboarding_items_provider.dart';

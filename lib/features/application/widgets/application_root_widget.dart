@@ -9,7 +9,7 @@ class ApplicationRootWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const title = 'Furniture Store';
     final routerConfig = ref.watch(routerProvider);
-    final themeModeAsync = ref.watch(themeModeSelectionProvider);
+    final themeModeAsync = ref.watch(themeModeProvider);
 
     return themeModeAsync.when(
       data: (themeMode) => MaterialApp.router(

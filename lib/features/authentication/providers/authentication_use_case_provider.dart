@@ -1,7 +1,7 @@
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'authentication_domain_providers.g.dart';
+part 'authentication_use_case_provider.g.dart';
 
 @riverpod
 Future<GetSignInStatusUsecase> getSignInStatusUsecase(Ref ref) async {

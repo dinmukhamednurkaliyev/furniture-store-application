@@ -2,7 +2,7 @@ import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'onboarding_data_providers.g.dart';
+part 'onboarding_repository_provider.g.dart';
 
 @riverpod
 Future<OnboardingLocalDataSource> onboardingLocalDataSource(

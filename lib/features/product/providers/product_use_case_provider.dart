@@ -1,7 +1,7 @@
 import 'package:furniture_store_application/features/product/product.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'product_domain_providers.g.dart';
+part 'product_use_case_provider.g.dart';
 
 @riverpod
 GetProductsUsecase getProductsUsecase(Ref ref) {

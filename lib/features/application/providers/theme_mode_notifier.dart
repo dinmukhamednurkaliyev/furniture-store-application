@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'theme_mode_selection_notifier.g.dart';
+part 'theme_mode_notifier.g.dart';
 
 @riverpod
-class ThemeModeSelectionNotifier extends _$ThemeModeSelectionNotifier {
+class ThemeModeNotifier extends _$ThemeModeNotifier {
   static const String _themeModeKey = 'themeMode';
 
   @override
