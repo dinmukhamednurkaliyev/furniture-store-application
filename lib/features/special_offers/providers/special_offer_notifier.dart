@@ -1,8 +1,18 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/features.dart';
+import 'package:furniture_store_application/features/product/product.dart';
+import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'special_offer_notifier.freezed.dart';
 part 'special_offer_notifier.g.dart';
+
+@freezed
+abstract class SpecialOfferState with _$SpecialOfferState {
+  const factory SpecialOfferState({
+    @Default([]) List<SpecialOfferEntity> offers,
+  }) = _SpecialOfferState;
+}
 
 @riverpod
 class SpecialOfferNotifier extends _$SpecialOfferNotifier {
