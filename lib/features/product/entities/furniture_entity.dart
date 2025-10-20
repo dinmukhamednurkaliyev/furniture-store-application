@@ -17,6 +17,7 @@ abstract class FurnitureEntity with _$FurnitureEntity {
     required List<String> colors,
     @Default([]) List<String> specialOfferIds,
     @Default(false) bool isFavorite,
+    double? discountedPrice,
   }) = _FurnitureEntity;
 
   factory FurnitureEntity.fromJson(Map<String, dynamic> json) =>

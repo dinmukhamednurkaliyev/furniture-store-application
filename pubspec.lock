@@ -273,6 +273,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+  fiora:
+    dependency: "direct main"
+    description:
+      path: "packages/fiora"
+      ref: HEAD
+      resolved-ref: "6e35239225d51d7f8310064952b076f20cf85fa7"
+      url: "https://github.com/dinmukhamednurkaliyev/fiora.git"
+    source: git
+    version: "0.0.1"
   fixnum:
     dependency: transitive
     description:

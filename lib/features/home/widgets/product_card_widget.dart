@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
+import 'package:furniture_store_application/features/cart/widgets/add_to_cart_button.dart';
 import 'package:furniture_store_application/features/product/product.dart';
 
 class ProductCard extends StatelessWidget {
@@ -63,6 +64,7 @@ class ProductCard extends StatelessWidget {
                 Padding(
                   padding: context.paddingValues.allMedium,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         product.name,
@@ -79,12 +81,47 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       context.spacingValues.verticalSmall,
-                      Text(
-                        '\$${product.price.toStringAsFixed(0)}',
-                        style: context.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.primaryColor,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Flexible(
+                            child:
+                                (product.hasSpecialOffer &&
+                                    product.discountedPrice != null)
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '\$${product.price.toStringAsFixed(2)}',
+                                        style: context.bodySmall?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: context.colorScheme.onSurface
+                                              .withValues(alpha: 0.5),
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                        ),
+                                      ),
+                                      Text(
+                                        '\$${product.discountedPrice!.toStringAsFixed(2)}',
+                                        style: context.bodyMedium?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: context.primaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Text(
+                                    '\$${product.price.toStringAsFixed(2)}',
+                                    style: context.bodyMedium?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: context.primaryColor,
+                                    ),
+                                  ),
+                          ),
+                          AddToCartButton(productId: product.id),
+                        ],
                       ),
                     ],
                   ),

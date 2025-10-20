@@ -10,6 +10,7 @@ const List<FurnitureEntity> kMockFurnitureData = [
     description:
         'Comfortable wing chair with stylish design and high-quality materials.',
     price: 199,
+    discountedPrice: 150,
     imageUrl: ImageEntity.local('assets/images/1.png'),
     images: [
       ImageEntity.local('assets/images/1.png'),
@@ -27,6 +28,7 @@ const List<FurnitureEntity> kMockFurnitureData = [
     description:
         'Modern Natuzze chair with ergonomic design and premium materials.',
     price: 150,
+    discountedPrice: 100,
     imageUrl: ImageEntity.local('assets/images/2.png'),
     images: [
       ImageEntity.local('assets/images/2.png'),
@@ -42,6 +44,7 @@ const List<FurnitureEntity> kMockFurnitureData = [
     category: 'Chair',
     description: 'Classic arm chair with elegant design and superior comfort.',
     price: 200,
+    discountedPrice: 160,
     imageUrl: ImageEntity.local('assets/images/3.png'),
     images: [
       ImageEntity.local('assets/images/3.png'),
@@ -56,6 +59,7 @@ const List<FurnitureEntity> kMockFurnitureData = [
     category: 'Sofa',
     description: 'Contemporary sofa with sleek design and plush cushions.',
     price: 599,
+    discountedPrice: 499,
     imageUrl: ImageEntity.local('assets/images/4.png'),
     images: [
       ImageEntity.local('assets/images/4.png'),
