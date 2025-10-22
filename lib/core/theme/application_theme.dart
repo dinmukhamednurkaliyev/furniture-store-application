@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/core/theme/application_dimensions.dart';
+import 'package:furniture_store_application/core/theme/application_pallete_theme.dart';
+import 'package:furniture_store_application/core/theme/application_text_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 @immutable

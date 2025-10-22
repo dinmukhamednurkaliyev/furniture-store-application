@@ -6,12 +6,6 @@ export 'providers/initialization_provider.dart';
 export 'providers/router_observer.dart';
 export 'providers/router_provider.dart';
 export 'providers/theme_mode_notifier.dart';
-// Theme
-export 'theme/application_dimensions.dart';
-export 'theme/application_pallete_theme.dart';
-export 'theme/application_text_theme.dart';
-export 'theme/application_theme.dart';
-export 'theme/application_themes.dart';
 // Widgets
 export 'widgets/application_bar_widget.dart';
 export 'widgets/application_root_widget.dart';

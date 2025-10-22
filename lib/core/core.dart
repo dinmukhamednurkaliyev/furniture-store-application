@@ -4,6 +4,8 @@ export 'entities/image_entity.dart';
 // Extensions
 export 'extensions/context_extension.dart';
 export 'extensions/int_extension.dart';
+// Providers
+export 'providers/core_providers.dart';
 export 'services/error_handler_service.dart';
 export 'services/image_cache_service.dart';
 export 'services/logging_service.dart';
@@ -11,6 +13,12 @@ export 'services/memory_tracking_service.dart';
 export 'services/performance_monitoring_service.dart';
 // Services
 export 'services/services_provider.dart';
+// Theme
+export 'theme/application_dimensions.dart';
+export 'theme/application_pallete_theme.dart';
+export 'theme/application_text_theme.dart';
+export 'theme/application_theme.dart';
+export 'theme/application_themes.dart';
 // Utilities
 export 'utilities/exceptions.dart';
 export 'utilities/failures.dart';

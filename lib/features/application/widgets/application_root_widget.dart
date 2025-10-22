@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
 
 class ApplicationRootWidget extends ConsumerWidget {

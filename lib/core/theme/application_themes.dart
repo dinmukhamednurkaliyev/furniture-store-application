@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/core/theme/application_pallete_theme.dart';
+import 'package:furniture_store_application/core/theme/application_theme.dart';
 
 enum ApplicationThemes {
   light(
@@ -27,7 +28,8 @@ enum ApplicationThemes {
       primaryColor: Color(0xFF00A2D3),
       secondaryColor: Color(0xFF94E1F0),
     ),
-  );
+  )
+  ;
 
   const ApplicationThemes({
     required this.brightness,

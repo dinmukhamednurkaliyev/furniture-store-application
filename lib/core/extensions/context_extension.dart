@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/core/theme/application_dimensions.dart';
 
 extension ThemeExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);
