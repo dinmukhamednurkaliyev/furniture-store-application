@@ -1,6 +1,5 @@
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/product/entities/entities.dart';
-import 'package:furniture_store_application/features/product/repositories/repositories.dart';
+import 'package:furniture_store_application/features/product/product.dart';
 
 class GetProductsUsecase {
   const GetProductsUsecase(this._repository);

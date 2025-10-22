@@ -1,5 +1,5 @@
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/product/repositories/repositories.dart';
+import 'package:furniture_store_application/features/product/product.dart';
 
 class ToggleFavoriteUsecase {
   const ToggleFavoriteUsecase(this._repository);

@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/features.dart';
+import 'package:furniture_store_application/features/application/application.dart';
+import 'package:furniture_store_application/features/authentication/authentication.dart';
+import 'package:furniture_store_application/features/blog/blog.dart';
+import 'package:furniture_store_application/features/cart/cart.dart';
+import 'package:furniture_store_application/features/home/home.dart';
+import 'package:furniture_store_application/features/onboarding/onboarding.dart';
+import 'package:furniture_store_application/features/product/product.dart';
+import 'package:furniture_store_application/features/profile/profile.dart';
+import 'package:furniture_store_application/features/special_offers/special_offers.dart';
+import 'package:furniture_store_application/features/wishlist/wishlist.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

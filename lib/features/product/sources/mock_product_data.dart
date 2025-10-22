@@ -1,5 +1,5 @@
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/features/product/entities/entities.dart';
+import 'package:furniture_store_application/features/product/product.dart';
 
 /// A hardcoded list of furniture items for mock purposes.
 const List<FurnitureEntity> kMockFurnitureData = [

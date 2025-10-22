@@ -1,5 +1,4 @@
-import 'package:furniture_store_application/features/product/repositories/repositories.dart';
-import 'package:furniture_store_application/features/product/sources/sources.dart';
+import 'package:furniture_store_application/features/product/product.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'product_repository_provider.g.dart';

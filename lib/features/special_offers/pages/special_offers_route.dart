@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/features/special_offers/pages/pages.dart';
+import 'package:furniture_store_application/features/special_offers/special_offers.dart';
 import 'package:go_router/go_router.dart';
 
 class SpecialOffersRoute {

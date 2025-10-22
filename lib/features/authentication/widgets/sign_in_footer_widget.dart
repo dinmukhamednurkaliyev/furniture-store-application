@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/.generated/assets.gen.dart';
 import 'package:furniture_store_application/core/core.dart';
-import 'package:furniture_store_application/core/utilities/extensions/extensions.dart';
+import 'package:furniture_store_application/core/extensions/extensions.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 
 class SignInFooterWidget extends StatelessWidget {
