@@ -120,7 +120,7 @@ class ProductCard extends StatelessWidget {
                                     ),
                                   ),
                           ),
-                          AddToCartButton(productId: product.id),
+                          AddToCartButton(product: product),
                         ],
                       ),
                     ],

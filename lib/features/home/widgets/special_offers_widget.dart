@@ -172,7 +172,7 @@ class _OfferDetails extends StatelessWidget {
                 backgroundColor: context.onPrimaryColor,
                 foregroundColor: context.primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: context.radiusValues.circularXLarge,
+                  borderRadius: context.radiusValues.circularMedium,
                 ),
                 padding: EdgeInsets.symmetric(
                   horizontal: context.paddingValues.large,

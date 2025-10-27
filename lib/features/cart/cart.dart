@@ -1,3 +1,5 @@
+// Entities
+export 'entities/cart_item_entity.dart';
 // Pages
 export 'pages/cart_page.dart';
 export 'pages/cart_route.dart';

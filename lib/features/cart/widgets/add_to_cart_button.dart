@@ -2,28 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/cart/cart.dart';
+import 'package:furniture_store_application/features/product/product.dart';
 
 class AddToCartButton extends ConsumerWidget {
   const AddToCartButton({
-    required this.productId,
+    required this.product,
     super.key,
   });
 
-  final String productId;
+  final FurnitureEntity product;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cartState = ref.watch(cartProvider);
-    final isAddingToCart = cartState.addingIds.contains(productId);
-    final isInCart = cartState.itemIds.contains(productId);
+    final isAdding = cartState.addingIds.contains(product.id);
+    final isRemoving = cartState.removingIds.contains(product.id);
+    final isLoading = isAdding || isRemoving;
 
-    final icon = isInCart
-        ? Icons.check
-        : isAddingToCart
+    final isInCart = cartState.items.any(
+      (item) => item.furniture.id == product.id,
+    );
+
+    final icon = isLoading
         ? null
+        : isInCart
+        ? Icons.check
         : Icons.shopping_cart;
 
-    final color = isInCart || isAddingToCart
+    final color = (isInCart && !isRemoving) || isAdding
         ? Colors.green
         : context.primaryColor;
 
@@ -37,12 +43,12 @@ class AddToCartButton extends ConsumerWidget {
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
-          onTap: isAddingToCart || isInCart
+          onTap: isLoading
               ? null
-              : () => ref.read(cartProvider.notifier).addToCart(productId),
+              : () => ref.read(cartProvider.notifier).toggleCartItem(product),
           borderRadius: context.radiusValues.circularSmall,
           child: Center(
-            child: isAddingToCart
+            child: isLoading
                 ? const SizedBox(
                     height: 16,
                     width: 16,

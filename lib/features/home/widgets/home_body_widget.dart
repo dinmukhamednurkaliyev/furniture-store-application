@@ -11,6 +11,7 @@ class HomeBodyWidget extends StatelessWidget {
     required this.featuredOffers,
     required this.featuredProducts,
     required this.onFavoriteToggle,
+    required this.allProducts,
     this.selectedCategory,
     super.key,
   });
@@ -21,6 +22,7 @@ class HomeBodyWidget extends StatelessWidget {
   final List<FeaturedOfferDisplayEntity> featuredOffers;
   final List<FurnitureEntity> featuredProducts;
   final ValueChanged<String> onFavoriteToggle;
+  final List<FurnitureEntity> allProducts;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,10 @@ class HomeBodyWidget extends StatelessWidget {
         SpecialOffersWidget(offers: featuredOffers),
         FeaturedItemsWidget(
           featuredProducts: featuredProducts,
+          onFavoriteToggle: onFavoriteToggle,
+        ),
+        ProductsWidget(
+          products: allProducts,
           onFavoriteToggle: onFavoriteToggle,
         ),
       ],

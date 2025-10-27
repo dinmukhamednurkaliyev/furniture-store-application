@@ -12,4 +12,5 @@ export 'widgets/home_body_widget.dart';
 export 'widgets/home_header_widget.dart';
 export 'widgets/home_search_bar_widget.dart';
 export 'widgets/product_card_widget.dart';
+export 'widgets/products_widget.dart';
 export 'widgets/special_offers_widget.dart';
