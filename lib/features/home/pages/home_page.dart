@@ -16,6 +16,7 @@ class HomePage extends ConsumerWidget {
       if (previous == null) return;
 
       final wasAdding = previous.addingIds.isNotEmpty && next.addingIds.isEmpty;
+
       final wasRemoving =
           previous.removingIds.isNotEmpty && next.removingIds.isEmpty;
 
@@ -90,36 +91,51 @@ class HomePage extends ConsumerWidget {
       body: SafeArea(
         child: homeDataState.when(
           loading: () => const Center(child: CircularProgressIndicator()),
+
           error: (error, stack) => Center(child: Text('Error: $error')),
+
           data: (homeData) {
             final user = authenticationState.value;
+
             final productData = homeData.productState;
 
             return CustomScrollView(
               slivers: [
                 SliverPadding(
                   padding: context.paddingValues.allLarge,
+
                   sliver: SliverToBoxAdapter(
                     child: Column(
                       spacing: context.spacingValues.medium,
+
                       children: [
                         HomeHeaderWidget(
                           displayName: user?.name ?? 'Guest',
+
                           profileImage: user?.profileImage,
+
                           onTap: () => ProfileRoute.push(context),
                         ),
+
                         HomeSearchBarWidget(onTap: () {}),
+
                         HomeBodyWidget(
                           categories: productData.categories,
+
                           selectedCategory: productData.selectedCategory,
+
                           featuredOffers: homeData.featuredOffers,
+
                           featuredProducts: homeData.featuredProducts,
+
                           allProducts: productData.filteredProducts,
+
                           onCategorySelected: (category) {
                             ref
                                 .read(productProvider.notifier)
                                 .selectCategory(category);
                           },
+
                           onFavoriteToggle: (productId) {
                             ref
                                 .read(productProvider.notifier)

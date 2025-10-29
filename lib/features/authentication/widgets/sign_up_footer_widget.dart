@@ -1,5 +1,5 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/.generated/assets.gen.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 
@@ -17,14 +17,14 @@ class SignUpFooterWidget extends StatelessWidget {
           children: [
             Expanded(
               child: AuthenticationSocialButtonWidget(
-                icon: Assets.icons.google.path,
+                icon: ApplicationCore.assets.icons.google.path,
                 onPressCallback: () {},
                 buttonText: 'Google',
               ),
             ),
             Expanded(
               child: AuthenticationSocialButtonWidget(
-                icon: Assets.icons.facebook.path,
+                icon: ApplicationCore.assets.icons.facebook.path,
                 onPressCallback: () {},
                 buttonText: 'Facebook',
               ),

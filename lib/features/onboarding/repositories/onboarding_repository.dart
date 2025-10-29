@@ -1,4 +1,4 @@
-import 'package:furniture_store_application/.generated/assets.gen.dart';
+import 'package:application_core/application_core.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
 
@@ -28,18 +28,24 @@ class OnboardingRepositoryImplementation implements OnboardingRepository {
       OnboardingItemEntity(
         title: 'Welcome to Furniture Store',
         description: 'Discover the best furniture for your home.',
-        image: ImageEntity.local(Assets.images.onboarding1.path),
+        image: ImageEntity.local(
+          ApplicationCore.assets.images.onboarding1.path,
+        ),
       ),
       OnboardingItemEntity(
         title: 'Quality Products',
         description: 'We offer high-quality furniture at affordable prices.',
-        image: ImageEntity.local(Assets.images.onboarding2.path),
+        image: ImageEntity.local(
+          ApplicationCore.assets.images.onboarding2.path,
+        ),
       ),
       OnboardingItemEntity(
         title: 'Easy Shopping',
         description:
             'Shop from the comfort of your home with our easy-to-use app.',
-        image: ImageEntity.local(Assets.images.onboarding3.path),
+        image: ImageEntity.local(
+          ApplicationCore.assets.images.onboarding3.path,
+        ),
       ),
     ];
     return Result.success(items);
