@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/onboarding/onboarding.dart';
@@ -39,7 +40,7 @@ class OnboardingPageContent extends StatelessWidget {
   }
 
   Widget _buildNarrowLayout(BuildContext context) {
-    final screenHeight = context.screenHeight;
+    final screenHeight = context.screen.height;
     return Padding(
       padding: context.paddingValues.hXLarge,
       child: Column(
@@ -54,7 +55,7 @@ class OnboardingPageContent extends StatelessWidget {
   }
 
   Widget _buildWideLayout(BuildContext context) {
-    final screenHeight = context.screenHeight;
+    final screenHeight = context.screen.height;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenHeight * 0.1),
       child: Row(
@@ -93,13 +94,15 @@ class _TextContent extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.start,
-          style: context.displaySmall?.copyWith(fontWeight: FontWeight.bold),
+          style: context.text.displaySmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         context.spacingValues.verticalLarge,
         Text(
           description,
           textAlign: TextAlign.start,
-          style: context.bodyLarge?.copyWith(fontSize: 18),
+          style: context.text.bodyLarge?.copyWith(fontSize: 18),
         ),
       ],
     );

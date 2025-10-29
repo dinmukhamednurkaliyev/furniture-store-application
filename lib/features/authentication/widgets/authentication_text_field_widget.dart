@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 
@@ -31,8 +32,8 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: context.bodyLarge?.copyWith(
-            color: context.colorScheme.onSurfaceVariant,
+          style: context.text.bodyLarge?.copyWith(
+            color: context.color.onSurfaceVariant,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -44,18 +45,18 @@ class AuthenticationTextFieldWidget extends StatelessWidget {
           keyboardType: keyboardInputType,
           enabled: isEnabledInput,
           textInputAction: textInputActionListener,
-          style: context.bodyLarge,
+          style: context.text.bodyLarge,
           decoration: InputDecoration(
             prefixIcon: prefixIconWidget,
-            prefixIconColor: context.colorScheme.onSurfaceVariant,
+            prefixIconColor: context.color.onSurfaceVariant,
             hintText: hintTextInputText,
-            hintStyle: context.bodyLarge?.copyWith(
-              color: context.colorScheme.onSurfaceVariant,
+            hintStyle: context.text.bodyLarge?.copyWith(
+              color: context.color.onSurfaceVariant,
             ),
             filled: true,
             fillColor: isEnabledInput
-                ? context.colorScheme.surfaceContainerHighest
-                : context.colorScheme.surfaceContainer,
+                ? context.color.surfaceContainerHighest
+                : context.color.surfaceContainer,
             border: OutlineInputBorder(
               borderRadius: context.radiusValues.circularMedium,
               borderSide: BorderSide.none,

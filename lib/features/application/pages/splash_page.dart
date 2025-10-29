@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 
@@ -51,7 +52,7 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.backgroundColor,
+      backgroundColor: context.color.surface,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +84,7 @@ class _AnimatedLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logoSize = min(context.screenWidth, context.screenHeight) * 0.25;
+    final logoSize = min(context.screen.width, context.screen.height) * 0.25;
     final iconSize = logoSize * 0.33;
 
     return FadeTransition(
@@ -95,12 +96,12 @@ class _AnimatedLogo extends StatelessWidget {
           width: logoSize,
           padding: context.paddingValues.allMedium,
           decoration: BoxDecoration(
-            color: context.primaryColor.withAlpha(25),
+            color: context.color.primary.withAlpha(25),
             borderRadius: context.radiusValues.circularXXLarge,
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: context.primaryColor,
+              color: context.color.primary,
               borderRadius: context.radiusValues.circularXLarge,
             ),
             child: Icon(
@@ -126,7 +127,7 @@ class _AnimatedTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = context.screenWidth < 600;
+    final isMobile = context.screen.width < 600;
     final titleFontSize = isMobile ? 32.0 : 48.0;
     final subtitleFontSize = isMobile ? 16.0 : 22.0;
 
@@ -145,7 +146,7 @@ class _AnimatedTexts extends StatelessWidget {
             context.spacingValues.verticalSmall,
             Text(
               'Make your home beautiful',
-              style: context.bodyLarge?.copyWith(
+              style: context.text.bodyLarge?.copyWith(
                 fontSize: subtitleFontSize,
                 color: context.theme.colorScheme.onSurfaceVariant,
               ),

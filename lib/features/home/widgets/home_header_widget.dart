@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 
@@ -30,14 +31,14 @@ class HomeHeaderWidget extends StatelessWidget {
           children: [
             Text(
               'Welcome',
-              style: context.bodyLarge?.copyWith(
-                color: context.colorScheme.onSurfaceVariant,
+              style: context.text.bodyLarge?.copyWith(
+                color: context.color.onSurfaceVariant,
               ),
             ),
             context.spacingValues.verticalXSmall,
             Text(
               displayName,
-              style: context.titleLarge?.copyWith(
+              style: context.text.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -47,7 +48,7 @@ class HomeHeaderWidget extends StatelessWidget {
           onTap: onTap,
           customBorder: const CircleBorder(),
           overlayColor: WidgetStateProperty.all(
-            context.primaryColor.withValues(alpha: 0.1),
+            context.color.primary.withValues(alpha: 0.1),
           ),
           child: CircleAvatar(
             radius: context.spacingValues.xxlarge,

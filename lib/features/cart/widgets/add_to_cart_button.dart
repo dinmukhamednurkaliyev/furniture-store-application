@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
@@ -31,7 +32,7 @@ class AddToCartButton extends ConsumerWidget {
 
     final color = (isInCart && !isRemoving) || isAdding
         ? Colors.green
-        : context.primaryColor;
+        : context.color.primary;
 
     return Container(
       height: 36,

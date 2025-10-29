@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_application/core/core.dart';
@@ -28,8 +29,8 @@ class ProductsWidget extends ConsumerWidget {
             children: [
               Text(
                 'Products',
-                style: context.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
+                style: context.text.titleLarge?.copyWith(
+                  fontWeight: context.text.weight.semiBold,
                 ),
               ),
               TextButton(
@@ -55,9 +56,7 @@ class ProductsWidget extends ConsumerWidget {
               horizontal: context.paddingValues.large,
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: context.isMobileScreen
-                  ? 2
-                  : (context.isTabletScreen ? 3 : 4),
+              crossAxisCount: context.isMobile ? 2 : (context.isTablet ? 3 : 4),
               crossAxisSpacing: context.spacingValues.medium,
               mainAxisSpacing: context.spacingValues.medium,
               childAspectRatio: 0.7,

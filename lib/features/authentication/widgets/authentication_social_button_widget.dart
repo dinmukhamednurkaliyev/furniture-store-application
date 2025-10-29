@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 
@@ -22,18 +23,18 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
         side: WidgetStateProperty.resolveWith<BorderSide>(
           (states) {
             if (states.contains(WidgetState.pressed)) {
-              return BorderSide(color: context.primaryColor);
+              return BorderSide(color: context.color.primary);
             }
-            return BorderSide(color: context.colorScheme.outline);
+            return BorderSide(color: context.color.outline);
           },
         ),
         backgroundColor: WidgetStateProperty.resolveWith<Color?>(
           (states) {
             if (states.contains(WidgetState.hovered)) {
-              return context.colorScheme.surfaceContainerLowest;
+              return context.color.surfaceContainerLowest;
             }
             if (states.contains(WidgetState.pressed)) {
-              return context.primaryColor.withValues(alpha: 0.1);
+              return context.color.primary.withValues(alpha: 0.1);
             }
             return Colors.transparent;
           },
@@ -55,8 +56,8 @@ class AuthenticationSocialButtonWidget extends StatelessWidget {
           ),
           Text(
             buttonText,
-            style: context.bodyMedium?.copyWith(
-              color: context.colorScheme.onSurface,
+            style: context.text.bodyMedium?.copyWith(
+              color: context.color.onSurface,
               fontWeight: FontWeight.w500,
             ),
           ),

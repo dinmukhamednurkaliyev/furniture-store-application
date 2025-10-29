@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/application/application.dart';
@@ -22,15 +23,15 @@ class OnboardingBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = context.screenHeight;
+    final screenHeight = context.screen.height;
     final buttonHeight = (screenHeight * 0.065).clamp(48.0, 60.0);
     final isLastPage = currentPage == itemCount - 1;
 
     final textButtonStyle = TextButton.styleFrom(
       minimumSize: Size(0, buttonHeight),
       padding: context.paddingValues.hLarge,
-      foregroundColor: context.primaryColor,
-      overlayColor: context.primaryColor.withValues(alpha: 0.1),
+      foregroundColor: context.color.primary,
+      overlayColor: context.color.primary.withValues(alpha: 0.1),
     );
 
     final barContent = AnimatedSwitcher(

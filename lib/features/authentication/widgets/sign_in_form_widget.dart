@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
@@ -65,8 +66,8 @@ class SignInFormWidget extends StatelessWidget {
             child: TextButton(
               onPressed: () => ForgotPasswordRoute.push(context),
               style: TextButton.styleFrom(
-                foregroundColor: context.colorScheme.onSurfaceVariant,
-                overlayColor: context.primaryColor.withValues(alpha: 0.1),
+                foregroundColor: context.color.onSurfaceVariant,
+                overlayColor: context.color.primary.withValues(alpha: 0.1),
               ),
               child: const Text(
                 'Forgot Password ?',

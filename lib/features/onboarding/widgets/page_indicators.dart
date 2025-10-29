@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 
@@ -44,7 +45,7 @@ class _Indicator extends StatelessWidget {
       mouseCursor: SystemMouseCursors.click,
       borderRadius: context.radiusValues.circularLarge,
       overlayColor: WidgetStateProperty.all(
-        context.primaryColor.withValues(alpha: 0.1),
+        context.color.primary.withValues(alpha: 0.1),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -59,8 +60,8 @@ class _Indicator extends StatelessWidget {
               : context.spacingValues.small,
           decoration: BoxDecoration(
             color: isActive
-                ? context.primaryColor
-                : context.colorScheme.surfaceContainerHighest,
+                ? context.color.primary
+                : context.color.surfaceContainerHighest,
             borderRadius: context.radiusValues.circularMedium,
           ),
         ),

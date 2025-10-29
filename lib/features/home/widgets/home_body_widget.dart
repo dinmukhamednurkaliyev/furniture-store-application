@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/home/home.dart';
@@ -69,7 +70,7 @@ class _CategoryFilter extends StatelessWidget {
           padding: EdgeInsets.only(bottom: context.paddingValues.large),
           child: Text(
             'Categories',
-            style: context.textTheme.titleLarge?.copyWith(
+            style: context.text.titleLarge?.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -90,22 +91,22 @@ class _CategoryFilter extends StatelessWidget {
                       onCategorySelected(category);
                     }
                   },
-                  selectedColor: context.primaryColor,
+                  selectedColor: context.color.primary,
                   labelStyle: TextStyle(
                     color: isSelected
-                        ? context.colorScheme.onPrimary
-                        : context.colorScheme.onSurface,
+                        ? context.color.onPrimary
+                        : context.color.onSurface,
                   ),
                   showCheckmark: false,
                   avatar: isSelected
                       ? Icon(
                           Icons.check_circle,
                           size: 18,
-                          color: context.colorScheme.onPrimary,
+                          color: context.color.onPrimary,
                         )
                       : null,
                   side: BorderSide(
-                    color: context.primaryColor,
+                    color: context.color.primary,
                   ),
                 ),
               );

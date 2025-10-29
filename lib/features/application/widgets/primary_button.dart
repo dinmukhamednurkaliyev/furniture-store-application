@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 
@@ -21,8 +22,8 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = invertColors ? Colors.white : context.primaryColor;
-    final foregroundColor = invertColors ? context.primaryColor : Colors.white;
+    final backgroundColor = invertColors ? Colors.white : context.color.primary;
+    final foregroundColor = invertColors ? context.color.primary : Colors.white;
 
     final button = ElevatedButton(
       onPressed: isLoading ? null : onPressed,
@@ -46,7 +47,7 @@ class PrimaryButton extends StatelessWidget {
         ),
         elevation: WidgetStateProperty.all(0),
         overlayColor: WidgetStateProperty.all(
-          (invertColors ? context.primaryColor : Colors.white).withValues(
+          (invertColors ? context.color.primary : Colors.white).withValues(
             alpha: 0.1,
           ),
         ),
@@ -62,7 +63,7 @@ class PrimaryButton extends StatelessWidget {
             )
           : Text(
               text,
-              style: context.bodyLarge?.copyWith(
+              style: context.text.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),

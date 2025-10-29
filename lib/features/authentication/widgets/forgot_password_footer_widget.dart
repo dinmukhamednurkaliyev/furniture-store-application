@@ -1,5 +1,5 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
-import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/authentication/authentication.dart';
 
 class ForgotPasswordFooterWidget extends StatelessWidget {
@@ -12,8 +12,8 @@ class ForgotPasswordFooterWidget extends StatelessWidget {
       children: [
         Text(
           'Remember your password?',
-          style: context.bodyLarge?.copyWith(
-            color: context.colorScheme.onSurfaceVariant,
+          style: context.text.bodyLarge?.copyWith(
+            color: context.color.onSurfaceVariant,
           ),
         ),
         TextButton(
@@ -21,8 +21,8 @@ class ForgotPasswordFooterWidget extends StatelessWidget {
             SignInRoute.push(context);
           },
           style: TextButton.styleFrom(
-            foregroundColor: context.primaryColor,
-            overlayColor: context.primaryColor.withValues(alpha: 0.1),
+            foregroundColor: context.color.primary,
+            overlayColor: context.color.primary.withValues(alpha: 0.1),
           ),
           child: const Text(
             'Sign in',

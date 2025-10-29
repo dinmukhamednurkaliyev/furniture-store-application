@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/product/product.dart';
@@ -90,8 +91,8 @@ class _OfferCard extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                context.primaryColor,
-                context.primaryColor.withValues(alpha: 0.8),
+                context.color.primary,
+                context.color.primary.withValues(alpha: 0.8),
               ],
             ),
           ),
@@ -130,13 +131,13 @@ class _OfferDetails extends StatelessWidget {
                 vertical: context.paddingValues.xsmall,
               ),
               decoration: BoxDecoration(
-                color: context.onPrimaryColor,
+                color: context.color.onPrimary,
                 borderRadius: context.radiusValues.circularXLarge,
               ),
               child: Text(
                 offer.name,
-                style: context.bodySmall?.copyWith(
-                  color: context.primaryColor,
+                style: context.text.bodySmall?.copyWith(
+                  color: context.color.primary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -148,8 +149,8 @@ class _OfferDetails extends StatelessWidget {
               children: [
                 Text(
                   '${offer.discountPercentage.toInt()}% OFF',
-                  style: context.headlineMedium?.copyWith(
-                    color: context.onPrimaryColor,
+                  style: context.text.headlineMedium?.copyWith(
+                    color: context.color.onPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -158,8 +159,8 @@ class _OfferDetails extends StatelessWidget {
                   offer.description,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: context.titleMedium?.copyWith(
-                    color: context.onPrimaryColor,
+                  style: context.text.titleMedium?.copyWith(
+                    color: context.color.onPrimary,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -169,8 +170,8 @@ class _OfferDetails extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: context.onPrimaryColor,
-                foregroundColor: context.primaryColor,
+                backgroundColor: context.color.onPrimary,
+                foregroundColor: context.color.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: context.radiusValues.circularMedium,
                 ),
@@ -205,7 +206,7 @@ class _DecorativeCircles extends StatelessWidget {
           bottom: -30,
           child: CircleAvatar(
             radius: 100,
-            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.12),
+            backgroundColor: context.color.onPrimary.withValues(alpha: 0.12),
           ),
         ),
         Positioned(
@@ -213,7 +214,7 @@ class _DecorativeCircles extends StatelessWidget {
           bottom: -20,
           child: CircleAvatar(
             radius: 60,
-            backgroundColor: context.onPrimaryColor.withValues(alpha: 0.10),
+            backgroundColor: context.color.onPrimary.withValues(alpha: 0.10),
           ),
         ),
       ],
@@ -296,7 +297,7 @@ class _Indicator extends StatelessWidget {
       mouseCursor: SystemMouseCursors.click,
       borderRadius: context.radiusValues.circularLarge,
       overlayColor: WidgetStateProperty.all(
-        context.primaryColor.withValues(alpha: 0.1),
+        context.color.primary.withValues(alpha: 0.1),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -312,8 +313,8 @@ class _Indicator extends StatelessWidget {
               : context.spacingValues.small,
           decoration: BoxDecoration(
             color: isActive
-                ? context.primaryColor
-                : context.colorScheme.surfaceContainerHighest,
+                ? context.color.primary
+                : context.color.surfaceContainerHighest,
             borderRadius: context.radiusValues.circularMedium,
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/cart/widgets/add_to_cart_button.dart';
@@ -18,7 +19,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card.filled(
-      color: context.colorScheme.surface,
+      color: context.color.surface,
       clipBehavior: Clip.antiAlias,
       child: Stack(
         children: [
@@ -68,7 +69,7 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Text(
                         product.name,
-                        style: context.bodyLarge?.copyWith(
+                        style: context.text.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                         maxLines: 1,
@@ -76,8 +77,8 @@ class ProductCard extends StatelessWidget {
                       ),
                       Text(
                         product.category,
-                        style: context.bodySmall?.copyWith(
-                          color: context.colorScheme.onSurfaceVariant,
+                        style: context.text.bodySmall?.copyWith(
+                          color: context.color.onSurfaceVariant,
                         ),
                       ),
                       context.spacingValues.verticalSmall,
@@ -95,9 +96,9 @@ class ProductCard extends StatelessWidget {
                                     children: [
                                       Text(
                                         '\$${product.price.toStringAsFixed(2)}',
-                                        style: context.bodySmall?.copyWith(
+                                        style: context.text.bodySmall?.copyWith(
                                           fontWeight: FontWeight.bold,
-                                          color: context.colorScheme.onSurface
+                                          color: context.color.onSurface
                                               .withValues(alpha: 0.5),
                                           decoration:
                                               TextDecoration.lineThrough,
@@ -105,18 +106,19 @@ class ProductCard extends StatelessWidget {
                                       ),
                                       Text(
                                         '\$${product.discountedPrice!.toStringAsFixed(2)}',
-                                        style: context.bodyMedium?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: context.primaryColor,
-                                        ),
+                                        style: context.text.bodyMedium
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              color: context.color.primary,
+                                            ),
                                       ),
                                     ],
                                   )
                                 : Text(
                                     '\$${product.price.toStringAsFixed(2)}',
-                                    style: context.bodyMedium?.copyWith(
+                                    style: context.text.bodyMedium?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: context.primaryColor,
+                                      color: context.color.primary,
                                     ),
                                   ),
                           ),
@@ -137,7 +139,7 @@ class ProductCard extends StatelessWidget {
               width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colorScheme.surface,
+                color: context.color.surface,
               ),
               child: IconButton(
                 iconSize: 20,

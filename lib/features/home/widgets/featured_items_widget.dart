@@ -1,3 +1,4 @@
+import 'package:application_core/application_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_application/core/core.dart';
 import 'package:furniture_store_application/features/home/home.dart';
@@ -27,7 +28,7 @@ class FeaturedItemsWidget extends StatelessWidget {
             children: [
               Text(
                 'Featured Items',
-                style: context.textTheme.titleLarge?.copyWith(
+                style: context.text.titleLarge?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),
